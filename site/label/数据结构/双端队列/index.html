@@ -185,9 +185,63 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_2">
-    代码汇总
+<a class="md-nav__link" href="#-">
+    数组版-双端队列
   </a>
+<nav aria-label="数组版-双端队列" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#init">
+    init 初始化
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ml">
+    ml 左边元素下标
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mr">
+    mr 右边元素的下标
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#empty">
+    empty
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#size">
+    size
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#full">
+    full
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#push_left">
+    push_left 往左插
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#push_right">
+    push_right 往右插
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pop_left">
+    pop_left 删左边
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pop_right">
+    pop_right 删右边
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -210,9 +264,63 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_2">
-    代码汇总
+<a class="md-nav__link" href="#-">
+    数组版-双端队列
   </a>
+<nav aria-label="数组版-双端队列" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#init">
+    init 初始化
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ml">
+    ml 左边元素下标
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mr">
+    mr 右边元素的下标
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#empty">
+    empty
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#size">
+    size
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#full">
+    full
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#push_left">
+    push_left 往左插
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#push_right">
+    push_right 往右插
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pop_left">
+    pop_left 删左边
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pop_right">
+    pop_right 删右边
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -223,89 +331,110 @@
 <article class="md-content__inner md-typeset">
 <h1 id="_1">双端队列</h1>
 <p>两端都能进或出</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href=":/d65537366bec4b29be786645895cb056"><img alt="84cdf8c9a2b753fdfa5c78957460d435.png" src=":/d65537366bec4b29be786645895cb056"/></a></p>
-<p>规定 <span class="arithmatex">\(q[0]\)</span> 是左指针，<span class="arithmatex">\(q[1]\)</span> 是右指针，如果 <span class="arithmatex">\(q[0]\)</span> 和 <span class="arithmatex">\(q[1]\)</span> 在数值上相邻时，为空</p>
-<p>init：</p>
-<p>初始化时，<span class="arithmatex">\(q[0] = 2, q[1] = 3\)</span></p>
+<h2 id="-">数组版-双端队列</h2>
+<p>规定 <span class="arithmatex">\(q[0]\)</span> 是左指针，<span class="arithmatex">\(q[1]\)</span> 是右指针，并且左右指针都能往左或者往右移动</p>
+<details class="note">
+<summary>双端队列示意图</summary>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97%E7%A4%BA%E6%84%8F%E5%9B%BE.png"><img alt="双端队列示意图" src="../../../img/%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97%E7%A4%BA%E6%84%8F%E5%9B%BE.png"/></a></p>
+</details>
+<h3 id="init">init 初始化</h3>
+<p>我们规定，数组下标为 <span class="arithmatex">\(q[0]\)</span>、<span class="arithmatex">\(q[1]\)</span> 的数据域不能存放数据，初始化时，<span class="arithmatex">\(q[0] = 2, q[1] = 3\)</span></p>
+<details class="note">
+<summary>双端队列-初始状态图片</summary>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E9%98%9F%E5%88%97%E5%88%9D%E5%A7%8B%E7%8A%B6%E6%80%81.png"><img alt="" src="../../../img/%E9%98%9F%E5%88%97%E5%88%9D%E5%A7%8B%E7%8A%B6%E6%80%81.png"/></a></p>
+</details>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
 <a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="p">{</span><span class="w"></span>
 <a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">    </span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"></span>
 <a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="p">}</span><span class="w"></span>
 </code></pre></div>
-<p><span class="arithmatex">\(q[0]\)</span> 的取值范围：<span class="arithmatex">\([2, N - 1, N - 2, \cdots , 3]\)</span>
-<span class="arithmatex">\(q[1]\)</span> 的取值范围：<span class="arithmatex">\([3, 4, \cdots, N - 1, 2]\)</span></p>
-<p>定义 <span class="arithmatex">\(N - 1\)</span> 与 <span class="arithmatex">\(2\)</span> 相邻</p>
-<p><span class="arithmatex">\(q[1]\)</span> 右移操作本应该是 <code>q[1] = q[1] + 1 == N ? 2 : q[1] + 1</code>，根据取值范围：<span class="arithmatex">\([2, N - 1] = [0, N - 3] + 2\)</span> 优化成：<code>q[1] = (q[1] - 2 + 1) % (N - 2) + 2 = (q[1] - 1) % (N - 2) + 2</code></p>
-<p><span class="arithmatex">\(q[0]\)</span> 的左移操作本应该是 <code>q[0] = q[0] - 1 == 1 ? N - 1 : q[0] - 1</code>，根据取值范围：<span class="arithmatex">\([N - 1, \cdots , 2] = [N - 3, \cdots , 0] + 2\)</span> 优化成：<code>q[0] = (q[0] - 2 - 1 + N - 2) % (N - 2) = (q[0] - 3 + N - 2) % (N - 2) = (q[0] - 5 + N) % (N - 2) + 2</code></p>
-<p>empty：</p>
-<p>所以 <span class="arithmatex">\(q[0]\)</span> 与 <span class="arithmatex">\(q[1]\)</span> 在 <span class="arithmatex">\([2, N - 1]\)</span> 上左相邻，可表示为：<span class="arithmatex">\([0, N - 3]\)</span> 上相邻，即 <code>((q[1] - 2) - (q[0] - 2) + (N - 2)) % (N - 2) == 1</code> 化简后：<code>(q[1] - q[0] + N - 2) % (N - 2)</code></p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kt">bool</span><span class="w"> </span><span class="nf">empty</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
+<h3 id="ml">ml 左边元素下标</h3>
+<ul>
+<li>如果 pos != 2 ，则 ml = pos - 1</li>
+<li>否则 ml = N - 1</li>
+</ul>
+<p>若 <span class="arithmatex">\(i\)</span> 是区间 <span class="arithmatex">\([0, N - 3]\)</span> 的元素，左移就相当于是 <span class="arithmatex">\(i - 1\)</span> 对 <span class="arithmatex">\(N - 2\)</span> 同余操作，即 <span class="arithmatex">\((i - 1) \bmod (N - 2)\)</span></p>
+<p>已知 <span class="arithmatex">\(pos\)</span> 是区间 <span class="arithmatex">\([2, N - 1]\)</span> 的元素，也是 <span class="arithmatex">\([0, N - 3] + 2\)</span> 的元素，<span class="arithmatex">\(pos\)</span> 左移就相当于是 <span class="arithmatex">\((pos - 2 - 1) \bmod (N - 2) + 2 = (pos - 2 - 1 + N - 2) \bmod (N - 2) + 2\)</span></p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">ml</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">pos</span><span class="p">)</span><span class="w"></span>
 <a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="p">{</span><span class="w"></span>
-<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">pos</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
 <a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="p">}</span><span class="w"></span>
 </code></pre></div>
-<p>size：</p>
-<p>如果 <span class="arithmatex">\(q[1] &gt; q[0]\)</span>，<span class="arithmatex">\(size = q[1] - q[0] - 1\)</span>；</p>
-<p>如果 <span class="arithmatex">\(q[1] &lt; q[0]\)</span>，<span class="arithmatex">\(size = q[1] - 2 + N - q[0] - 1 = q[1] - q[0] - 1 +  N - 2\)</span>；</p>
-<p>综上：<span class="arithmatex">\(size = (q[1] - q[0] - 1 +  N - 2) % (N - 2)\)</span></p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">size</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
+<h3 id="mr">mr 右边元素的下标</h3>
+<ul>
+<li>如果 pos != N-1 ，则 mr = pos + 1</li>
+<li>否则 ml = 2</li>
+</ul>
+<p>已知 <span class="arithmatex">\(pos\)</span> 的取值范围：<span class="arithmatex">\([2, N-1]\)</span> ，在该区间内右移，就相当于在区间 <span class="arithmatex">\([0, N - 3]\)</span> 内右移，需要先 <span class="arithmatex">\(pos - 2\)</span> 化成区间 <span class="arithmatex">\([0, N - 3]\)</span> 内的元素，再对右移操作 <span class="arithmatex">\((pos - 2 + 1) \bmod ( N - 2)\)</span> 同余</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">mr</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">pos</span><span class="p">)</span><span class="w"></span>
 <a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="p">{</span><span class="w"></span>
-<a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">    </span><span class="k">return</span><span class="w">  </span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w">  </span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+<a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">pos</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
 <a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="p">}</span><span class="w"></span>
 </code></pre></div>
-<p>full：</p>
-<p>实际上，数组能用的空间只有 <span class="arithmatex">\(N - 4\)</span></p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kt">bool</span><span class="w"> </span><span class="nf">full</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
+<h3 id="empty">empty</h3>
+<p>只要 <span class="arithmatex">\(q[0]\)</span> 紧跟在 <span class="arithmatex">\(q[1]\)</span> 的左手边，就说明双端队列为空</p>
+<details class="note">
+<summary>双端队列空状态图例</summary>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97%E7%A9%BA%E7%8A%B6%E6%80%81.png"><img alt="双端队列空状态" src="../../../img/%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97%E7%A9%BA%E7%8A%B6%E6%80%81.png"/></a></p>
+</details>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kt">bool</span><span class="w"> </span><span class="nf">empty</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
 <a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="p">{</span><span class="w"></span>
-<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ml</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w"></span>
 <a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="p">}</span><span class="w"></span>
 </code></pre></div>
-<p>push_left：</p>
-<p>先将元素放入 <span class="arithmatex">\(q[q[0]]\)</span>，<span class="arithmatex">\(q[0]\)</span> 再左移：<code>q[0] = (q[0] - 5 + N) % (N - 2) + 2</code></p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">push_left</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+<h3 id="size">size</h3>
+<p>如果 <span class="arithmatex">\(q[1] &gt; q[0]\)</span>，<span class="arithmatex">\(size = q[1] - q[0] - 1\)</span>；</p>
+<p>如果 <span class="arithmatex">\(q[1] &lt; q[0]\)</span>，<span class="arithmatex">\(size = (q[1] - 2) + (N - q[0] - 1) = (q[1] - q[0] - 1) +  N - 2\)</span>；</p>
+<p>综上：<span class="arithmatex">\(size = (q[1] - q[0] - 1 +  N - 2) \bmod (N - 2)\)</span></p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">size</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
 <a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="p">{</span><span class="w"></span>
-<a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="w">    </span><span class="n">q</span><span class="p">[</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="w">    </span><span class="k">return</span><span class="w">  </span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w">  </span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
 <a href="#__codelineno-4-4" id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="p">}</span><span class="w"></span>
 </code></pre></div>
-<p>push_right：</p>
-<p>先将元素放入 <span class="arithmatex">\(q[q[1]]\)</span>，<span class="arithmatex">\(q[1]\)</span> 再右移：<code>q[1] = (q[1] - 1) % (N - 2) + 2</code></p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">push_right</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+<h3 id="full">full</h3>
+<p>实际上，数组能用的空间只有 <span class="arithmatex">\(N - 4\)</span></p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="kt">bool</span><span class="w"> </span><span class="nf">full</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
 <a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="p">{</span><span class="w"></span>
-<a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="w">    </span><span class="n">q</span><span class="p">[</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"></span>
 <a href="#__codelineno-5-4" id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="p">}</span><span class="w"></span>
 </code></pre></div>
-<p>pop_left：</p>
-<p>先将 <code>q[0]</code> 右移：<code>q[0] = (q[0] - 1) % (N - 2) + 2</code>，再取出元素</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">pop_left</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
+<h3 id="push_left">push_left 往左插</h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">push_left</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"></span>
 <a href="#__codelineno-6-2" id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="p">{</span><span class="w"></span>
-<a href="#__codelineno-6-3" id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="w">    </span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
-<a href="#__codelineno-6-4" id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]];</span><span class="w"></span>
-<a href="#__codelineno-6-5" id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="p">}</span><span class="w"></span>
+<a href="#__codelineno-6-3" id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="w">    </span><span class="n">q</span><span class="p">[</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ml</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span><span class="w"></span>
+<a href="#__codelineno-6-4" id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="p">}</span><span class="w"></span>
 </code></pre></div>
-<p>pop_right：</p>
-<p>先将 <code>q[1]</code> 左移：<code>q[1] = (q[1] - 5 + N) % (N - 2) + 2</code>，再取出元素</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">pop_right</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
+<h3 id="push_right">push_right 往右插</h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">push_right</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"></span>
 <a href="#__codelineno-7-2" id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="p">{</span><span class="w"></span>
-<a href="#__codelineno-7-3" id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="w">    </span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
-<a href="#__codelineno-7-4" id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]];</span><span class="w"></span>
-<a href="#__codelineno-7-5" id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="p">}</span><span class="w"></span>
+<a href="#__codelineno-7-3" id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="w">    </span><span class="n">q</span><span class="p">[</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mr</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span><span class="w"></span>
+<a href="#__codelineno-7-4" id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="p">}</span><span class="w"></span>
 </code></pre></div>
-<p>left：</p>
-<p>访问左指针元素</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">left</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
+<h3 id="pop_left">pop_left 删左边</h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">top_left</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
 <a href="#__codelineno-8-2" id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="p">{</span><span class="w"></span>
-<a href="#__codelineno-8-3" id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">q</span><span class="p">[(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">];</span><span class="w"></span>
+<a href="#__codelineno-8-3" id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="n">mr</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">])];</span><span class="w"></span>
 <a href="#__codelineno-8-4" id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="p">}</span><span class="w"></span>
+<a href="#__codelineno-8-5" id="__codelineno-8-5" name="__codelineno-8-5"></a>
+<a href="#__codelineno-8-6" id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="kt">void</span><span class="w"> </span><span class="nf">pop_left</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
+<a href="#__codelineno-8-7" id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-8-8" id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="w">    </span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mr</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span><span class="w"></span>
+<a href="#__codelineno-8-9" id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="p">}</span><span class="w"></span>
 </code></pre></div>
-<p>right：</p>
-<p>访问右指针元素</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">right</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
+<h3 id="pop_right">pop_right 删右边</h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">top_right</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
 <a href="#__codelineno-9-2" id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="p">{</span><span class="w"></span>
-<a href="#__codelineno-9-3" id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">q</span><span class="p">[(</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">];</span><span class="w"></span>
+<a href="#__codelineno-9-3" id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="n">ml</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">])];</span><span class="w"></span>
 <a href="#__codelineno-9-4" id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="p">}</span><span class="w"></span>
+<a href="#__codelineno-9-5" id="__codelineno-9-5" name="__codelineno-9-5"></a>
+<a href="#__codelineno-9-6" id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="kt">void</span><span class="w"> </span><span class="nf">pop_right</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
+<a href="#__codelineno-9-7" id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-9-8" id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="w">    </span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ml</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span><span class="w"></span>
+<a href="#__codelineno-9-9" id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="p">}</span><span class="w"></span>
 </code></pre></div>
-<h2 id="_2">代码汇总</h2>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-10-1" id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">(</span><span class="mf">1e5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
+<details class="note">
+<summary>双端队列-数组版-代码汇总</summary>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-10-1" id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">(</span><span class="mf">1e6</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
 <a href="#__codelineno-10-2" id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="n">N</span><span class="p">];</span><span class="w"></span>
 <a href="#__codelineno-10-3" id="__codelineno-10-3" name="__codelineno-10-3"></a>
 <a href="#__codelineno-10-4" id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
@@ -313,53 +442,62 @@
 <a href="#__codelineno-10-6" id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="w">    </span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"></span>
 <a href="#__codelineno-10-7" id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="p">}</span><span class="w"></span>
 <a href="#__codelineno-10-8" id="__codelineno-10-8" name="__codelineno-10-8"></a>
-<a href="#__codelineno-10-9" id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="kt">bool</span><span class="w"> </span><span class="nf">empty</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
+<a href="#__codelineno-10-9" id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="kt">int</span><span class="w"> </span><span class="nf">ml</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">pos</span><span class="p">)</span><span class="w"></span>
 <a href="#__codelineno-10-10" id="__codelineno-10-10" name="__codelineno-10-10"></a><span class="p">{</span><span class="w"></span>
-<a href="#__codelineno-10-11" id="__codelineno-10-11" name="__codelineno-10-11"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-10-11" id="__codelineno-10-11" name="__codelineno-10-11"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">pos</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
 <a href="#__codelineno-10-12" id="__codelineno-10-12" name="__codelineno-10-12"></a><span class="p">}</span><span class="w"></span>
 <a href="#__codelineno-10-13" id="__codelineno-10-13" name="__codelineno-10-13"></a>
-<a href="#__codelineno-10-14" id="__codelineno-10-14" name="__codelineno-10-14"></a><span class="kt">int</span><span class="w"> </span><span class="nf">size</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
+<a href="#__codelineno-10-14" id="__codelineno-10-14" name="__codelineno-10-14"></a><span class="kt">int</span><span class="w"> </span><span class="nf">mr</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">pos</span><span class="p">)</span><span class="w"></span>
 <a href="#__codelineno-10-15" id="__codelineno-10-15" name="__codelineno-10-15"></a><span class="p">{</span><span class="w"></span>
-<a href="#__codelineno-10-16" id="__codelineno-10-16" name="__codelineno-10-16"></a><span class="w">    </span><span class="k">return</span><span class="w">  </span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w">  </span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+<a href="#__codelineno-10-16" id="__codelineno-10-16" name="__codelineno-10-16"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">pos</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
 <a href="#__codelineno-10-17" id="__codelineno-10-17" name="__codelineno-10-17"></a><span class="p">}</span><span class="w"></span>
 <a href="#__codelineno-10-18" id="__codelineno-10-18" name="__codelineno-10-18"></a>
-<a href="#__codelineno-10-19" id="__codelineno-10-19" name="__codelineno-10-19"></a><span class="kt">bool</span><span class="w"> </span><span class="nf">full</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
+<a href="#__codelineno-10-19" id="__codelineno-10-19" name="__codelineno-10-19"></a><span class="kt">bool</span><span class="w"> </span><span class="nf">empty</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
 <a href="#__codelineno-10-20" id="__codelineno-10-20" name="__codelineno-10-20"></a><span class="p">{</span><span class="w"></span>
-<a href="#__codelineno-10-21" id="__codelineno-10-21" name="__codelineno-10-21"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-10-21" id="__codelineno-10-21" name="__codelineno-10-21"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ml</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w"></span>
 <a href="#__codelineno-10-22" id="__codelineno-10-22" name="__codelineno-10-22"></a><span class="p">}</span><span class="w"></span>
 <a href="#__codelineno-10-23" id="__codelineno-10-23" name="__codelineno-10-23"></a>
-<a href="#__codelineno-10-24" id="__codelineno-10-24" name="__codelineno-10-24"></a><span class="kt">void</span><span class="w"> </span><span class="nf">push_left</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+<a href="#__codelineno-10-24" id="__codelineno-10-24" name="__codelineno-10-24"></a><span class="kt">int</span><span class="w"> </span><span class="nf">size</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
 <a href="#__codelineno-10-25" id="__codelineno-10-25" name="__codelineno-10-25"></a><span class="p">{</span><span class="w"></span>
-<a href="#__codelineno-10-26" id="__codelineno-10-26" name="__codelineno-10-26"></a><span class="w">    </span><span class="n">q</span><span class="p">[</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-10-26" id="__codelineno-10-26" name="__codelineno-10-26"></a><span class="w">    </span><span class="k">return</span><span class="w">  </span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w">  </span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
 <a href="#__codelineno-10-27" id="__codelineno-10-27" name="__codelineno-10-27"></a><span class="p">}</span><span class="w"></span>
 <a href="#__codelineno-10-28" id="__codelineno-10-28" name="__codelineno-10-28"></a>
-<a href="#__codelineno-10-29" id="__codelineno-10-29" name="__codelineno-10-29"></a><span class="kt">void</span><span class="w"> </span><span class="nf">push_right</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+<a href="#__codelineno-10-29" id="__codelineno-10-29" name="__codelineno-10-29"></a><span class="kt">bool</span><span class="w"> </span><span class="nf">full</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
 <a href="#__codelineno-10-30" id="__codelineno-10-30" name="__codelineno-10-30"></a><span class="p">{</span><span class="w"></span>
-<a href="#__codelineno-10-31" id="__codelineno-10-31" name="__codelineno-10-31"></a><span class="w">    </span><span class="n">q</span><span class="p">[</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-10-31" id="__codelineno-10-31" name="__codelineno-10-31"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"></span>
 <a href="#__codelineno-10-32" id="__codelineno-10-32" name="__codelineno-10-32"></a><span class="p">}</span><span class="w"></span>
 <a href="#__codelineno-10-33" id="__codelineno-10-33" name="__codelineno-10-33"></a>
-<a href="#__codelineno-10-34" id="__codelineno-10-34" name="__codelineno-10-34"></a><span class="kt">int</span><span class="w"> </span><span class="nf">pop_left</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
+<a href="#__codelineno-10-34" id="__codelineno-10-34" name="__codelineno-10-34"></a><span class="kt">void</span><span class="w"> </span><span class="nf">push_left</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"></span>
 <a href="#__codelineno-10-35" id="__codelineno-10-35" name="__codelineno-10-35"></a><span class="p">{</span><span class="w"></span>
-<a href="#__codelineno-10-36" id="__codelineno-10-36" name="__codelineno-10-36"></a><span class="w">    </span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
-<a href="#__codelineno-10-37" id="__codelineno-10-37" name="__codelineno-10-37"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]];</span><span class="w"></span>
-<a href="#__codelineno-10-38" id="__codelineno-10-38" name="__codelineno-10-38"></a><span class="p">}</span><span class="w"></span>
-<a href="#__codelineno-10-39" id="__codelineno-10-39" name="__codelineno-10-39"></a>
-<a href="#__codelineno-10-40" id="__codelineno-10-40" name="__codelineno-10-40"></a><span class="kt">int</span><span class="w"> </span><span class="nf">pop_right</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
-<a href="#__codelineno-10-41" id="__codelineno-10-41" name="__codelineno-10-41"></a><span class="p">{</span><span class="w"></span>
-<a href="#__codelineno-10-42" id="__codelineno-10-42" name="__codelineno-10-42"></a><span class="w">    </span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
-<a href="#__codelineno-10-43" id="__codelineno-10-43" name="__codelineno-10-43"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]];</span><span class="w"></span>
-<a href="#__codelineno-10-44" id="__codelineno-10-44" name="__codelineno-10-44"></a><span class="p">}</span><span class="w"></span>
-<a href="#__codelineno-10-45" id="__codelineno-10-45" name="__codelineno-10-45"></a>
-<a href="#__codelineno-10-46" id="__codelineno-10-46" name="__codelineno-10-46"></a><span class="kt">int</span><span class="w"> </span><span class="nf">left</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
-<a href="#__codelineno-10-47" id="__codelineno-10-47" name="__codelineno-10-47"></a><span class="p">{</span><span class="w"></span>
-<a href="#__codelineno-10-48" id="__codelineno-10-48" name="__codelineno-10-48"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">q</span><span class="p">[(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">];</span><span class="w"></span>
-<a href="#__codelineno-10-49" id="__codelineno-10-49" name="__codelineno-10-49"></a><span class="p">}</span><span class="w"></span>
-<a href="#__codelineno-10-50" id="__codelineno-10-50" name="__codelineno-10-50"></a>
-<a href="#__codelineno-10-51" id="__codelineno-10-51" name="__codelineno-10-51"></a><span class="kt">int</span><span class="w"> </span><span class="nf">right</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
-<a href="#__codelineno-10-52" id="__codelineno-10-52" name="__codelineno-10-52"></a><span class="p">{</span><span class="w"></span>
-<a href="#__codelineno-10-53" id="__codelineno-10-53" name="__codelineno-10-53"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">q</span><span class="p">[(</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">];</span><span class="w"></span>
-<a href="#__codelineno-10-54" id="__codelineno-10-54" name="__codelineno-10-54"></a><span class="p">}</span><span class="w"></span>
+<a href="#__codelineno-10-36" id="__codelineno-10-36" name="__codelineno-10-36"></a><span class="w">    </span><span class="n">q</span><span class="p">[</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ml</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span><span class="w"></span>
+<a href="#__codelineno-10-37" id="__codelineno-10-37" name="__codelineno-10-37"></a><span class="p">}</span><span class="w"></span>
+<a href="#__codelineno-10-38" id="__codelineno-10-38" name="__codelineno-10-38"></a>
+<a href="#__codelineno-10-39" id="__codelineno-10-39" name="__codelineno-10-39"></a><span class="kt">void</span><span class="w"> </span><span class="nf">push_right</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+<a href="#__codelineno-10-40" id="__codelineno-10-40" name="__codelineno-10-40"></a><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-10-41" id="__codelineno-10-41" name="__codelineno-10-41"></a><span class="w">    </span><span class="n">q</span><span class="p">[</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mr</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span><span class="w"></span>
+<a href="#__codelineno-10-42" id="__codelineno-10-42" name="__codelineno-10-42"></a><span class="p">}</span><span class="w"></span>
+<a href="#__codelineno-10-43" id="__codelineno-10-43" name="__codelineno-10-43"></a>
+<a href="#__codelineno-10-44" id="__codelineno-10-44" name="__codelineno-10-44"></a><span class="kt">int</span><span class="w"> </span><span class="nf">top_left</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
+<a href="#__codelineno-10-45" id="__codelineno-10-45" name="__codelineno-10-45"></a><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-10-46" id="__codelineno-10-46" name="__codelineno-10-46"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="n">mr</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">])];</span><span class="w"></span>
+<a href="#__codelineno-10-47" id="__codelineno-10-47" name="__codelineno-10-47"></a><span class="p">}</span><span class="w"></span>
+<a href="#__codelineno-10-48" id="__codelineno-10-48" name="__codelineno-10-48"></a>
+<a href="#__codelineno-10-49" id="__codelineno-10-49" name="__codelineno-10-49"></a><span class="kt">void</span><span class="w"> </span><span class="nf">pop_left</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
+<a href="#__codelineno-10-50" id="__codelineno-10-50" name="__codelineno-10-50"></a><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-10-51" id="__codelineno-10-51" name="__codelineno-10-51"></a><span class="w">    </span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mr</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span><span class="w"></span>
+<a href="#__codelineno-10-52" id="__codelineno-10-52" name="__codelineno-10-52"></a><span class="p">}</span><span class="w"></span>
+<a href="#__codelineno-10-53" id="__codelineno-10-53" name="__codelineno-10-53"></a>
+<a href="#__codelineno-10-54" id="__codelineno-10-54" name="__codelineno-10-54"></a><span class="kt">int</span><span class="w"> </span><span class="nf">top_right</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
+<a href="#__codelineno-10-55" id="__codelineno-10-55" name="__codelineno-10-55"></a><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-10-56" id="__codelineno-10-56" name="__codelineno-10-56"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">q</span><span class="p">[</span><span class="n">ml</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">])];</span><span class="w"></span>
+<a href="#__codelineno-10-57" id="__codelineno-10-57" name="__codelineno-10-57"></a><span class="p">}</span><span class="w"></span>
+<a href="#__codelineno-10-58" id="__codelineno-10-58" name="__codelineno-10-58"></a>
+<a href="#__codelineno-10-59" id="__codelineno-10-59" name="__codelineno-10-59"></a><span class="kt">void</span><span class="w"> </span><span class="nf">pop_right</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
+<a href="#__codelineno-10-60" id="__codelineno-10-60" name="__codelineno-10-60"></a><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-10-61" id="__codelineno-10-61" name="__codelineno-10-61"></a><span class="w">    </span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ml</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span><span class="w"></span>
+<a href="#__codelineno-10-62" id="__codelineno-10-62" name="__codelineno-10-62"></a><span class="p">}</span><span class="w"></span>
 </code></pre></div>
+</details>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
