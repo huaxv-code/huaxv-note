@@ -292,7 +292,7 @@
 <p>左偏树合并的时间复杂度虽然是 <span class="arithmatex">\(O(log(n + m))\)</span> 删除根节点的时间复杂度也差不多是 <span class="arithmatex">\(O(log(n + m))\)</span></p>
 <details class="note">
 <summary>时间复杂度对比图</summary>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E5%A0%86%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%AF%B9%E6%AF%94%E5%9B%BE.png"><img alt="" src="../../../img/%E5%A0%86%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%AF%B9%E6%AF%94%E5%9B%BE.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E5%A0%86%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%AF%B9%E6%AF%94%E5%9B%BE.png"><img alt="堆的时间复杂度对比图" src="../../../img/%E5%A0%86%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%AF%B9%E6%AF%94%E5%9B%BE.png" width="100%"/></a></p>
 </details>
 <h2 id="_2">结构体定义</h2>
 <p>需要用 dist 来存储当前节点距离最近叶子节点的路径长度，实际上 <code>a.d = min(a.l.d, a.r.d) + 1</code></p>

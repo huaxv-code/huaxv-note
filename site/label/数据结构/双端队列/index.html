@@ -438,17 +438,17 @@
 <p>规定 <span class="arithmatex">\(q[0]\)</span> 是左指针，<span class="arithmatex">\(q[1]\)</span> 是右指针，并且左右指针都能往左或者往右移动</p>
 <details class="note">
 <summary>双端队列示意图</summary>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97%E7%A4%BA%E6%84%8F%E5%9B%BE.png"><img alt="双端队列示意图" src="../../../img/%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97%E7%A4%BA%E6%84%8F%E5%9B%BE.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97%E7%A4%BA%E6%84%8F%E5%9B%BE.png"><img alt="双端队列示意图" src="../../../img/%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97%E7%A4%BA%E6%84%8F%E5%9B%BE.png" width="100%"/></a></p>
 </details>
 <h3 id="init">init 初始化</h3>
 <p>我们规定，数组下标为 <span class="arithmatex">\(q[0]\)</span>、<span class="arithmatex">\(q[1]\)</span> 的数据域不能存放数据，即 <span class="arithmatex">\(q[q[0]]\)</span> 和 <span class="arithmatex">\(q[q[1]]\)</span> 不能放数据， 初始化时，<span class="arithmatex">\(q[0] = 2, q[1] = 3\)</span></p>
 <details class="note">
 <summary>双端队列-不能放数据的两个下标</summary>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/sddl%E4%B8%8D%E8%83%BD%E6%94%BE%E6%95%B0%E6%8D%AE.png"><img alt="sddl不能放数据" src="../../../img/sddl%E4%B8%8D%E8%83%BD%E6%94%BE%E6%95%B0%E6%8D%AE.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/sddl%E4%B8%8D%E8%83%BD%E6%94%BE%E6%95%B0%E6%8D%AE.png"><img alt="sddl不能放数据" src="../../../img/sddl%E4%B8%8D%E8%83%BD%E6%94%BE%E6%95%B0%E6%8D%AE.png" width="100%"/></a></p>
 </details>
 <details class="note">
 <summary>双端队列-初始状态图片</summary>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E9%98%9F%E5%88%97%E5%88%9D%E5%A7%8B%E7%8A%B6%E6%80%81.png"><img alt="队列初始状态" src="../../../img/%E9%98%9F%E5%88%97%E5%88%9D%E5%A7%8B%E7%8A%B6%E6%80%81.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E9%98%9F%E5%88%97%E5%88%9D%E5%A7%8B%E7%8A%B6%E6%80%81.png"><img alt="队列初始状态" src="../../../img/%E9%98%9F%E5%88%97%E5%88%9D%E5%A7%8B%E7%8A%B6%E6%80%81.png" width="100%"/></a></p>
 </details>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
 <a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="p">{</span><span class="w"></span>
@@ -482,7 +482,7 @@
 <p>只要 <span class="arithmatex">\(q[0]\)</span> 紧跟在 <span class="arithmatex">\(q[1]\)</span> 的左手边，就说明双端队列为空</p>
 <details class="note">
 <summary>双端队列空状态图例</summary>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97%E7%A9%BA%E7%8A%B6%E6%80%81.png"><img alt="双端队列空状态" src="../../../img/%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97%E7%A9%BA%E7%8A%B6%E6%80%81.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97%E7%A9%BA%E7%8A%B6%E6%80%81.png"><img alt="双端队列空状态" src="../../../img/%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97%E7%A9%BA%E7%8A%B6%E6%80%81.png" width="100%"/></a></p>
 </details>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kt">bool</span><span class="w"> </span><span class="nf">empty</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
 <a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="p">{</span><span class="w"></span>
