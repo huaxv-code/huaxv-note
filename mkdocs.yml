@@ -106,8 +106,9 @@ nav:
   - 简介:
     - index.md
   - 数据结构:
-    - label/数据结构/index.md
-    - label/数据结构/栈.md
+    - 单链表: label/数据结构/单链表.md
+    - 双链表: label/数据结构/双链表.md
+    - 栈: label/数据结构/栈.md
     - 队列: label/数据结构/队列.md
     - 双端队列: label/数据结构/双端队列.md
     - 二叉堆: label/数据结构/二叉堆.md
