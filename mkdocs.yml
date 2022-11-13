@@ -96,6 +96,10 @@ theme:
 
 plugins:
   - glightbox
+  # - search:
+  #   separator: '[\s\u200b\-]'
+  # - with-pdf
+    # verbose: true
 
 extra_javascript:
   - javascripts/mathjax.js
