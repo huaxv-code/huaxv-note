@@ -123,3 +123,4 @@ nav:
     - 单调栈: label/数据结构/单调栈.md
     - 单调队列: label/数据结构/单调队列.md
     - ST 表: label/数据结构/ST 表.md
+    - 树状数组: label/数据结构/树状数组.md
