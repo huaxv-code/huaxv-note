@@ -7,7 +7,7 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <link href="../../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.4.2, mkdocs-material-8.5.9" name="generator"/>
-<title>哈夫曼树 - 玉子的笔记本</title>
+<title>霍夫曼树 - 玉子的笔记本</title>
 <link href="../../../assets/stylesheets/main.20d9efc8.min.css" rel="stylesheet"/>
 <link href="../../../assets/stylesheets/palette.08040f6c.min.css" rel="stylesheet"/>
 <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25 0 0 1 .25-.25h5.025a.25.25 0 0 1 .177.073l6.25 6.25a.25.25 0 0 1 0 .354l-5.025 5.025a.25.25 0 0 1-.354 0l-6.25-6.25a.25.25 0 0 1-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 0 1 0 2.474l-5.026 5.026a1.75 1.75 0 0 1-2.474 0l-6.25-6.25A1.75 1.75 0 0 1 1 7.775zM6 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2.5 1.75a.25.25 0 0 1 .25-.25h8.5a.25.25 0 0 1 .25.25v7.736a.75.75 0 1 0 1.5 0V1.75A1.75 1.75 0 0 0 11.25 0h-8.5A1.75 1.75 0 0 0 1 1.75v11.5c0 .966.784 1.75 1.75 1.75h3.17a.75.75 0 0 0 0-1.5H2.75a.25.25 0 0 1-.25-.25V1.75zM4.75 4a.75.75 0 0 0 0 1.5h4.5a.75.75 0 0 0 0-1.5h-4.5zM4 7.75A.75.75 0 0 1 4.75 7h2a.75.75 0 0 1 0 1.5h-2A.75.75 0 0 1 4 7.75zm11.774 3.537a.75.75 0 0 0-1.048-1.074L10.7 14.145 9.281 12.72a.75.75 0 0 0-1.062 1.058l1.943 1.95a.75.75 0 0 0 1.055.008l4.557-4.45z"/></svg>');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm6.5-.25A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75zM8 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.499.75a.75.75 0 0 1 1.5 0v.996C5.9 2.903 6.793 3.65 7.662 4.376l.24.202c-.036-.694.055-1.422.426-2.163C9.1.873 10.794-.045 12.622.26 14.408.558 16 1.94 16 4.25c0 1.278-.954 2.575-2.44 2.734l.146.508.065.22c.203.701.412 1.455.476 2.226.142 1.707-.4 3.03-1.487 3.898C11.714 14.671 10.27 15 8.75 15h-6a.75.75 0 0 1 0-1.5h1.376a4.489 4.489 0 0 1-.563-1.191 3.833 3.833 0 0 1-.05-2.063 4.636 4.636 0 0 1-2.025-.293.75.75 0 1 1 .525-1.406c1.357.507 2.376-.006 2.698-.318l.009-.01a.748.748 0 0 1 1.06 0 .75.75 0 0 1-.012 1.074c-.912.92-.992 1.835-.768 2.586.221.74.745 1.337 1.196 1.621H8.75c1.343 0 2.398-.296 3.074-.836.635-.507 1.036-1.31.928-2.602-.05-.603-.216-1.224-.422-1.93l-.064-.221c-.12-.407-.246-.84-.353-1.29a2.404 2.404 0 0 1-.507-.441 3.063 3.063 0 0 1-.633-1.248.75.75 0 0 1 1.455-.364c.046.185.144.436.31.627.146.168.353.305.712.305.738 0 1.25-.615 1.25-1.25 0-1.47-.95-2.315-2.123-2.51-1.172-.196-2.227.387-2.706 1.345-.46.92-.27 1.774.019 3.062l.042.19a.753.753 0 0 1 .01.05c.348.443.666.949.94 1.553a.75.75 0 1 1-1.365.62c-.553-1.217-1.32-1.94-2.3-2.768a85.08 85.08 0 0 0-.317-.265c-.814-.68-1.75-1.462-2.692-2.619a3.74 3.74 0 0 0-1.023.88c-.406.495-.663 1.036-.722 1.508.116.122.306.21.591.239.388.038.797-.06 1.032-.19a.75.75 0 0 1 .728 1.31c-.515.287-1.23.439-1.906.373-.682-.067-1.473-.38-1.879-1.193L.75 5.677V5.5c0-.984.48-1.94 1.077-2.664.46-.559 1.05-1.055 1.673-1.353V.75z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm9 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM6.92 6.085c.081-.16.19-.299.34-.398.145-.097.371-.187.74-.187.28 0 .553.087.738.225A.613.613 0 0 1 9 6.25c0 .177-.04.264-.077.318a.956.956 0 0 1-.277.245c-.076.051-.158.1-.258.161l-.007.004a7.728 7.728 0 0 0-.313.195 2.416 2.416 0 0 0-.692.661.75.75 0 0 0 1.248.832.956.956 0 0 1 .276-.245 6.3 6.3 0 0 1 .26-.16l.006-.004c.093-.057.204-.123.313-.195.222-.149.487-.355.692-.662.214-.32.329-.702.329-1.15 0-.76-.36-1.348-.863-1.725A2.76 2.76 0 0 0 8 4c-.631 0-1.155.16-1.572.438-.413.276-.68.638-.849.977a.75.75 0 1 0 1.342.67z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.22 1.754a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575L6.457 1.047zM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-.25-5.25a.75.75 0 0 0-1.5 0v2.5a.75.75 0 0 0 1.5 0v-2.5z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.404 12.596a6.5 6.5 0 1 1 9.192-9.192 6.5 6.5 0 0 1-9.192 9.192zM2.344 2.343a8 8 0 1 0 11.313 11.314A8 8 0 0 0 2.343 2.343zM6.03 4.97a.75.75 0 0 0-1.06 1.06L6.94 8 4.97 9.97a.75.75 0 1 0 1.06 1.06L8 9.06l1.97 1.97a.75.75 0 1 0 1.06-1.06L9.06 8l1.97-1.97a.75.75 0 1 0-1.06-1.06L8 6.94 6.03 4.97z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M10.561 1.5a.016.016 0 0 0-.01.004L3.286 8.571A.25.25 0 0 0 3.462 9H6.75a.75.75 0 0 1 .694 1.034l-1.713 4.188 6.982-6.793A.25.25 0 0 0 12.538 7H9.25a.75.75 0 0 1-.683-1.06l2.008-4.418.003-.006a.02.02 0 0 0-.004-.009.02.02 0 0 0-.006-.006L10.56 1.5zM9.504.43a1.516 1.516 0 0 1 2.437 1.713L10.415 5.5h2.123c1.57 0 2.346 1.909 1.22 3.004l-7.34 7.142a1.25 1.25 0 0 1-.871.354h-.302a1.25 1.25 0 0 1-1.157-1.723L5.633 10.5H3.462c-1.57 0-2.346-1.909-1.22-3.004L9.503.429z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.72.22a.75.75 0 0 1 1.06 0l1 .999a3.492 3.492 0 0 1 2.441 0l.999-1a.75.75 0 1 1 1.06 1.061l-.775.776c.616.63.995 1.493.995 2.444v.327c0 .1-.009.197-.025.292.408.14.764.392 1.029.722l1.968-.787a.75.75 0 0 1 .556 1.392L13 7.258V9h2.25a.75.75 0 0 1 0 1.5H13v.5c0 .409-.049.806-.141 1.186l2.17.868a.75.75 0 0 1-.557 1.392l-2.184-.873A4.997 4.997 0 0 1 8 16a4.997 4.997 0 0 1-4.288-2.427l-2.183.873a.75.75 0 0 1-.558-1.392l2.17-.868A5.013 5.013 0 0 1 3 11v-.5H.75a.75.75 0 0 1 0-1.5H3V7.258L.971 6.446a.75.75 0 0 1 .558-1.392l1.967.787c.265-.33.62-.583 1.03-.722a1.684 1.684 0 0 1-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72 1.28a.75.75 0 0 1 0-1.06zM6.173 5h3.654A.173.173 0 0 0 10 4.827V4.5a2 2 0 1 0-4 0v.327c0 .096.077.173.173.173zM5.25 6.5a.75.75 0 0 0-.75.75V11a3.5 3.5 0 1 0 7 0V7.25a.75.75 0 0 0-.75-.75h-5.5z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M5 5.782V2.5h-.25a.75.75 0 0 1 0-1.5h6.5a.75.75 0 0 1 0 1.5H11v3.282l3.666 5.76C15.619 13.04 14.543 15 12.767 15H3.233c-1.776 0-2.852-1.96-1.899-3.458L5 5.782zM9.5 2.5h-3V6a.75.75 0 0 1-.117.403L4.73 9h6.54L9.617 6.403A.75.75 0 0 1 9.5 6V2.5zm-6.9 9.847L3.775 10.5h8.45l1.175 1.847a.75.75 0 0 1-.633 1.153H3.233a.75.75 0 0 1-.633-1.153z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.75 2.5a.75.75 0 0 0 0 1.5h10.5a.75.75 0 0 0 0-1.5H1.75zm4 5a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5zm0 5a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5zM2.5 7.75a.75.75 0 0 0-1.5 0v6a.75.75 0 0 0 1.5 0v-6z"/></svg>');}</style>
@@ -54,7 +54,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              哈夫曼树
+              霍夫曼树
             
           </span>
 </div>
@@ -227,11 +227,11 @@
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
 <label class="md-nav__link md-nav__link--active" for="__toc">
-          哈夫曼树
+          霍夫曼树
           <span class="md-nav__icon md-icon"></span>
 </label>
 <a class="md-nav__link md-nav__link--active" href="./">
-        哈夫曼树
+        霍夫曼树
       </a>
 <nav aria-label="目录" class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">
@@ -256,7 +256,7 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#_4">
-    哈夫曼编码
+    霍夫曼编码
   </a>
 </li>
 </ul>
@@ -296,7 +296,7 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#_4">
-    哈夫曼编码
+    霍夫曼编码
   </a>
 </li>
 </ul>
@@ -306,7 +306,7 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="_1">哈夫曼树</h1>
+<h1 id="_1">霍夫曼树</h1>
 <h2 id="_2">引例</h2>
 <p>班上有 5 人不合格，15 人 及格，40 人中等，30 人良好，10 人 优秀，并规定等级分布情况如下表:</p>
 <table>
@@ -350,13 +350,13 @@
 <a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>该程序的执行顺序是：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91%E5%BC%95%E5%85%A5.png"><img alt="哈夫曼树引入" src="../../../img/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91%E5%BC%95%E5%85%A5.png" width="60%"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91%E5%BC%95%E5%85%A5.png"><img alt="霍夫曼树引入" src="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91%E5%BC%95%E5%85%A5.png" width="60%"/></a></p>
 <p>该程序的执行效率是有问题的，因为我们发现成绩低于 <span class="arithmatex">\(60\)</span> 的学生仅占 <span class="arithmatex">\(5\%\)</span>，而高于 <span class="arithmatex">\(70\)</span> 分的学生却占了大多数 <span class="arithmatex">\(80\%\)</span>，假设该老师就用此程序来给学生划分等级，我们来算一下该程序总共执行了多少步：</p>
 <div class="arithmatex">\[
 5 + 15 * 2 + 40 * 3 + 30 * 4 + 10 * 4 = 315
 \]</div>
 <p>如果我们把分布越多，就越放开头会是怎样的情况呢？考虑下方的程序图：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91%E5%BC%95%E4%BE%8B2.png"><img alt="哈夫曼树引例2" src="../../../img/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91%E5%BC%95%E4%BE%8B2.png" width="80%"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91%E5%BC%95%E4%BE%8B2.png"><img alt="霍夫曼树引例2" src="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91%E5%BC%95%E4%BE%8B2.png" width="80%"/></a></p>
 <p>我们来算一下使用该程序来给学生划分等级需要执行多少步：</p>
 <div class="arithmatex">\[
 5 * 3 + 15 * 3 + 40 * 2 + 30 * 2 + 10 * 2 = 220
@@ -364,26 +364,26 @@
 <p>该程序较之上面的程序差点就优化了 <span class="arithmatex">\(1/3\)</span> 的效率！</p>
 <h2 id="_3">定义与原理</h2>
 <p><strong>带权路径长度 WPL</strong>：从「根节点」到各「叶节点」的路径长度与相应叶节点的权值的乘积之和</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91WPL.png"><img alt="哈夫曼树WPL" src="../../../img/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91WPL.png" width="50%"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91WPL.png"><img alt="霍夫曼树WPL" src="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91WPL.png" width="50%"/></a></p>
 <p>如上图的 <strong>WPL</strong> 的计算方法是：</p>
 <div class="arithmatex">\[
 WPL\ :\ 2 * 2 + 3 * 2 + 4 * 2 + 5 * 2 = 28
 \]</div>
-<p>哈夫曼树每一个节点度，要么是 2 要么是 0，不存在 1 的情况。</p>
-<p>假设要对权值数组 <code>nums</code> 建立哈夫曼树，则每一个权值都会作为叶子节点存在哈夫曼树中。</p>
+<p>霍夫曼树每一个节点度，要么是 2 要么是 0，不存在 1 的情况。</p>
+<p>假设要对权值数组 <code>nums</code> 建立霍夫曼树，则每一个权值都会作为叶子节点存在霍夫曼树中。</p>
 <p>建树步骤：</p>
 <ol>
 <li><strong>初始化：</strong> 由给定的 <span class="arithmatex">\(n\)</span> 个权值构造 <span class="arithmatex">\(n\)</span> 棵只有一个节点的二叉树，得到一个二叉树集合 <span class="arithmatex">\(F\)</span>。</li>
 <li><strong>选取与合并：</strong> 从集合 <span class="arithmatex">\(F\)</span> 中选取两棵「根节点的权值最小」的二叉树，计算出他们的根节点的权值之和，以该权值之和作为新的根节点，那两棵最小的二叉树分别作为该新的根节点的左右子树，将该新树插入到集合 <span class="arithmatex">\(F\)</span> 中。</li>
-<li>不断重复步骤 2 直到集合 <span class="arithmatex">\(F\)</span> 只剩下一棵二叉树，该树就是哈夫曼树。</li>
+<li>不断重复步骤 2 直到集合 <span class="arithmatex">\(F\)</span> 只剩下一棵二叉树，该树就是霍夫曼树。</li>
 </ol>
 <details class="info">
 <summary>建树示例图</summary>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91%E5%BB%BA%E6%A0%91.png"><img alt="哈夫曼树建树" src="../../../img/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91%E5%BB%BA%E6%A0%91.png" width="100%"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91%E5%BB%BA%E6%A0%91.png"><img alt="霍夫曼树建树" src="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91%E5%BB%BA%E6%A0%91.png" width="100%"/></a></p>
 </details>
 <h2 id="wpl">WPL 计算规律</h2>
-<p>考虑下面一棵哈夫曼树：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91WPL%E7%89%B9%E5%BE%81.png"><img alt="哈夫曼树WPL特征" src="../../../img/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91WPL%E7%89%B9%E5%BE%81.png" width="60%"/></a></p>
+<p>考虑下面一棵霍夫曼树：</p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91WPL%E7%89%B9%E5%BE%81.png"><img alt="霍夫曼树WPL特征" src="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91WPL%E7%89%B9%E5%BE%81.png" width="60%"/></a></p>
 <p>数据节点均是叶子节点。</p>
 <p>该树的 WPL：</p>
 <div class="arithmatex">\[
@@ -395,7 +395,7 @@ sum = 1 + 5 + 6 + 6 + 12 + 9 + 21 + 8 + 7 + 15 = 90
 \]</div>
 <p>我们确实有这样的结论：<span class="arithmatex">\(WPL\)</span> 的值等于「非根节点的所有权值之和」。</p>
 <p>我们可以从构造的角度去分析，每合并出一个节点，就相当于叶子节点多加了一次，由叶子节点 1、5 合并出 6，则该 6 就代表 1 和 5 多加了一次；由 左边的 6 和 叶子节点 6 合并出 12，就代表 1、5、6 又多加了一次，剩下的请读者自己类推。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91WPL%E8%A7%84%E5%BE%8B.png"><img alt="哈夫曼树WPL规律" src="../../../img/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91WPL%E8%A7%84%E5%BE%8B.png" width="50%"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91WPL%E8%A7%84%E5%BE%8B.png"><img alt="霍夫曼树WPL规律" src="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91WPL%E8%A7%84%E5%BE%8B.png" width="50%"/></a></p>
 <details class="info">
 <summary>STL 的优先队列 priority_queue</summary>
 <ol>
@@ -426,7 +426,7 @@ sum = 1 + 5 + 6 + 6 + 12 + 9 + 21 + 8 + 7 + 15 = 90
 <a href="#__codelineno-1-13" id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ans</span><span class="p">;</span><span class="w"></span>
 <a href="#__codelineno-1-14" id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="p">}</span><span class="w"></span>
 </code></pre></div>
-<p>方法二：有现成的哈夫曼树的情况下</p>
+<p>方法二：有现成的霍夫曼树的情况下</p>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">get_wpl</span><span class="p">(</span><span class="n">Node</span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
 <a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="p">{</span><span class="w"></span>
 <a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
@@ -435,7 +435,7 @@ sum = 1 + 5 + 6 + 6 + 12 + 9 + 21 + 8 + 7 + 15 = 90
 <a href="#__codelineno-2-6" id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </details>
-<h2 id="_4">哈夫曼编码</h2>
+<h2 id="_4">霍夫曼编码</h2>
 <p>随机函数生成 <code>10 ^ 6</code> 个小写字母</p>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">data</span><span class="p">()</span><span class="w"></span>
 <a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="p">{</span><span class="w"></span>
@@ -455,10 +455,10 @@ sum = 1 + 5 + 6 + 6 + 12 + 9 + 21 + 8 + 7 + 15 = 90
 <a href="#__codelineno-4-8" id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="w">        </span><span class="n">cnt</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="sc">'a'</span><span class="p">]</span><span class="w"> </span><span class="o">++</span><span class="p">;</span><span class="w"></span>
 <a href="#__codelineno-4-9" id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="p">}</span><span class="w"></span>
 </code></pre></div>
-<p>根据字母出现的次数作为权值，建立哈夫曼树，由于小写字母有 26 个，则会有 26 个叶子节点，该叶子节点构成的集合就是权值构成的集合。</p>
-<p>从根节点出发往下寻找叶子节点，定义往左走输出 0，往右走输出 1，一直走到叶子节点所输出的编码就是该叶子节点的「哈夫曼编码」。你也可以规定走到儿子中最大权值的为 1，最小的为 0，随意。</p>
+<p>根据字母出现的次数作为权值，建立霍夫曼树，由于小写字母有 26 个，则会有 26 个叶子节点，该叶子节点构成的集合就是权值构成的集合。</p>
+<p>从根节点出发往下寻找叶子节点，定义往左走输出 0，往右走输出 1，一直走到叶子节点所输出的编码就是该叶子节点的「霍夫曼编码」。你也可以规定走到儿子中最大权值的为 1，最小的为 0，随意。</p>
 <details class="note">
-<summary>「小写字母 - 哈夫曼编码举例」</summary>
+<summary>「小写字母 - 霍夫曼编码举例」</summary>
 <table>
 <thead>
 <tr>
@@ -483,17 +483,17 @@ sum = 1 + 5 + 6 + 6 + 12 + 9 + 21 + 8 + 7 + 15 = 90
 </tr>
 </tbody>
 </table>
-<p>由此构成的哈夫曼树如下图：</p>
+<p>由此构成的霍夫曼树如下图：</p>
 <details class="info">
-<summary>哈夫曼编码举例图</summary>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E5%93%88%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81.png"><img alt="哈夫曼编码" src="../../../img/%E5%93%88%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81.png" width="100%"/></a></p>
+<summary>霍夫曼编码举例图</summary>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81.png"><img alt="霍夫曼编码" src="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81.png" width="100%"/></a></p>
 </details>
-<p>则 <code>a</code> 对应的哈夫曼编码为：<code>0001</code>；<code>f</code> 对应的哈夫曼编码为：<code>10</code>；剩下的依此类推</p>
+<p>则 <code>a</code> 对应的霍夫曼编码为：<code>0001</code>；<code>f</code> 对应的霍夫曼编码为：<code>10</code>；剩下的依此类推</p>
 </details>
-<p>哈夫曼编码代码参考：（建好哈夫曼树后再传递给该函数求值）</p>
+<p>霍夫曼编码代码参考：（建好霍夫曼树后再传递给该函数求值）</p>
 <details class="note">
-<summary>哈夫曼建树+哈夫曼编码代码参考</summary>
-<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">统计小写字母的哈夫曼编码</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">  1</a></span>
+<summary>霍夫曼建树+霍夫曼编码代码参考</summary>
+<div class="highlight"><table class="highlighttable"><tr><th class="filename" colspan="2"><span class="filename">统计小写字母的霍夫曼编码</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">  1</a></span>
 <span class="normal"><a href="#__codelineno-5-2">  2</a></span>
 <span class="normal"><a href="#__codelineno-5-3">  3</a></span>
 <span class="normal"><a href="#__codelineno-5-4">  4</a></span>
@@ -707,7 +707,7 @@ sum = 1 + 5 + 6 + 6 + 12 + 9 + 21 + 8 + 7 + 15 = 90
 <a id="__codelineno-5-95" name="__codelineno-5-95"></a><span class="w">    </span><span class="n">Node</span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">create</span><span class="p">(</span><span class="n">dts</span><span class="p">);</span><span class="w"></span>
 <a id="__codelineno-5-96" name="__codelineno-5-96"></a><span class="w">    </span><span class="n">haff</span><span class="p">(</span><span class="n">a</span><span class="p">);</span><span class="w"></span>
 <a id="__codelineno-5-97" name="__codelineno-5-97"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">26</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">++</span><span class="p">)</span><span class="w"></span>
-<a id="__codelineno-5-98" name="__codelineno-5-98"></a><span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="kt">char</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="sc">'a'</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">" 的哈夫曼编码为: "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">hff</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-5-98" name="__codelineno-5-98"></a><span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="kt">char</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="sc">'a'</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">" 的霍夫曼编码为: "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">hff</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
 <a id="__codelineno-5-99" name="__codelineno-5-99"></a><span class="p">}</span><span class="w"></span>
 <a id="__codelineno-5-100" name="__codelineno-5-100"></a>
 <a id="__codelineno-5-101" name="__codelineno-5-101"></a><span class="c1">// 也胜于胎死腹中的策略。</span>
@@ -731,7 +731,7 @@ sum = 1 + 5 + 6 + 6 + 12 + 9 + 21 + 8 + 7 + 15 = 90
 </code></pre></div></td></tr></table></div>
 </details>
 <details class="note">
-<summary>哈夫曼树建树代码参考</summary>
+<summary>霍夫曼树建树代码参考</summary>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
@@ -868,7 +868,7 @@ sum = 1 + 5 + 6 + 6 + 12 + 9 + 21 + 8 + 7 + 15 = 90
 </code></pre></div></td></tr></table></div>
 </details>
 <details class="note">
-<summary>不用建好哈夫曼树，直接求 WPL</summary>
+<summary>不用建好霍夫曼树，直接求 WPL</summary>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="nf">get_wpl</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">nums</span><span class="p">)</span><span class="w"></span>
 <a href="#__codelineno-7-2" id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="p">{</span><span class="w"></span>
 <a href="#__codelineno-7-3" id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="w">    </span><span class="n">priority_queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">greater</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">qu</span><span class="p">(</span><span class="n">nums</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">nums</span><span class="p">.</span><span class="n">end</span><span class="p">());</span><span class="w"></span>
