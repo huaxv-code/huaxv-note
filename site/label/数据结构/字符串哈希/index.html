@@ -403,7 +403,10 @@ s_n*p^{n - 1} + s_{n - 1} * p ^ {n - 2} + \cdots + s_2 * p^1 + s_1 * p^0
 </tr>
 </tbody>
 </table>
-<p>如果我要求 <span class="arithmatex">\(s_4s_3s_2\)</span> 的哈希值，只需要用 <span class="arithmatex">\(s_2 - s_5 * p^{4 - 2 + 1 = 3} = s_5 * p^3 + s_4 * p^2 + s_3 * p^1 + s_2 * p^0 - s_5 * p^3 = s_4 * p^2 + s_3 * p^1 + s_2 * p^0\)</span></p>
+<p>如果我要求 <span class="arithmatex">\(s_4s_3s_2\)</span> 的哈希值，只需要用 </p>
+<div class="arithmatex">\[
+s_2 - s_5 * p^{4 - 2 + 1 = 3} = s_5 * p^3 + s_4 * p^2 + s_3 * p^1 + s_2 * p^0 - s_5 * p^3 = s_4 * p^2 + s_3 * p^1 + s_2 * p^0
+\]</div>
 <p>这样设计就避免的除法对「取模运算」或「自然溢出」的影响。</p>
 <p>设计步骤：</p>
 <ol>
