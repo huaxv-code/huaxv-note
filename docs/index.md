@@ -17,7 +17,9 @@
 
 邮箱：[1325595056@qq.com]()
 
+[my_sublime](../my_sublime.zip)
 
+[my_mingw](../my_mingw.zip)
 
 ## 刷题代码壳
 
