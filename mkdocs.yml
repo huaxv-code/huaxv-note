@@ -1,7 +1,7 @@
 site_name: 玉子的笔记本
 
-repo_url: https://gitee.com/huaxv/my_mkdocs.git
-repo_name: 花续情愫缘 / my_mkdocs
+repo_url: https://github.com/huaxv-code/huaxv-note/
+repo_name: 花续情愫缘 / huaxv-note
 
 markdown_extensions:
   - pymdownx.highlight:
