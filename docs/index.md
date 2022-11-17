@@ -17,9 +17,9 @@
 
 邮箱：[1325595056@qq.com]()
 
-[my_sublime](../my_sublime.zip)
+[my_sublime](https://github.com/huaxv-code/huaxv-note/raw/hutao/my_sublime.zip)
 
-[my_mingw](../my_mingw.zip)
+[my_mingw](https://media.githubusercontent.com/media/huaxv-code/huaxv-note/hutao/my_mingw.zip)
 
 ## 刷题代码壳
 
