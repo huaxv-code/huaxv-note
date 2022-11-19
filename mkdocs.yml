@@ -143,3 +143,4 @@ nav:
     - 快速幂: label/数论/快速幂.md
     - 素性探测: label/数论/素性探测.md
     - 最大公约数 gcd: label/数论/最大公约数 gcd.md
+    - 最小公倍数 lcm: label/数论/最小公倍数 lcm.md
