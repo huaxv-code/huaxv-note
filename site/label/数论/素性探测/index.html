@@ -306,9 +306,31 @@
 </li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          素性探测
+          <span class="md-nav__icon md-icon"></span>
+</label>
 <a class="md-nav__link md-nav__link--active" href="./">
         素性探测
       </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+    写法一：随机选取
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_3">
+    写法二：选取合适的底数
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -322,6 +344,22 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+    写法一：随机选取
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_3">
+    写法二：选取合适的底数
+  </a>
+</li>
+</ul>
 </nav>
 </div>
 </div>
@@ -354,7 +392,12 @@
 <li>证明时可以从头顶往下递推，若 <span class="arithmatex">\(a^{n - 1} = 1\)</span> 则 <span class="arithmatex">\(a^{\frac{n - 1}{2}} = 1 或 n - 1(mod\ n)\)</span>；如果 <span class="arithmatex">\(a^{\frac{n - 1}{2}} = 1\)</span> 就可以再一次使用「二次探测定理」；如果 <span class="arithmatex">\(a^{\frac{n - 1}{2}} = n - 1\)</span> 我们可以假定它等于 <span class="arithmatex">\(1\)</span> 来处理，到时候设计循环时，可以通过判断是否能得出 <span class="arithmatex">\(n - 1\)</span> 来表示能否通过测试；一直到 <span class="arithmatex">\(a^{u} = 1\)</span> 就说明一定是素数，但如果不等于 <span class="arithmatex">\(1\)</span> 我们得不断平方，判断能不能等于 <span class="arithmatex">\(n - 1\)</span>，因为上面我是假的它能等于 <span class="arithmatex">\(1\)</span> 的情况下往下面化的，当从头顶往下面化的过程中如果等于 <span class="arithmatex">\(n - 1\)</span> 时，往下面化到 <span class="arithmatex">\(a ^ u\)</span> 时也会出现不等于 1 的情况，不是素数也会出现不等于 1 的情况，所以从 <span class="arithmatex">\(a^u\)</span> 开始不断平方向上看看能否等于 <span class="arithmatex">\(n - 1\)</span> ，如果一直化到 <span class="arithmatex">\(a^{u \times 2 ^ t}\)</span> 都不能等于 <span class="arithmatex">\(n - 1\)</span> 的话，就一定不是 素数。</li>
 </ul>
 </blockquote>
-<p>代码参考：</p>
+<p>底数 <span class="arithmatex">\(a\)</span> 的选取：</p>
+<ul>
+<li>在 <code>int</code> 范围内选取 <span class="arithmatex">\([2, 7, 61]\)</span> 作为底数就能保证 <span class="arithmatex">\(100\%\)</span> 正确；</li>
+<li>在 <code>long long</code> 范围内选取 <span class="arithmatex">\([2, 325, 9375, 28178, 450775, 9780504, 1795265022]\)</span> 作为底数就能保证 <span class="arithmatex">\(100\%\)</span> 正确。</li>
+</ul>
+<h3 id="_2">写法一：随机选取</h3>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">typedef</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">LL</span><span class="p">;</span><span class="w"></span>
 <a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="k">typedef</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">LD</span><span class="p">;</span><span class="w"></span>
 <a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="k">typedef</span><span class="w"> </span><span class="n">__int128_t</span><span class="w"> </span><span class="n">int128</span><span class="p">;</span><span class="w"></span>
@@ -411,192 +454,243 @@
 <a href="#__codelineno-0-54" id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
 <a href="#__codelineno-0-55" id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="p">}</span><span class="w"></span>
 </code></pre></div>
+<h3 id="_3">写法二：选取合适的底数</h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">typedef</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">LL</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="k">typedef</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">LD</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="k">typedef</span><span class="w"> </span><span class="n">__int128_t</span><span class="w"> </span><span class="n">int128</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a>
+<a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="c1">// 防止溢出 LL 的乘法</span>
+<a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="kr">inline</span><span class="w"> </span><span class="n">LL</span><span class="w"> </span><span class="nf">qmul</span><span class="p">(</span><span class="n">int128</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">int128</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">LL</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"></span>
+<a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-1-8" id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">p</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-1-9" id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="p">}</span><span class="w"></span>
+<a href="#__codelineno-1-10" id="__codelineno-1-10" name="__codelineno-1-10"></a>
+<a href="#__codelineno-1-11" id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="c1">// 快速幂</span>
+<a href="#__codelineno-1-12" id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="n">LL</span><span class="w"> </span><span class="nf">qpow</span><span class="p">(</span><span class="n">LL</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">LL</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">LL</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"></span>
+<a href="#__codelineno-1-13" id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-1-14" id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">    </span><span class="n">LL</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">ans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">mo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-1-15" id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"></span>
+<a href="#__codelineno-1-16" id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-1-17" id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="n">ans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qmul</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span><span class="w"> </span><span class="n">mo</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">);</span><span class="w"></span>
+<a href="#__codelineno-1-18" id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="w">        </span><span class="n">mo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qmul</span><span class="p">(</span><span class="n">mo</span><span class="p">,</span><span class="w"> </span><span class="n">mo</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">);</span><span class="w"></span>
+<a href="#__codelineno-1-19" id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="w">        </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-1-20" id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a href="#__codelineno-1-21" id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ans</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-1-22" id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="p">}</span><span class="w"></span>
+<a href="#__codelineno-1-23" id="__codelineno-1-23" name="__codelineno-1-23"></a>
+<a href="#__codelineno-1-24" id="__codelineno-1-24" name="__codelineno-1-24"></a><span class="c1">// long long 内选取下面 7 个底数就能保证 100% 正确</span>
+<a href="#__codelineno-1-25" id="__codelineno-1-25" name="__codelineno-1-25"></a><span class="n">vector</span><span class="o">&lt;</span><span class="n">LL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">amrq</span><span class="w"> </span><span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">325</span><span class="p">,</span><span class="w"> </span><span class="mi">9375</span><span class="p">,</span><span class="w"> </span><span class="mi">28178</span><span class="p">,</span><span class="w"> </span><span class="mi">450775</span><span class="p">,</span><span class="w"> </span><span class="mi">9780504</span><span class="p">,</span><span class="w"> </span><span class="mi">1795265022</span><span class="p">};</span><span class="w"></span>
+<a href="#__codelineno-1-26" id="__codelineno-1-26" name="__codelineno-1-26"></a>
+<a href="#__codelineno-1-27" id="__codelineno-1-27" name="__codelineno-1-27"></a><span class="c1">// 判断 n 能否通过 Miller-Rabin 素性测试</span>
+<a href="#__codelineno-1-28" id="__codelineno-1-28" name="__codelineno-1-28"></a><span class="kt">bool</span><span class="w"> </span><span class="nf">is_mrq</span><span class="p">(</span><span class="n">LL</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"></span>
+<a href="#__codelineno-1-29" id="__codelineno-1-29" name="__codelineno-1-29"></a><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-1-30" id="__codelineno-1-30" name="__codelineno-1-30"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-1-31" id="__codelineno-1-31" name="__codelineno-1-31"></a><span class="w">    </span><span class="n">LL</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-1-32" id="__codelineno-1-32" name="__codelineno-1-32"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">u</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">&gt;&gt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">++</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-1-33" id="__codelineno-1-33" name="__codelineno-1-33"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">LL</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">amrq</span><span class="p">)</span><span class="w"></span>
+<a href="#__codelineno-1-34" id="__codelineno-1-34" name="__codelineno-1-34"></a><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-1-35" id="__codelineno-1-35" name="__codelineno-1-35"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-1-36" id="__codelineno-1-36" name="__codelineno-1-36"></a><span class="w">        </span><span class="n">LL</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qpow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span><span class="w"></span>
+<a href="#__codelineno-1-37" id="__codelineno-1-37" name="__codelineno-1-37"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span><span class="w"> </span><span class="c1">// 极大可能是素数，测试通过一个</span>
+<a href="#__codelineno-1-38" id="__codelineno-1-38" name="__codelineno-1-38"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-1-39" id="__codelineno-1-39" name="__codelineno-1-39"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">t</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<a href="#__codelineno-1-40" id="__codelineno-1-40" name="__codelineno-1-40"></a><span class="w">        </span><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-1-41" id="__codelineno-1-41" name="__codelineno-1-41"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="c1">// 极大可能是素数，测试通过一个</span>
+<a href="#__codelineno-1-42" id="__codelineno-1-42" name="__codelineno-1-42"></a><span class="w">                </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-1-43" id="__codelineno-1-43" name="__codelineno-1-43"></a><span class="w">            </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qmul</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span><span class="w"></span>
+<a href="#__codelineno-1-44" id="__codelineno-1-44" name="__codelineno-1-44"></a><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<a href="#__codelineno-1-45" id="__codelineno-1-45" name="__codelineno-1-45"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="c1">// 测试不通过，不可能是素数</span>
+<a href="#__codelineno-1-46" id="__codelineno-1-46" name="__codelineno-1-46"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-1-47" id="__codelineno-1-47" name="__codelineno-1-47"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a href="#__codelineno-1-48" id="__codelineno-1-48" name="__codelineno-1-48"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-1-49" id="__codelineno-1-49" name="__codelineno-1-49"></a><span class="p">}</span><span class="w"></span>
+</code></pre></div>
 <details class="note">
 <summary><a href="https://www.acwing.com/problem/content/868/">866. 试除法判定质数</a></summary>
 <p>给定 <span class="arithmatex">\(n\)</span> 个正整数 <span class="arithmatex">\(a_i\)</span>，判定每个数是否是质数。</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-1-10">10</a></span>
-<span class="normal"><a href="#__codelineno-1-11">11</a></span>
-<span class="normal"><a href="#__codelineno-1-12">12</a></span>
-<span class="normal"><a href="#__codelineno-1-13">13</a></span>
-<span class="normal"><a href="#__codelineno-1-14">14</a></span>
-<span class="normal"><a href="#__codelineno-1-15">15</a></span>
-<span class="normal"><a href="#__codelineno-1-16">16</a></span>
-<span class="normal"><a href="#__codelineno-1-17">17</a></span>
-<span class="normal"><a href="#__codelineno-1-18">18</a></span>
-<span class="normal"><a href="#__codelineno-1-19">19</a></span>
-<span class="normal"><a href="#__codelineno-1-20">20</a></span>
-<span class="normal"><a href="#__codelineno-1-21">21</a></span>
-<span class="normal"><a href="#__codelineno-1-22">22</a></span>
-<span class="normal"><a href="#__codelineno-1-23">23</a></span>
-<span class="normal"><a href="#__codelineno-1-24">24</a></span>
-<span class="normal"><a href="#__codelineno-1-25">25</a></span>
-<span class="normal"><a href="#__codelineno-1-26">26</a></span>
-<span class="normal"><a href="#__codelineno-1-27">27</a></span>
-<span class="normal"><a href="#__codelineno-1-28">28</a></span>
-<span class="normal"><a href="#__codelineno-1-29">29</a></span>
-<span class="normal"><a href="#__codelineno-1-30">30</a></span>
-<span class="normal"><a href="#__codelineno-1-31">31</a></span>
-<span class="normal"><a href="#__codelineno-1-32">32</a></span>
-<span class="normal"><a href="#__codelineno-1-33">33</a></span>
-<span class="normal"><a href="#__codelineno-1-34">34</a></span>
-<span class="normal"><a href="#__codelineno-1-35">35</a></span>
-<span class="normal"><a href="#__codelineno-1-36">36</a></span>
-<span class="normal"><a href="#__codelineno-1-37">37</a></span>
-<span class="normal"><a href="#__codelineno-1-38">38</a></span>
-<span class="normal"><a href="#__codelineno-1-39">39</a></span>
-<span class="normal"><a href="#__codelineno-1-40">40</a></span>
-<span class="normal"><a href="#__codelineno-1-41">41</a></span>
-<span class="normal"><a href="#__codelineno-1-42">42</a></span>
-<span class="normal"><a href="#__codelineno-1-43">43</a></span>
-<span class="normal"><a href="#__codelineno-1-44">44</a></span>
-<span class="normal"><a href="#__codelineno-1-45">45</a></span>
-<span class="normal"><a href="#__codelineno-1-46">46</a></span>
-<span class="normal"><a href="#__codelineno-1-47">47</a></span>
-<span class="normal"><a href="#__codelineno-1-48">48</a></span>
-<span class="normal"><a href="#__codelineno-1-49">49</a></span>
-<span class="normal"><a href="#__codelineno-1-50">50</a></span>
-<span class="normal"><a href="#__codelineno-1-51">51</a></span>
-<span class="normal"><a href="#__codelineno-1-52">52</a></span>
-<span class="normal"><a href="#__codelineno-1-53">53</a></span>
-<span class="normal"><a href="#__codelineno-1-54">54</a></span>
-<span class="normal"><a href="#__codelineno-1-55">55</a></span>
-<span class="normal"><a href="#__codelineno-1-56">56</a></span>
-<span class="normal"><a href="#__codelineno-1-57">57</a></span>
-<span class="normal"><a href="#__codelineno-1-58">58</a></span>
-<span class="normal"><a href="#__codelineno-1-59">59</a></span>
-<span class="normal"><a href="#__codelineno-1-60">60</a></span>
-<span class="normal"><a href="#__codelineno-1-61">61</a></span>
-<span class="normal"><a href="#__codelineno-1-62">62</a></span>
-<span class="normal"><a href="#__codelineno-1-63">63</a></span>
-<span class="normal"><a href="#__codelineno-1-64">64</a></span>
-<span class="normal"><a href="#__codelineno-1-65">65</a></span>
-<span class="normal"><a href="#__codelineno-1-66">66</a></span>
-<span class="normal"><a href="#__codelineno-1-67">67</a></span>
-<span class="normal"><a href="#__codelineno-1-68">68</a></span>
-<span class="normal"><a href="#__codelineno-1-69">69</a></span>
-<span class="normal"><a href="#__codelineno-1-70">70</a></span>
-<span class="normal"><a href="#__codelineno-1-71">71</a></span>
-<span class="normal"><a href="#__codelineno-1-72">72</a></span>
-<span class="normal"><a href="#__codelineno-1-73">73</a></span>
-<span class="normal"><a href="#__codelineno-1-74">74</a></span>
-<span class="normal"><a href="#__codelineno-1-75">75</a></span>
-<span class="normal"><a href="#__codelineno-1-76">76</a></span>
-<span class="normal"><a href="#__codelineno-1-77">77</a></span>
-<span class="normal"><a href="#__codelineno-1-78">78</a></span>
-<span class="normal"><a href="#__codelineno-1-79">79</a></span>
-<span class="normal"><a href="#__codelineno-1-80">80</a></span>
-<span class="normal"><a href="#__codelineno-1-81">81</a></span>
-<span class="normal"><a href="#__codelineno-1-82">82</a></span>
-<span class="normal"><a href="#__codelineno-1-83">83</a></span>
-<span class="normal"><a href="#__codelineno-1-84">84</a></span>
-<span class="normal"><a href="#__codelineno-1-85">85</a></span>
-<span class="normal"><a href="#__codelineno-1-86">86</a></span>
-<span class="normal"><a href="#__codelineno-1-87">87</a></span>
-<span class="normal"><a href="#__codelineno-1-88">88</a></span>
-<span class="normal"><a href="#__codelineno-1-89">89</a></span>
-<span class="normal"><a href="#__codelineno-1-90">90</a></span>
-<span class="normal"><a href="#__codelineno-1-91">91</a></span>
-<span class="normal"><a href="#__codelineno-1-92">92</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp"></span>
-<a id="__codelineno-1-2" name="__codelineno-1-2"></a>
-<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span><span class="w"></span>
-<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="kt">int</span><span class="w"> </span><span class="n">debuggersum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<a id="__codelineno-1-5" name="__codelineno-1-5"></a>
-<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="c1">// 即使是不成熟的尝试，</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7"></a>
-<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="k">typedef</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">LL</span><span class="p">;</span><span class="w"></span>
-<a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="k">typedef</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">LD</span><span class="p">;</span><span class="w"></span>
-<a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="k">typedef</span><span class="w"> </span><span class="n">__int128_t</span><span class="w"> </span><span class="n">int128</span><span class="p">;</span><span class="w"></span>
-<a id="__codelineno-1-11" name="__codelineno-1-11"></a>
-<a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="c1">// 防止溢出 LL 的乘法</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="kr">inline</span><span class="w"> </span><span class="n">LL</span><span class="w"> </span><span class="nf">qmul</span><span class="p">(</span><span class="n">int128</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">int128</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">LL</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"></span>
-<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="p">{</span><span class="w"></span>
-<a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">p</span><span class="p">;</span><span class="w"></span>
-<a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="p">}</span><span class="w"></span>
-<a id="__codelineno-1-17" name="__codelineno-1-17"></a>
-<a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="c1">// 快速幂</span>
-<a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="n">LL</span><span class="w"> </span><span class="nf">qpow</span><span class="p">(</span><span class="n">LL</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">LL</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">LL</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"></span>
-<a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="p">{</span><span class="w"></span>
-<a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="w">    </span><span class="n">LL</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">ans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">mo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"></span>
-<a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"></span>
-<a id="__codelineno-1-23" name="__codelineno-1-23"></a><span class="w">    </span><span class="p">{</span><span class="w"></span>
-<a id="__codelineno-1-24" name="__codelineno-1-24"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="n">ans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qmul</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span><span class="w"> </span><span class="n">mo</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">);</span><span class="w"></span>
-<a id="__codelineno-1-25" name="__codelineno-1-25"></a><span class="w">        </span><span class="n">mo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qmul</span><span class="p">(</span><span class="n">mo</span><span class="p">,</span><span class="w"> </span><span class="n">mo</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">);</span><span class="w"></span>
-<a id="__codelineno-1-26" name="__codelineno-1-26"></a><span class="w">        </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<a id="__codelineno-1-27" name="__codelineno-1-27"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
-<a id="__codelineno-1-28" name="__codelineno-1-28"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ans</span><span class="p">;</span><span class="w"></span>
-<a id="__codelineno-1-29" name="__codelineno-1-29"></a><span class="p">}</span><span class="w"></span>
-<a id="__codelineno-1-30" name="__codelineno-1-30"></a>
-<a id="__codelineno-1-31" name="__codelineno-1-31"></a><span class="c1">// 由于 rand 函数只能返回 32767 以内的最大整数</span>
-<a id="__codelineno-1-32" name="__codelineno-1-32"></a><span class="c1">// RAND_MAX 是 rand 的最大整数</span>
-<a id="__codelineno-1-33" name="__codelineno-1-33"></a><span class="c1">// (LL) ((long double) rand() / RAND_MAX) * (~(1 &lt;&lt; 63));</span>
-<a id="__codelineno-1-34" name="__codelineno-1-34"></a><span class="kr">inline</span><span class="w"> </span><span class="n">LL</span><span class="w"> </span><span class="nf">randll</span><span class="p">()</span><span class="w"></span>
-<a id="__codelineno-1-35" name="__codelineno-1-35"></a><span class="p">{</span><span class="w"></span>
-<a id="__codelineno-1-36" name="__codelineno-1-36"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">LL</span><span class="p">)</span><span class="w"> </span><span class="p">((</span><span class="kt">long</span><span class="w"> </span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="n">rand</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">RAND_MAX</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="o">~</span><span class="p">((</span><span class="n">LL</span><span class="p">)</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">63</span><span class="p">));</span><span class="w"></span>
-<a id="__codelineno-1-37" name="__codelineno-1-37"></a><span class="p">}</span><span class="w"></span>
-<a id="__codelineno-1-38" name="__codelineno-1-38"></a>
-<a id="__codelineno-1-39" name="__codelineno-1-39"></a><span class="c1">// 判断 n 能否通过 Miller-Rabin 素性测试</span>
-<a id="__codelineno-1-40" name="__codelineno-1-40"></a><span class="c1">// tt 表示测试的次数，默认 8 次</span>
-<a id="__codelineno-1-41" name="__codelineno-1-41"></a><span class="kt">bool</span><span class="w"> </span><span class="nf">is_mrq</span><span class="p">(</span><span class="n">LL</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">LL</span><span class="w"> </span><span class="n">tt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="w"></span>
-<a id="__codelineno-1-42" name="__codelineno-1-42"></a><span class="p">{</span><span class="w"></span>
-<a id="__codelineno-1-43" name="__codelineno-1-43"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
-<a id="__codelineno-1-44" name="__codelineno-1-44"></a><span class="w">    </span><span class="n">LL</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<a id="__codelineno-1-45" name="__codelineno-1-45"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">u</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">&gt;&gt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">++</span><span class="p">;</span><span class="w"></span>
-<a id="__codelineno-1-46" name="__codelineno-1-46"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">tt</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">++</span><span class="p">)</span><span class="w"></span>
-<a id="__codelineno-1-47" name="__codelineno-1-47"></a><span class="w">    </span><span class="p">{</span><span class="w"></span>
-<a id="__codelineno-1-48" name="__codelineno-1-48"></a><span class="w">        </span><span class="n">LL</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">randll</span><span class="p">()</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
-<a id="__codelineno-1-49" name="__codelineno-1-49"></a><span class="w">        </span><span class="n">LL</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qpow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span><span class="w"></span>
-<a id="__codelineno-1-50" name="__codelineno-1-50"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span><span class="w"> </span><span class="c1">// 极大可能是素数，测试通过一个</span>
-<a id="__codelineno-1-51" name="__codelineno-1-51"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<a id="__codelineno-1-52" name="__codelineno-1-52"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">t</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">++</span><span class="p">)</span><span class="w"></span>
-<a id="__codelineno-1-53" name="__codelineno-1-53"></a><span class="w">        </span><span class="p">{</span><span class="w"></span>
-<a id="__codelineno-1-54" name="__codelineno-1-54"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="c1">// 极大可能是素数，测试通过一个</span>
-<a id="__codelineno-1-55" name="__codelineno-1-55"></a><span class="w">                </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
-<a id="__codelineno-1-56" name="__codelineno-1-56"></a><span class="w">            </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qmul</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span><span class="w"></span>
-<a id="__codelineno-1-57" name="__codelineno-1-57"></a><span class="w">        </span><span class="p">}</span><span class="w"></span>
-<a id="__codelineno-1-58" name="__codelineno-1-58"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="c1">// 测试不通过，不可能是素数</span>
-<a id="__codelineno-1-59" name="__codelineno-1-59"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
-<a id="__codelineno-1-60" name="__codelineno-1-60"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
-<a id="__codelineno-1-61" name="__codelineno-1-61"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
-<a id="__codelineno-1-62" name="__codelineno-1-62"></a><span class="p">}</span><span class="w"></span>
-<a id="__codelineno-1-63" name="__codelineno-1-63"></a>
-<a id="__codelineno-1-64" name="__codelineno-1-64"></a><span class="kt">void</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
-<a id="__codelineno-1-65" name="__codelineno-1-65"></a><span class="p">{</span><span class="w"></span>
-<a id="__codelineno-1-66" name="__codelineno-1-66"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">;</span><span class="w"> </span><span class="n">scanf</span><span class="w"> </span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">n</span><span class="p">);</span><span class="w"></span>
-<a id="__codelineno-1-67" name="__codelineno-1-67"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">--</span><span class="p">)</span><span class="w"></span>
-<a id="__codelineno-1-68" name="__codelineno-1-68"></a><span class="w">    </span><span class="p">{</span><span class="w"></span>
-<a id="__codelineno-1-69" name="__codelineno-1-69"></a><span class="w">        </span><span class="n">scanf</span><span class="w"> </span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">t</span><span class="p">);</span><span class="w"></span>
-<a id="__codelineno-1-70" name="__codelineno-1-70"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">is_mrq</span><span class="p">(</span><span class="n">t</span><span class="p">))</span><span class="w"> </span><span class="n">puts</span><span class="p">(</span><span class="s">"Yes"</span><span class="p">);</span><span class="w"></span>
-<a id="__codelineno-1-71" name="__codelineno-1-71"></a><span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="n">puts</span><span class="p">(</span><span class="s">"No"</span><span class="p">);</span><span class="w"></span>
-<a id="__codelineno-1-72" name="__codelineno-1-72"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
-<a id="__codelineno-1-73" name="__codelineno-1-73"></a><span class="p">}</span><span class="w"></span>
-<a id="__codelineno-1-74" name="__codelineno-1-74"></a>
-<a id="__codelineno-1-75" name="__codelineno-1-75"></a><span class="c1">// 也胜于胎死腹中的策略。</span>
-<a id="__codelineno-1-76" name="__codelineno-1-76"></a>
-<a id="__codelineno-1-77" name="__codelineno-1-77"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
-<a id="__codelineno-1-78" name="__codelineno-1-78"></a><span class="p">{</span><span class="w"></span>
-<a id="__codelineno-1-79" name="__codelineno-1-79"></a><span class="w">    </span><span class="n">ifstream</span><span class="w"> </span><span class="n">fi</span><span class="p">;</span><span class="w"> </span><span class="n">ofstream</span><span class="w"> </span><span class="n">fo</span><span class="p">;</span><span class="w"></span>
-<a id="__codelineno-1-80" name="__codelineno-1-80"></a><span class="w">    </span><span class="n">fi</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="s">"./lrq.in"</span><span class="p">);</span><span class="w"> </span><span class="n">fo</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="s">"./lrq.out"</span><span class="p">);</span><span class="w"></span>
-<a id="__codelineno-1-81" name="__codelineno-1-81"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fi</span><span class="p">.</span><span class="n">is_open</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">fo</span><span class="p">.</span><span class="n">is_open</span><span class="p">())</span><span class="w"></span>
-<a id="__codelineno-1-82" name="__codelineno-1-82"></a><span class="w">    </span><span class="p">{</span><span class="w"></span>
-<a id="__codelineno-1-83" name="__codelineno-1-83"></a><span class="w">        </span><span class="n">fo</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"start running ..."</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w"> </span><span class="n">fo</span><span class="p">.</span><span class="n">close</span><span class="p">();</span><span class="w"> </span><span class="n">fi</span><span class="p">.</span><span class="n">close</span><span class="p">();</span><span class="w"></span>
-<a id="__codelineno-1-84" name="__codelineno-1-84"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">4e8</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">2e7</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">);</span><span class="w"></span>
-<a id="__codelineno-1-85" name="__codelineno-1-85"></a><span class="w">        </span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">freopen</span><span class="p">(</span><span class="s">"./lrq.in"</span><span class="p">,</span><span class="w"> </span><span class="s">"r"</span><span class="p">,</span><span class="w"> </span><span class="n">stdin</span><span class="p">);</span><span class="w"></span>
-<a id="__codelineno-1-86" name="__codelineno-1-86"></a><span class="w">        </span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">freopen</span><span class="p">(</span><span class="s">"./lrq.out"</span><span class="p">,</span><span class="w"> </span><span class="s">"w"</span><span class="p">,</span><span class="w"> </span><span class="n">stdout</span><span class="p">);</span><span class="w"></span>
-<a id="__codelineno-1-87" name="__codelineno-1-87"></a><span class="w">        </span><span class="n">solve</span><span class="p">();</span><span class="w"> </span><span class="n">fclose</span><span class="p">(</span><span class="n">fin</span><span class="p">);</span><span class="w"> </span><span class="n">fclose</span><span class="p">(</span><span class="n">fout</span><span class="p">);</span><span class="w"></span>
-<a id="__codelineno-1-88" name="__codelineno-1-88"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
-<a id="__codelineno-1-89" name="__codelineno-1-89"></a><span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="n">solve</span><span class="p">();</span><span class="w"></span>
-<a id="__codelineno-1-90" name="__codelineno-1-90"></a>
-<a id="__codelineno-1-91" name="__codelineno-1-91"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<a id="__codelineno-1-92" name="__codelineno-1-92"></a><span class="p">}</span><span class="w"></span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span>
+<span class="normal"><a href="#__codelineno-2-19">19</a></span>
+<span class="normal"><a href="#__codelineno-2-20">20</a></span>
+<span class="normal"><a href="#__codelineno-2-21">21</a></span>
+<span class="normal"><a href="#__codelineno-2-22">22</a></span>
+<span class="normal"><a href="#__codelineno-2-23">23</a></span>
+<span class="normal"><a href="#__codelineno-2-24">24</a></span>
+<span class="normal"><a href="#__codelineno-2-25">25</a></span>
+<span class="normal"><a href="#__codelineno-2-26">26</a></span>
+<span class="normal"><a href="#__codelineno-2-27">27</a></span>
+<span class="normal"><a href="#__codelineno-2-28">28</a></span>
+<span class="normal"><a href="#__codelineno-2-29">29</a></span>
+<span class="normal"><a href="#__codelineno-2-30">30</a></span>
+<span class="normal"><a href="#__codelineno-2-31">31</a></span>
+<span class="normal"><a href="#__codelineno-2-32">32</a></span>
+<span class="normal"><a href="#__codelineno-2-33">33</a></span>
+<span class="normal"><a href="#__codelineno-2-34">34</a></span>
+<span class="normal"><a href="#__codelineno-2-35">35</a></span>
+<span class="normal"><a href="#__codelineno-2-36">36</a></span>
+<span class="normal"><a href="#__codelineno-2-37">37</a></span>
+<span class="normal"><a href="#__codelineno-2-38">38</a></span>
+<span class="normal"><a href="#__codelineno-2-39">39</a></span>
+<span class="normal"><a href="#__codelineno-2-40">40</a></span>
+<span class="normal"><a href="#__codelineno-2-41">41</a></span>
+<span class="normal"><a href="#__codelineno-2-42">42</a></span>
+<span class="normal"><a href="#__codelineno-2-43">43</a></span>
+<span class="normal"><a href="#__codelineno-2-44">44</a></span>
+<span class="normal"><a href="#__codelineno-2-45">45</a></span>
+<span class="normal"><a href="#__codelineno-2-46">46</a></span>
+<span class="normal"><a href="#__codelineno-2-47">47</a></span>
+<span class="normal"><a href="#__codelineno-2-48">48</a></span>
+<span class="normal"><a href="#__codelineno-2-49">49</a></span>
+<span class="normal"><a href="#__codelineno-2-50">50</a></span>
+<span class="normal"><a href="#__codelineno-2-51">51</a></span>
+<span class="normal"><a href="#__codelineno-2-52">52</a></span>
+<span class="normal"><a href="#__codelineno-2-53">53</a></span>
+<span class="normal"><a href="#__codelineno-2-54">54</a></span>
+<span class="normal"><a href="#__codelineno-2-55">55</a></span>
+<span class="normal"><a href="#__codelineno-2-56">56</a></span>
+<span class="normal"><a href="#__codelineno-2-57">57</a></span>
+<span class="normal"><a href="#__codelineno-2-58">58</a></span>
+<span class="normal"><a href="#__codelineno-2-59">59</a></span>
+<span class="normal"><a href="#__codelineno-2-60">60</a></span>
+<span class="normal"><a href="#__codelineno-2-61">61</a></span>
+<span class="normal"><a href="#__codelineno-2-62">62</a></span>
+<span class="normal"><a href="#__codelineno-2-63">63</a></span>
+<span class="normal"><a href="#__codelineno-2-64">64</a></span>
+<span class="normal"><a href="#__codelineno-2-65">65</a></span>
+<span class="normal"><a href="#__codelineno-2-66">66</a></span>
+<span class="normal"><a href="#__codelineno-2-67">67</a></span>
+<span class="normal"><a href="#__codelineno-2-68">68</a></span>
+<span class="normal"><a href="#__codelineno-2-69">69</a></span>
+<span class="normal"><a href="#__codelineno-2-70">70</a></span>
+<span class="normal"><a href="#__codelineno-2-71">71</a></span>
+<span class="normal"><a href="#__codelineno-2-72">72</a></span>
+<span class="normal"><a href="#__codelineno-2-73">73</a></span>
+<span class="normal"><a href="#__codelineno-2-74">74</a></span>
+<span class="normal"><a href="#__codelineno-2-75">75</a></span>
+<span class="normal"><a href="#__codelineno-2-76">76</a></span>
+<span class="normal"><a href="#__codelineno-2-77">77</a></span>
+<span class="normal"><a href="#__codelineno-2-78">78</a></span>
+<span class="normal"><a href="#__codelineno-2-79">79</a></span>
+<span class="normal"><a href="#__codelineno-2-80">80</a></span>
+<span class="normal"><a href="#__codelineno-2-81">81</a></span>
+<span class="normal"><a href="#__codelineno-2-82">82</a></span>
+<span class="normal"><a href="#__codelineno-2-83">83</a></span>
+<span class="normal"><a href="#__codelineno-2-84">84</a></span>
+<span class="normal"><a href="#__codelineno-2-85">85</a></span>
+<span class="normal"><a href="#__codelineno-2-86">86</a></span>
+<span class="normal"><a href="#__codelineno-2-87">87</a></span>
+<span class="normal"><a href="#__codelineno-2-88">88</a></span>
+<span class="normal"><a href="#__codelineno-2-89">89</a></span>
+<span class="normal"><a href="#__codelineno-2-90">90</a></span>
+<span class="normal"><a href="#__codelineno-2-91">91</a></span>
+<span class="normal"><a href="#__codelineno-2-92">92</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp"></span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="kt">int</span><span class="w"> </span><span class="n">debuggersum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="c1">// 即使是不成熟的尝试，</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="k">typedef</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">LL</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="k">typedef</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">LD</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="k">typedef</span><span class="w"> </span><span class="n">__int128_t</span><span class="w"> </span><span class="n">int128</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="c1">// 防止溢出 LL 的乘法</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="kr">inline</span><span class="w"> </span><span class="n">LL</span><span class="w"> </span><span class="nf">qmul</span><span class="p">(</span><span class="n">int128</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">int128</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">LL</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"></span>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">p</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a>
+<a id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="c1">// 快速幂</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="n">LL</span><span class="w"> </span><span class="nf">qpow</span><span class="p">(</span><span class="n">LL</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">LL</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">LL</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"></span>
+<a id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-2-21" name="__codelineno-2-21"></a><span class="w">    </span><span class="n">LL</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">ans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">mo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-2-22" name="__codelineno-2-22"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"></span>
+<a id="__codelineno-2-23" name="__codelineno-2-23"></a><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-2-24" name="__codelineno-2-24"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="n">ans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qmul</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span><span class="w"> </span><span class="n">mo</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-2-25" name="__codelineno-2-25"></a><span class="w">        </span><span class="n">mo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qmul</span><span class="p">(</span><span class="n">mo</span><span class="p">,</span><span class="w"> </span><span class="n">mo</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-2-26" name="__codelineno-2-26"></a><span class="w">        </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-2-27" name="__codelineno-2-27"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-2-28" name="__codelineno-2-28"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ans</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-2-29" name="__codelineno-2-29"></a><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-2-30" name="__codelineno-2-30"></a>
+<a id="__codelineno-2-31" name="__codelineno-2-31"></a><span class="c1">// 由于 rand 函数只能返回 32767 以内的最大整数</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32"></a><span class="c1">// RAND_MAX 是 rand 的最大整数</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33"></a><span class="c1">// (LL) ((long double) rand() / RAND_MAX) * (~(1 &lt;&lt; 63));</span>
+<a id="__codelineno-2-34" name="__codelineno-2-34"></a><span class="kr">inline</span><span class="w"> </span><span class="n">LL</span><span class="w"> </span><span class="nf">randll</span><span class="p">()</span><span class="w"></span>
+<a id="__codelineno-2-35" name="__codelineno-2-35"></a><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-2-36" name="__codelineno-2-36"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">LL</span><span class="p">)</span><span class="w"> </span><span class="p">((</span><span class="kt">long</span><span class="w"> </span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="n">rand</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">RAND_MAX</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="o">~</span><span class="p">((</span><span class="n">LL</span><span class="p">)</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">63</span><span class="p">));</span><span class="w"></span>
+<a id="__codelineno-2-37" name="__codelineno-2-37"></a><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-2-38" name="__codelineno-2-38"></a>
+<a id="__codelineno-2-39" name="__codelineno-2-39"></a><span class="c1">// 判断 n 能否通过 Miller-Rabin 素性测试</span>
+<a id="__codelineno-2-40" name="__codelineno-2-40"></a><span class="c1">// tt 表示测试的次数，默认 8 次</span>
+<a id="__codelineno-2-41" name="__codelineno-2-41"></a><span class="kt">bool</span><span class="w"> </span><span class="nf">is_mrq</span><span class="p">(</span><span class="n">LL</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">LL</span><span class="w"> </span><span class="n">tt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="w"></span>
+<a id="__codelineno-2-42" name="__codelineno-2-42"></a><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-2-43" name="__codelineno-2-43"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-2-44" name="__codelineno-2-44"></a><span class="w">    </span><span class="n">LL</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-2-45" name="__codelineno-2-45"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">u</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">&gt;&gt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">++</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-2-46" name="__codelineno-2-46"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">tt</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<a id="__codelineno-2-47" name="__codelineno-2-47"></a><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-2-48" name="__codelineno-2-48"></a><span class="w">        </span><span class="n">LL</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">randll</span><span class="p">()</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-2-49" name="__codelineno-2-49"></a><span class="w">        </span><span class="n">LL</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qpow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-2-50" name="__codelineno-2-50"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span><span class="w"> </span><span class="c1">// 极大可能是素数，测试通过一个</span>
+<a id="__codelineno-2-51" name="__codelineno-2-51"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-2-52" name="__codelineno-2-52"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">t</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<a id="__codelineno-2-53" name="__codelineno-2-53"></a><span class="w">        </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-2-54" name="__codelineno-2-54"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="c1">// 极大可能是素数，测试通过一个</span>
+<a id="__codelineno-2-55" name="__codelineno-2-55"></a><span class="w">                </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-2-56" name="__codelineno-2-56"></a><span class="w">            </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qmul</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-2-57" name="__codelineno-2-57"></a><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-2-58" name="__codelineno-2-58"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="c1">// 测试不通过，不可能是素数</span>
+<a id="__codelineno-2-59" name="__codelineno-2-59"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-2-60" name="__codelineno-2-60"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-2-61" name="__codelineno-2-61"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-2-62" name="__codelineno-2-62"></a><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-2-63" name="__codelineno-2-63"></a>
+<a id="__codelineno-2-64" name="__codelineno-2-64"></a><span class="kt">void</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
+<a id="__codelineno-2-65" name="__codelineno-2-65"></a><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-2-66" name="__codelineno-2-66"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">;</span><span class="w"> </span><span class="n">scanf</span><span class="w"> </span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">n</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-2-67" name="__codelineno-2-67"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">--</span><span class="p">)</span><span class="w"></span>
+<a id="__codelineno-2-68" name="__codelineno-2-68"></a><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-2-69" name="__codelineno-2-69"></a><span class="w">        </span><span class="n">scanf</span><span class="w"> </span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">t</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-2-70" name="__codelineno-2-70"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">is_mrq</span><span class="p">(</span><span class="n">t</span><span class="p">))</span><span class="w"> </span><span class="n">puts</span><span class="p">(</span><span class="s">"Yes"</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-2-71" name="__codelineno-2-71"></a><span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="n">puts</span><span class="p">(</span><span class="s">"No"</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-2-72" name="__codelineno-2-72"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-2-73" name="__codelineno-2-73"></a><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-2-74" name="__codelineno-2-74"></a>
+<a id="__codelineno-2-75" name="__codelineno-2-75"></a><span class="c1">// 也胜于胎死腹中的策略。</span>
+<a id="__codelineno-2-76" name="__codelineno-2-76"></a>
+<a id="__codelineno-2-77" name="__codelineno-2-77"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
+<a id="__codelineno-2-78" name="__codelineno-2-78"></a><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-2-79" name="__codelineno-2-79"></a><span class="w">    </span><span class="n">ifstream</span><span class="w"> </span><span class="n">fi</span><span class="p">;</span><span class="w"> </span><span class="n">ofstream</span><span class="w"> </span><span class="n">fo</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-2-80" name="__codelineno-2-80"></a><span class="w">    </span><span class="n">fi</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="s">"./lrq.in"</span><span class="p">);</span><span class="w"> </span><span class="n">fo</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="s">"./lrq.out"</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-2-81" name="__codelineno-2-81"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fi</span><span class="p">.</span><span class="n">is_open</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">fo</span><span class="p">.</span><span class="n">is_open</span><span class="p">())</span><span class="w"></span>
+<a id="__codelineno-2-82" name="__codelineno-2-82"></a><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-2-83" name="__codelineno-2-83"></a><span class="w">        </span><span class="n">fo</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"start running ..."</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w"> </span><span class="n">fo</span><span class="p">.</span><span class="n">close</span><span class="p">();</span><span class="w"> </span><span class="n">fi</span><span class="p">.</span><span class="n">close</span><span class="p">();</span><span class="w"></span>
+<a id="__codelineno-2-84" name="__codelineno-2-84"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">4e8</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">2e7</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-2-85" name="__codelineno-2-85"></a><span class="w">        </span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">freopen</span><span class="p">(</span><span class="s">"./lrq.in"</span><span class="p">,</span><span class="w"> </span><span class="s">"r"</span><span class="p">,</span><span class="w"> </span><span class="n">stdin</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-2-86" name="__codelineno-2-86"></a><span class="w">        </span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">freopen</span><span class="p">(</span><span class="s">"./lrq.out"</span><span class="p">,</span><span class="w"> </span><span class="s">"w"</span><span class="p">,</span><span class="w"> </span><span class="n">stdout</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-2-87" name="__codelineno-2-87"></a><span class="w">        </span><span class="n">solve</span><span class="p">();</span><span class="w"> </span><span class="n">fclose</span><span class="p">(</span><span class="n">fin</span><span class="p">);</span><span class="w"> </span><span class="n">fclose</span><span class="p">(</span><span class="n">fout</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-2-88" name="__codelineno-2-88"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-2-89" name="__codelineno-2-89"></a><span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="n">solve</span><span class="p">();</span><span class="w"></span>
+<a id="__codelineno-2-90" name="__codelineno-2-90"></a>
+<a id="__codelineno-2-91" name="__codelineno-2-91"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-2-92" name="__codelineno-2-92"></a><span class="p">}</span><span class="w"></span>
 </code></pre></div></td></tr></table></div>
 </details>
 </article>
