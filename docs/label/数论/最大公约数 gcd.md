@@ -50,3 +50,55 @@ LL gcd(LL a, LL b)
     return a > b ? gcd(b, a % b) : gcd(a, b % a);
 }
 ```
+
+---
+
+??? note "[「872.最大公约数」代码参考](https://www.acwing.com/problem/content/874/)"
+
+    给定 $n$ 对正整数 $a_i, b_i$，请你求出每对数的最大公约数。
+    
+    ```c++
+    #include <bits/stdc++.h>
+
+    using namespace std;
+    int debuggersum = 0;
+
+    // 即使是不成熟的尝试，
+
+    typedef long long LL;
+
+    LL gcd(LL a, LL b)
+    {
+        if (!a || !b) return a | b;
+        return a > b ? gcd(b, a % b) : gcd(a, b % a);
+    }
+
+    void solve(void)
+    {
+        int n; scanf ("%d", &n);
+        while (n --)
+        {
+            int a, b; scanf ("%d%d", &a, &b);
+            printf ("%d\n", gcd(a, b));
+        }
+    }
+
+    // 也胜于胎死腹中的策略。
+
+    int main(void)
+    {
+        ifstream fi; ofstream fo;
+        fi.open("./lrq.in"); fo.open("./lrq.out");
+        if (fi.is_open() && fo.is_open())
+        {
+            fo << "start running ..." << endl; fo.close(); fi.close();
+            for (long long i = 1; i <= 4e8 + 2e7; i++);
+            FILE *fin = freopen("./lrq.in", "r", stdin);
+            FILE *fout = freopen("./lrq.out", "w", stdout);
+            solve(); fclose(fin); fclose(fout);
+        }
+        else solve();
+
+        return 0;
+    }
+    ```
