@@ -23,9 +23,25 @@
 
 ## mingw 配置
 
+### 旧版 mingw 配置:
+
 先下载 「[my_mingw](https://media.githubusercontent.com/media/huaxv-code/huaxv-note/hutao/my_mingw.zip)」
 
 解压缩后找到路径：`my_mingw/bin` 将 `bin` 目录添加进环境变量里，这样我们就可以在命令行内直接调用 `g++.exe、gcc.exe、gdb.exe` 工具编译我们的代码了
+
+### 借助 msys2 包管理工具
+
+1. 去官网下载 [msys2](https://www.msys2.org/) 或者在百度网盘里：链接：[百度网盘](https://pan.baidu.com/s/1x-uHTjnDDzizx-787W-wRA?pwd=1111)  提取码：1111
+2. 打开 `msys2.exe` 执行下述命令：
+   ```c++
+	pacman -Syu --disable-download-timeout
+	pacman -Syu --disable-download-timeout
+	pacman -S mingw-w64-x86_64-gcc  --disable-download-timeout
+	pacman -S mingw-w64-x86_64-make  --disable-download-timeout
+	pacman -S mingw-w64-x86_64-gdb  --disable-download-timeout
+	pacman -Syu --disable-download-timeout
+   ```
+3. 设置环境变量为 mingw 下的 bin 目录
 
 ## sublime 配置
 
