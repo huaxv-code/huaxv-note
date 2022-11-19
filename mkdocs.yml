@@ -135,3 +135,4 @@ nav:
   - 数论:
     - lowbit: label/数论/lowbit.md
     - 二进制 1 的个数: label/数论/二进制 1 的个数.md
+    - 试除法判质数: label/数论/试除法判质数.md
