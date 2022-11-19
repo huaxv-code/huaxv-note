@@ -92,6 +92,7 @@ theme:
         name: Switch to light mode
       primary: black
       # accent: deep orange
+    # - accent: green
 
   font:
     code: Roboto Mono
