@@ -383,7 +383,10 @@
 </blockquote>
 <p>若要满足：<span class="arithmatex">\(x_1 = y_2,\ y_1 = x_2 - ⌊\frac{a}{b}⌋y_2\)</span>，则：</p>
 <blockquote>
-<p>k = -1, s = 0 </p>
+<p><span class="arithmatex">\((k + 1) = s,\ -k = 1 - ⌊\frac{(k + 1)gcd(a, b)}{(-k)gcd(a, b)}⌋s\)</span></p>
+<p><span class="arithmatex">\((k + 1) = s,\ -k = 1 + s\)</span></p>
+<p><span class="arithmatex">\(s = (k + 1) = -(k + 1)\)</span></p>
+<p>解得：k = -1, s = 0 </p>
 </blockquote>
 <hr/>
 <p>我们可以借助求 <span class="arithmatex">\(gcd(a, b)\)</span> 的求法到达递推的底部：</p>
