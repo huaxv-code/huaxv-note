@@ -141,7 +141,8 @@ nav:
     - 欧拉筛质数: label/数论/欧拉筛质数.md
     - 介绍大数 __int128_t: label/数论/int128.md
     - 快速幂: label/数论/快速幂.md
-    - 素性探测: label/数论/素性探测.md
+    # - 素性探测: label/数论/素性探测.md
+    - 素性探测判质数: label/数论/素性探测判质数.md
     - 最大公约数 gcd: label/数论/最大公约数 gcd.md
     - 最小公倍数 lcm: label/数论/最小公倍数 lcm.md
     - 扩展欧几里得算法: label/数论/扩展欧几里得算法.md
