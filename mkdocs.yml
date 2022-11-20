@@ -145,3 +145,4 @@ nav:
     - 最大公约数 gcd: label/数论/最大公约数 gcd.md
     - 最小公倍数 lcm: label/数论/最小公倍数 lcm.md
     - 扩展欧几里得算法: label/数论/扩展欧几里得算法.md
+    - 试除法求约数: label/数论/试除法求约数.md
