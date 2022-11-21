@@ -414,7 +414,7 @@
 <hr/>
 <details class="note">
 <summary>头顶向下与底部向上可行性的说明</summary>
-<p>从头顶开始，请读者自行安装下面的思路构建一颗树：</p>
+<p>从头顶开始，请读者自行按照下面的思路构建一颗树：</p>
 <blockquote>
 <ul>
 <li>一开始，若 <span class="arithmatex">\(a ^ {u \times 2 ^ t} = 1\)</span>，由「费马小定理」可知，<span class="arithmatex">\(n\)</span> 有可能是素数；</li>
@@ -438,7 +438,7 @@
 <p>若从头顶往下开了几次根之后发现 <span class="arithmatex">\(a ^ {u \times 2 ^ {t - k}}\)</span> 模 <span class="arithmatex">\(n\)</span> 的取值为 <span class="arithmatex">\(n - 1\)</span>，则从底部 <span class="arithmatex">\(a ^ u\)</span> 向上平方几次之后得到 <span class="arithmatex">\(n - 1\)</span> 可以归为一类情况，都能说明 <span class="arithmatex">\(n\)</span> 很可能是质数。</p>
 <p>若从头顶往下开了 <span class="arithmatex">\(t\)</span> 次根之后发现 <span class="arithmatex">\(a ^ {u \times 2 ^ {t - t}} = a ^ u\)</span> 模 <span class="arithmatex">\(n\)</span> 的取值一直都不是 <span class="arithmatex">\(n - 1\)</span>，而一直都是 <span class="arithmatex">\(1\)</span> 的情况下，也能说明 <span class="arithmatex">\(n\)</span> 很可能是质数。</p>
 <p>若从头顶往下开了 <span class="arithmatex">\(k\)</span> 次根之后发现 <span class="arithmatex">\(a ^ {u \times 2 ^ {t - k}}\)</span> 并不是 <span class="arithmatex">\(1\)</span> 和 <span class="arithmatex">\(n - 1\)</span> ，则继续先下开根直到值为 <span class="arithmatex">\(a ^ u\)</span> 次方时，模 <span class="arithmatex">\(n\)</span> 的结果是一直都不可能出现 <span class="arithmatex">\(1\)</span> 的，换句话说，只要 <span class="arithmatex">\(a ^ u = 1\)</span>，则 <span class="arithmatex">\(n\)</span> 很可能是质数；否则，得从 <span class="arithmatex">\(a ^ u\)</span> 开始向上平方多次，若平方到 <span class="arithmatex">\(a ^ {u \times 2 ^ {t}}\)</span> 为止都未能出现 <span class="arithmatex">\(n - 1\)</span>，则一定不可能是素数；若出现 <span class="arithmatex">\(n - 1\)</span>，继续平方就会出现 <span class="arithmatex">\(1\)</span>，并且一直向上平方都会是 <span class="arithmatex">\(1\)</span>，满足费马小定理，<span class="arithmatex">\(n\)</span> 很可能是质数；若向上平方的过程中出现了 <span class="arithmatex">\(1\)</span>，则也能说明 <span class="arithmatex">\(n\)</span> 一定不是素数了。</p>
-<p>写的很啰嗦，希望未来的自己能够耐心开过去的自己留下的「百感交集」。</p>
+<p>写的很啰嗦，希望未来的自己能够耐心看看过去的自己留下的「百感交集」。</p>
 <hr/>
 <p>从底部向上思考，为什么要从底部向上？因为取模运算对于加、减、乘可以随便、随处、随意取模：</p>
 <blockquote>
