@@ -39,6 +39,9 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.arithmatex:
       generic: true
+  - attr_list
+  - md_in_html
+  - pymdownx.superfences
 
 theme:
   logo: 'img/头像.png'
@@ -148,3 +151,4 @@ nav:
     - 扩展欧几里得算法: label/数论/扩展欧几里得算法.md
     - 试除法求约数: label/数论/试除法求约数.md
     - 约数和定理: label/数论/约数和定理.md
+    - 欧拉函数: label/数论/欧拉函数.md
