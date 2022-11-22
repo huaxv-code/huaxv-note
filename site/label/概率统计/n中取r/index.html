@@ -420,6 +420,28 @@
 <p>建议结合「杨辉三角」理解组合数：</p>
 <p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92.png"><img alt="杨辉三角" src="../../../img/%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92.png" width="60%"/></a></p>
 <hr/>
+<div class="admonition note">
+<p class="admonition-title">题目三</p>
+<p>将 n 个相异的物件分成 <span class="arithmatex">\(k\)</span> 堆，各堆物件数分别为 <span class="arithmatex">\(r_1、\cdots 、r_k\)</span> 的分法。</p>
+</div>
+<blockquote>
+<p><span class="arithmatex">\(\frac{n!}{r_1! \cdots r_k!}\)</span></p>
+</blockquote>
+<p>解释一下，它这个 <span class="arithmatex">\(k\)</span> 堆是有编号的，即：第 <span class="arithmatex">\(1\)</span> 堆、第 <span class="arithmatex">\(2\)</span> 堆、<span class="arithmatex">\(\cdots\)</span> 、第 <span class="arithmatex">\(k\)</span> 堆。</p>
+<hr/>
+<div class="admonition note">
+<p class="admonition-title">题目四</p>
+<p>将 n 个相异的物件平均分成 <span class="arithmatex">\(k\)</span> 组的分法。</p>
+<p>数据保证 <span class="arithmatex">\(n = sk\)</span>，其中 <span class="arithmatex">\(n、s、k\)</span> 都是整数。</p>
+</div>
+<p>先按照分堆的方法，分成 <span class="arithmatex">\(k\)</span> 堆，每堆 <span class="arithmatex">\(\frac{n}{k}\)</span> 个的分法为：</p>
+<blockquote>
+<p><span class="arithmatex">\(\frac{n!}{{(\frac{n}{k})}^k}\)</span></p>
+</blockquote>
+<p>由于分组是不要求对组有次序、编号之分的，而堆恰好相反，若第一堆与第二堆交换位置，将会是新的分法，但在分组里面第一组和第二组交换位置还是同一种分法，所以按照分组的分法为：</p>
+<blockquote>
+<p><span class="arithmatex">\(\frac{n!}{{(\frac{n}{k})}^kk!}\)</span></p>
+</blockquote>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
