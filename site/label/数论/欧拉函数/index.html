@@ -496,6 +496,25 @@
 </code></pre></div>
 </details>
 </div>
+<hr/>
+<div class="admonition note">
+<p class="admonition-title"><a href="https://www.acwing.com/problem/content/876/">874. 筛法求欧拉函数</a></p>
+<p>给定一个整数 <span class="arithmatex">\(n\)</span>，叫你求 <span class="arithmatex">\(1 \sim n\)</span> 中所有数的欧拉函数之和。</p>
+<p>思路:</p>
+<p>假设给定了数据：<span class="arithmatex">\([1, 2, 3, 4, 5, 6, 7 ,8]\)</span></p>
+<p>我们可以很轻松地求出质数 <span class="arithmatex">\(2、3、5、7\)</span> 的欧拉函数：<span class="arithmatex">\(\phi(prime) = prime - 1\)</span>，当然 <span class="arithmatex">\(\phi(1) = 1\)</span>，这是显而易见的</p>
+<p>再根据上面的推理第 4 点：</p>
+<blockquote>
+<p>若 <span class="arithmatex">\(n\)</span> 是两个互质的数的乘积：<span class="arithmatex">\(n = a \times b\)</span>，则 <span class="arithmatex">\(\phi(n) = \phi(a) \times \phi(b)\)</span></p>
+</blockquote>
+<p>则知道 <span class="arithmatex">\(\phi(2)\)</span> 和 <span class="arithmatex">\(\phi(3)\)</span> 就可以直接求出 <span class="arithmatex">\(\phi(6) = \phi(2) \times \phi(3)\)</span>，知道 <span class="arithmatex">\(\phi(2)、\phi(6)\)</span> 就可以直接求出 <span class="arithmatex">\(\phi(12)\)</span></p>
+<p>因此我们可以借助欧拉筛质数法来求出 <span class="arithmatex">\(1 \sim n\)</span> 内所有数的欧拉函数之和。</p>
+<details class="note">
+<summary>代码参考</summary>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>
+</code></pre></div>
+</details>
+</div>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
