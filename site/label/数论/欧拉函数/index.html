@@ -410,6 +410,92 @@
 </blockquote>
 <hr/>
 <p><strong>欧拉函数证明</strong></p>
+<p>在 <span class="arithmatex">\(1 \sim n\)</span> 内：</p>
+<ol>
+<li>
+<p>若 <span class="arithmatex">\(n = 1\)</span>，则 <span class="arithmatex">\(\phi(1) = 1\)</span> ，1 与 1 互质。</p>
+</li>
+<li>
+<p>若 <span class="arithmatex">\(n\)</span> 是质数，则 <span class="arithmatex">\(\phi(n) = n - 1\)</span>，与质数 <span class="arithmatex">\(n\)</span> 互质的数是 <span class="arithmatex">\(1 \sim n - 1\)</span>。</p>
+</li>
+<li>
+<p>若 <span class="arithmatex">\(n\)</span> 是质数的某几次方：<span class="arithmatex">\(n = p^k\)</span>，则在 <span class="arithmatex">\(1 \sim n\)</span> 内与 <span class="arithmatex">\(n\)</span> 不互质的有：</p>
+<blockquote>
+<p><span class="arithmatex">\(p、2p、3p、\cdots、p^{k - 1}p\)</span></p>
+</blockquote>
+<p>总共有 <span class="arithmatex">\(p^{k - 1}\)</span> 个与 <span class="arithmatex">\(n\)</span> 不互质的，所以 <span class="arithmatex">\(\phi(n) = p^k - p^{k - 1} = p^k \times (1 - \frac{1}{p})\)</span></p>
+</li>
+<li>
+<p>若 <span class="arithmatex">\(n\)</span> 是两个互质的数的乘积：<span class="arithmatex">\(n = a \times b\)</span>，则 <span class="arithmatex">\(\phi(n) = \phi(a) \times \phi(b)\)</span>，简单说明一下为什么成立：</p>
+<blockquote>
+<p>与 <span class="arithmatex">\(a\)</span> 互质的个数有 <span class="arithmatex">\(\phi(a)\)</span> 个，与 <span class="arithmatex">\(b\)</span> 互质的个数有 <span class="arithmatex">\(\phi(b)\)</span></p>
+<p>从与 <span class="arithmatex">\(a\)</span> 互质的数中随意挑一个 <span class="arithmatex">\(i\)</span>，从与 <span class="arithmatex">\(b\)</span> 互质的数中随意挑一个 <span class="arithmatex">\(j\)</span>，则 <span class="arithmatex">\(i \times j\)</span> 与 <span class="arithmatex">\(n = a \times b\)</span> 也互质，随机组合有 <span class="arithmatex">\(\phi(a) \times \phi(b)\)</span> 种可能，由于 <span class="arithmatex">\(a\)</span> 与 <span class="arithmatex">\(b\)</span> 互质，所以 <span class="arithmatex">\(i \times j\)</span> 的结果是唯一的，不可能还存在其他的 <span class="arithmatex">\(i_2 \times j_2 = i \times j\)</span> 的情况。</p>
+<p>只要 <span class="arithmatex">\(i\)</span> 与 <span class="arithmatex">\(a\)</span> 不互质的或 <span class="arithmatex">\(j\)</span> 与 <span class="arithmatex">\(b\)</span>  不互质，并作乘积，则 <span class="arithmatex">\(i \times j\)</span> 一定与 <span class="arithmatex">\(n = a \times b\)</span> 不互质。</p>
+</blockquote>
+</li>
+</ol>
+<p>有了上面的基础之后，根据算术基本定理有：</p>
+<blockquote>
+<p><span class="arithmatex">\(n = p_1^{a_1} \times p_2^{a_2} \times \cdots \times p_n^{a_n}\)</span></p>
+</blockquote>
+<p>并且 <span class="arithmatex">\(p_1^{a_1}、p_2^{a_2}、\cdots 、p_n^{a_n}\)</span> 任意一对都互质，所以根据上面的推理第 4 点有：</p>
+<blockquote>
+<p><span class="arithmatex">\(\phi(n) = \phi(p_1^{a_1}) \times \phi(p_2^{a_2}) \times \cdots \phi(p_n^{a_n})\)</span></p>
+</blockquote>
+<p>再根据上面的推理第 3 点我们对每一项 <span class="arithmatex">\(\phi(p_k^{a_k})\)</span> 都能分解成：</p>
+<blockquote>
+<p><span class="arithmatex">\(\phi(p_k^{a_k}) = p_k^{a_k} - p_k^{a_k - 1}\)</span></p>
+<p>所以 <span class="arithmatex">\(\phi(n) = (p_1^{a_1} - p_1^{a_1 - 1}) \times (p_2^{a_2} - p_2^{a_2 - 1}) \times \cdots \times (p_n^{a_n} - p_n^{a_n - 1})\)</span></p>
+<p>进一步化简得：<span class="arithmatex">\(\phi(n) = p_1^{a_1} \times (1 - \frac{1}{p_1}) \times p_2^{a_2} \times (1 - \frac{1}{p_2}) \times \cdots \times p_n^{a_n} \times (1 - \frac{1}{p_n})\)</span></p>
+<p>而由前面的算术基本定理：<span class="arithmatex">\(n = p_1^{a_1} \times p_2^{a_2} \times \cdots \times p_n^{a_n}\)</span></p>
+<p>所以：</p>
+<div class="arithmatex">\[\begin{aligned}
+    \phi(n) &amp;= p_1^{a_1} \times (1 - \frac{1}{p_1}) \times p_2^{a_2} \times (1 - \frac{1}{p_2}) \times \cdots \times p_n^{a_n} \times (1 - \frac{1}{p_n}) \\ &amp;= p_1^{a_1} \times p_2^{a_3} \times \cdots \times p_n^{a_n} \times (1 - \frac{1}{p_1}) \times (1 - \frac{1}{p_2}) \times \cdots \times (1 - \frac{1}{p_n}) \\ &amp;= n \times (1 - \frac{1}{p_1}) \times (1 - \frac{1}{p_2}) \times \cdots \times (1 - \frac{1}{p_n})
+\end{aligned}\]</div>
+</blockquote>
+<hr/>
+<div class="admonition note">
+<p class="admonition-title"><a href="https://www.acwing.com/problem/content/875/">873. 欧拉函数</a></p>
+<p>给定 <span class="arithmatex">\(n\)</span> 个正整数 <span class="arithmatex">\(a_i\)</span>，叫你求这每一个数的欧拉函数。</p>
+<details class="note">
+<summary>代码参考</summary>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="c1">// 如何将自己的心中所想，用 「文字」、「语言」、「图像」 记录下来</span>
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>
+<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="k">typedef</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">ll</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">(</span><span class="mf">1e7</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
+<a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">N</span><span class="p">],</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="n">N</span><span class="p">];</span><span class="w"></span>
+<a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a>
+<a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="kt">void</span><span class="w"> </span><span class="nf">get_ds</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"></span>
+<a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-0-10" id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w">    </span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-0-11" id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<a href="#__codelineno-0-12" id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-0-13" id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<a href="#__codelineno-0-14" id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">        </span><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-0-15" id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="w">            </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-0-16" id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">            </span><span class="n">b</span><span class="p">[</span><span class="o">++</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-0-17" id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<a href="#__codelineno-0-18" id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a href="#__codelineno-0-19" id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="o">++</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-0-20" id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="p">}</span><span class="w"></span>
+<a href="#__codelineno-0-21" id="__codelineno-0-21" name="__codelineno-0-21"></a>
+<a href="#__codelineno-0-22" id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="kt">void</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
+<a href="#__codelineno-0-23" id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-0-24" id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="w">    </span><span class="n">scanf</span><span class="w"> </span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">n</span><span class="p">);</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="n">scanf</span><span class="w"> </span><span class="p">(</span><span class="s">"%d"</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">);</span><span class="w"></span>
+<a href="#__codelineno-0-25" id="__codelineno-0-25" name="__codelineno-0-25"></a>
+<a href="#__codelineno-0-26" id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<a href="#__codelineno-0-27" id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-0-28" id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="w">        </span><span class="n">ll</span><span class="w"> </span><span class="n">ans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"> </span><span class="n">get_ds</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span><span class="w"></span>
+<a href="#__codelineno-0-29" id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="n">ans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ans</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<a href="#__codelineno-0-30" id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="w">        </span><span class="n">printf</span><span class="w"> </span><span class="p">(</span><span class="s">"%lld</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">ans</span><span class="p">);</span><span class="w"></span>
+<a href="#__codelineno-0-31" id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a href="#__codelineno-0-32" id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="p">}</span><span class="w"></span>
+<a href="#__codelineno-0-33" id="__codelineno-0-33" name="__codelineno-0-33"></a>
+<a href="#__codelineno-0-34" id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="c1">// 并能使读者与我达成共鸣，是我为什么而学习的最本质的追求</span>
+</code></pre></div>
+</details>
+</div>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
