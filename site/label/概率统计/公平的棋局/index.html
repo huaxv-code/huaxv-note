@@ -412,6 +412,54 @@
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
 <h1 id="_1">公平的棋局</h1>
+<div class="admonition note">
+<p class="admonition-title">题目</p>
+<p>甲、乙两人下象棋，每局甲胜的概率为 <span class="arithmatex">\(a\)</span>，乙胜的概率为 <span class="arithmatex">\(b\)</span>，为简化问题，设没有和局给情况，这意味着对于每一句要么甲赢，要么就乙赢，<span class="arithmatex">\(a + b = 1\)</span>。</p>
+<p>设想甲的棋艺高于乙，即 <span class="arithmatex">\(a &gt; b\)</span>，为了游戏公平性，要适当的打压强者，给予弱者规则上的优惠：</p>
+<p>到什么时候为止，甲连胜了三局，则甲胜；到什么时候为止，乙连胜了两局，则乙胜。</p>
+<p>请你求出「甲最终胜」的概率、「乙最终胜」的概率。</p>
+</div>
+<p>这道题目有点棘手，因为稍不留神就有可能比赛无穷多次都无法分出个结果：</p>
+<blockquote>
+<p>甲乙甲乙甲乙··· ···</p>
+</blockquote>
+<p>我们思考一下，如果「甲」最终胜，则最终必有：</p>
+<blockquote>
+<p>甲甲甲</p>
+</blockquote>
+<p>那前面必定不可能出现子串：</p>
+<blockquote>
+<p>甲甲甲、乙乙</p>
+</blockquote>
+<p>可以是：</p>
+<blockquote>
+<p>甲乙、甲甲乙</p>
+</blockquote>
+<p>的任意组合，并且由上面这两种子串的任意多个，任意位置的组合确实可以构成使得「甲最终胜」的比赛可能串。</p>
+<p>若一开始是甲赢，并且是甲最终胜，「甲乙」片段出现的可能性为 <span class="arithmatex">\(p_1 = ab\)</span>，「甲甲乙」片段出现的可能性为 <span class="arithmatex">\(p_2 = aab\)</span>；</p>
+<p>假设比赛异常焦灼，持续了 <span class="arithmatex">\(n\)</span> 个上面的片段之后比赛才使得「甲最终胜」，对于每一个片段的位置，要么出现「甲乙」，要么出现「甲甲乙」，这两个片段出现的概率是等可能的，所以比赛出现了 <span class="arithmatex">\(n\)</span> 个片段之后，甲最终胜的概率为，可以想象成权值相等的二叉树：</p>
+<blockquote>
+<p><span class="arithmatex">\(p = (ab + aab) ^ n \times aaa\)</span> </p>
+</blockquote>
+<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E5%85%AC%E5%B9%B3%E7%9A%84%E6%A3%8B%E5%B1%80.png"><img alt="公平的棋局" src="../../../img/%E5%85%AC%E5%B9%B3%E7%9A%84%E6%A3%8B%E5%B1%80.png"/></a></p>
+<p>这「二叉选择树」的概率为：<span class="arithmatex">\((ab + aab) \times (ab + aab) \times (ab + aab) = (ab + aab) ^ 3\)</span></p>
+<p>由于 <span class="arithmatex">\(n\)</span> 可以取 <span class="arithmatex">\(0、1、2、\cdots 、\infty\)</span>，将每一个 <span class="arithmatex">\(n\)</span> 对应的甲最终胜的概率求和：</p>
+<blockquote>
+<p><span class="arithmatex">\(p_{all} = [\sum_{n = 0}^{\infty}(ab + aab) ^ n] \times aaa\)</span></p>
+<p>根据等比求和公式：<span class="arithmatex">\(s_n = \frac{a_1(1 - q^n)}{1 - q}\)</span>，所以 <span class="arithmatex">\(\sum_{n = 0}^{\infty}(ab + aab) ^ n \rightarrow \frac{1}{1 - ab(1 + a)}\)</span></p>
+<p>所以：<span class="arithmatex">\(p_{all} = \frac{a^3}{1 - ab(1 + a)}\)</span></p>
+</blockquote>
+<hr/>
+<p>若一开始是乙胜，并且还是「甲最终胜」的概率和上面类似，只是多乘了一个 <span class="arithmatex">\(b\)</span>:</p>
+<blockquote>
+<p><span class="arithmatex">\(p_{all} = \frac{a^3b}{1 - ab(1 + a)}\)</span></p>
+</blockquote>
+<hr/>
+<p>综上所述，甲最终胜的概率为：</p>
+<blockquote>
+<p><span class="arithmatex">\(p = \frac{a^3(1 + b)}{1 - ab(1 + a)}\)</span></p>
+</blockquote>
+<p>对于乙最终胜，也是按照这种思考方式，快上课了就暂时不写了，有空再补。</p>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
