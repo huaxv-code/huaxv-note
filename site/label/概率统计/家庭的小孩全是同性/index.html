@@ -419,8 +419,26 @@
 <h1 id="_1">家庭的小孩全是同性</h1>
 <div class="admonition note">
 <p class="admonition-title">题目</p>
-<p>设一个家庭有 <span class="arithmatex">\(k\)</span> 个小孩的概率为 <span class="arithmatex">\(p_k\)</span></p>
+<p>设一个家庭有 <span class="arithmatex">\(k\)</span> 个小孩的概率为 <span class="arithmatex">\(p_k\)</span>。</p>
+<p>又设各小孩的性别独立，且生男生女的概率各为 <span class="arithmatex">\(\frac{1}{2}\)</span>。</p>
+<p>试求事件 <span class="arithmatex">\(A\)</span> = { 家庭中所有小孩都是同性 } 的概率。</p>
 </div>
+<p>引进事件 <span class="arithmatex">\(B_k\)</span> = { 家庭中有 <span class="arithmatex">\(k\)</span> 个小孩 }，则 <span class="arithmatex">\(B_0、B_1、B_2、\cdots、 B_{\infty}\)</span> 构成完整事件群，并且我们可以单独求出每一个 <span class="arithmatex">\(B_K\)</span> 的概率：</p>
+<blockquote>
+<p><span class="arithmatex">\(p_{B_k} = p_k\)</span></p>
+</blockquote>
+<p>在有了 <span class="arithmatex">\(k\)</span> 个小孩的基础上，全是男性和全是女性的概率都是：</p>
+<blockquote>
+<p><span class="arithmatex">\(p(A\ |\ B_k) = (\frac{1}{2})^k\)</span></p>
+</blockquote>
+<p>所以生下 <span class="arithmatex">\(k\)</span> 个都是同性小孩的概率为：</p>
+<blockquote>
+<p><span class="arithmatex">\(p_{AB_k} = 2 \times p_k(\frac{1}{2})^k\)</span></p>
+</blockquote>
+<p>则由于 <span class="arithmatex">\(k = 0、1、2、\cdots 、\infty\)</span>，所以全概率为：</p>
+<blockquote>
+<p><span class="arithmatex">\(p(A) = \sum_{k = 0}^{\infty}2 \times p_k(\frac{1}{2})^k\)</span></p>
+</blockquote>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
