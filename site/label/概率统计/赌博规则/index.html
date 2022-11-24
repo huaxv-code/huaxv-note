@@ -428,9 +428,9 @@
 </a>
 <h1 id="_1">赌博规则</h1>
 <div class="admonition note">
-<p class="admonition-title">题目</p>
+<p class="admonition-title">题目一</p>
 <p>甲、乙两人约定了一个赌博规则：有无穷多个盒子，编号为 <span class="arithmatex">\(n\)</span> 的盒子中，有 <span class="arithmatex">\(n\)</span> 个红球和 <span class="arithmatex">\(1\)</span> 个白球（<span class="arithmatex">\(n = 1、2、3、\cdots 、\infty\)</span>）。</p>
-<p>让甲拿一个均匀的铜板掷到出现正面为止，若到此时甲掷了 <span class="arithmatex">\(n\)</span> 次，则甲在编号为 <span class="arithmatex">\(n\)</span> 的盒子中抽出一个球，如抽到红球算甲胜，否则乙胜。</p>
+<p>让甲拿一个均匀的铜板掷到出现正面为止，若到此时甲掷了 <span class="arithmatex">\(n\)</span> 次，则甲在编号为 <span class="arithmatex">\(n\)</span> 的盒子中抽出一个球，如抽到 <em style="color:pink;">红球</em> 算甲胜，否则乙胜。</p>
 <p>你认为这个规则对于谁更有利呢？</p>
 </div>
 <p>我个人感觉甲赢的概率更高，但事实是不是这样呢？</p>
@@ -450,6 +450,14 @@
 <p>所以：<span class="arithmatex">\(\sum_{n = 1}^{\infty}\frac{1}{2^n(n + 1)} \leq \frac{1}{2}\)</span></p>
 </blockquote>
 <p>我们求得乙赢的概率确实小于 <span class="arithmatex">\(\frac{1}{2}\)</span>，所以甲更有可能赢得该比赛。</p>
+<hr/>
+<p>稍微改一下上题：</p>
+<div class="admonition note">
+<p class="admonition-title">题目一</p>
+<p>甲、乙两人约定了一个赌博规则：有无穷多个盒子，编号为 <span class="arithmatex">\(n\)</span> 的盒子中，有 <span class="arithmatex">\(n\)</span> 个红球和 <span class="arithmatex">\(1\)</span> 个白球（<span class="arithmatex">\(n = 1、2、3、\cdots 、\infty\)</span>）。</p>
+<p>让甲拿一个均匀的铜板掷到出现正面为止，若到此时甲掷了 <span class="arithmatex">\(n\)</span> 次，则甲在编号为 <span class="arithmatex">\(n\)</span> 的盒子中抽出一个球，如抽到<em style="color:pink;">白球</em>算甲胜，否则乙胜。</p>
+<p>你认为这个规则对于谁更有利呢？</p>
+</div>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
