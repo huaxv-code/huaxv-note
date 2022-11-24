@@ -433,7 +433,7 @@
 <p>让甲拿一个均匀的铜板掷到出现正面为止，若到此时甲掷了 <span class="arithmatex">\(n\)</span> 次，则甲在编号为 <span class="arithmatex">\(n\)</span> 的盒子中抽出一个球，如抽到 <em style="color:pink;">红球</em> 算甲胜，否则乙胜。</p>
 <p>你认为这个规则对于谁更有利呢？</p>
 </div>
-<p>我个人感觉甲赢的概率更高，但事实是不是这样呢？</p>
+<p>我个人感觉甲赢的概率更高，参考骏哥哥的想法就是一开始 <span class="arithmatex">\(n = 1\)</span> 的时候，甲和乙赢的概率是五五开的，但随着 <span class="arithmatex">\(n\)</span> 的越来越大，乙越来越不占优势，所以全概率甲赢的概率比乙赢的概率还要大。</p>
 <p>设事件 <span class="arithmatex">\(A_n = \{投掷了 n 次后才出现正面\}\)</span>，则 <span class="arithmatex">\(A_1、A_2、\cdots 、A_{\infty}\)</span> 构成完整的事件群。</p>
 <p>在 <span class="arithmatex">\(A_n\)</span> 发生的情况下，抽到红球的概率为：<span class="arithmatex">\(\frac{n}{1 + n}\)</span>；抽到白球的概率为：<span class="arithmatex">\(\frac{1}{1 + n}\)</span>。</p>
 <p>所以投掷 <span class="arithmatex">\(n\)</span> 次才出现正面，并且还抽到红球的概率为：<span class="arithmatex">\((\frac{1}{2})^n \times \frac{n}{1 + n}\)</span>。</p>
@@ -458,6 +458,9 @@
 <p>让甲拿一个均匀的铜板掷到出现正面为止，若到此时甲掷了 <span class="arithmatex">\(n\)</span> 次，则甲在编号为 <span class="arithmatex">\(n\)</span> 的盒子中抽出一个球，如抽到 <em style="color:pink;">白球</em> 算甲胜，否则乙胜。</p>
 <p>你认为这个规则对于谁更有利呢？</p>
 </div>
+<p>乙赢的概率更大，例如在 <span class="arithmatex">\(n = 1\)</span> 的条件下，甲赢的概率和乙赢的概率都是 <span class="arithmatex">\(\frac{1}{2}\)</span>，但是若 <span class="arithmatex">\(n &gt; 1\)</span>，在已知投掷出 <span class="arithmatex">\(n\)</span> 个的情况下，甲赢的机会越来越小，都会小于 <span class="arithmatex">\(\frac{1}{2}\)</span>，则全概率甲赢的概率会小于乙赢的概率。</p>
+<p>在投掷 <span class="arithmatex">\(n\)</span> 次才出现正面的基础上，甲赢的概率为：<span class="arithmatex">\(\frac{1}{n + 1}\)</span>，乙赢的概率为：<span class="arithmatex">\(\frac{n}{n + 1}\)</span>；</p>
+<p>投掷出 <span class="arithmatex">\(n\)</span> 次才出现正面且甲赢的概率为：<span class="arithmatex">\(\frac{1}{2^n(n + 1)}\)</span>，等等，卧槽这和上面那题一样的基本上，丢！按照上面那条的分析思路取做就行了，只不过甲乙赢的规则正好颠倒。</p>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
