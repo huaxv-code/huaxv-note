@@ -21,7 +21,7 @@
 
 [my_mingw](https://media.githubusercontent.com/media/huaxv-code/huaxv-note/hutao/my_mingw.zip)
 
-## 推荐使用 cp editor
+## 推荐使用 [cp editor](https://media.githubusercontent.com/media/huaxv-code/huaxv-note/hutao/cpeditor-6.9.4-windows-x64-portable-with-gcc-11.2.0-LLVM-12.0.1.zip)
 
 cp editor 编译命令配置，使用 c++20：
 
