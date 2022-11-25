@@ -21,6 +21,104 @@
 
 [my_mingw](https://media.githubusercontent.com/media/huaxv-code/huaxv-note/hutao/my_mingw.zip)
 
+## 推荐使用 cp editor
+
+cp editor 编译命令配置，使用 c++20：
+
+> c++ 编译命令：`c++ -Wall -std=c++20 -O2`
+> 
+> 可执行文件路径：`${tmpdir}/${basename}`
+
+cp editor 代码片段配置：
+
+```c++
+#include <iostream>
+#include <iomanip>
+#include <algorithm>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <string>
+#include <vector>
+#include <queue>
+#include <deque>
+#include <stack>
+#include <map>
+#include <set>
+#include <unordered_map>
+#include <unordered_set>
+
+using namespace std;
+#define endl '\n'
+#define pique priority_queue
+#define oier \
+			ios_base::sync_with_stdio(false);\
+			cin.tie(nullptr); cout.tie(nullptr);
+typedef long long LL;
+typedef long double LD;
+typedef __int128_t int128;
+
+const int inf = ~(1 << 31);  // 正无穷
+const int ninf = (1 << 31);  // 负无穷
+
+const LL infll = ~(1ll << 63); // 正无穷
+const LL ninfll = (1ll << 63); // 负无穷
+
+const int N = int (1e7 + 10);
+
+/* ==========================代码区========================== */
+
+
+
+void solve()
+{ oier
+	/* =========================== */
+	
+	
+	
+	/* =========================== */
+}
+
+/* ==========================代码区========================== */
+
+/**
+ *                             _ooOoo_
+ *                            o8888888o
+ *                            88" . "88
+ *                            (| -_- |)
+ *                            O\  =  /O
+ *                         ____/`---'\____
+ *                       .'  \\|     |//  `.
+ *                      /  \\|||  :  |||//  \
+ *                     /  _||||| -:- |||||-  \
+ *                     |   | \\\  -  /// |   |
+ *                     | \_|  ''\---/''  |   |
+ *                     \  .-\__  `-`  ___/-. /
+ *                   ___`. .'  /--.--\  `. . __
+ *                ."" '<  `.___\_<|>_/___.'  >'"".
+ *               | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+ *               \  \ `-.   \_ __\ /__ _/   .-` /  /
+ *          ======`-.____`-.___\_____/___.-`____.-'======
+ *                             `=---='
+ *          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *                     佛祖保佑        永无BUG
+ *            佛曰:
+ *                   写字楼里写字间，写字间里程序员；
+ *                   程序人员写程序，又拿程序换酒钱。
+ *                   酒醒只在网上坐，酒醉还来网下眠；
+ *                   酒醉酒醒日复日，网上网下年复年。
+ *                   但愿老死电脑间，不愿鞠躬老板前；
+ *                   奔驰宝马贵者趣，公交自行程序员。
+ *                   别人笑我忒疯癫，我笑自己命太贱；
+ *                   不见满街漂亮妹，哪个归得程序员？
+*/
+
+int main()
+{
+	solve(); return 0;
+}
+```
+
 ## mingw 配置
 
 ### 旧版 mingw 配置:
@@ -184,3 +282,13 @@ Python之禅 by Tim Peters
 如果你无法向人描述你的方案，那肯定不是一个好方案；反之亦然（方案测评标准）
 命名空间是一种绝妙的理念，我们应当多加利用（倡导与号召）
 ```
+
+## 一些资源网站
+
+[TDM-GCC](https://jmeubank.github.io/tdm-gcc/articles/2021-05/10.3.0-release)
+
+[cp editor](https://cpeditor.org/zh/)
+
+[Material for MkDocs](https://squidfunk.github.io/mkdocs-material/insiders/)
+
+[csacademy 画图论](https://csacademy.com/app/graph_editor/)
