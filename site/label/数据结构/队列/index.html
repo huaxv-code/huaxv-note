@@ -17,12 +17,15 @@
 <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
             html.glightbox-open { overflow: initial; height: 100%; }
-            .gdesc-inner { font-size: 0.75rem; }
             .gslide-title { margin-top: 0px; user-select: text; }
             .gslide-desc { color: #666; user-select: text; }
             .gslide-image img { background: white; }
             
                 .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
                 </style><script src="../../../assets/javascripts/glightbox.min.js"></script></head>
 <body data-md-color-accent="" data-md-color-primary="white" data-md-color-scheme="default" dir="ltr">
 <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
@@ -650,7 +653,7 @@
 <p>尾进，头出</p>
 <h2 id="_2">数组版：循环队列</h2>
 <p>给定一个数组 <code>q[N]</code> ，规定 <code>q[0]</code> 指向队头，<code>q[1]</code> 指向队尾，并且规定队尾不存放数据，可存放数据的区间为：<span class="arithmatex">\([2, N - 1]\)</span></p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97%E7%A4%BA%E6%84%8F%E5%9B%BE.png"><img alt="循环队列示意图" src="../../../img/%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97%E7%A4%BA%E6%84%8F%E5%9B%BE.png" width="40%"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../../img/%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97%E7%A4%BA%E6%84%8F%E5%9B%BE.png"><img alt="循环队列示意图" src="../../../img/%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97%E7%A4%BA%E6%84%8F%E5%9B%BE.png" width="40%"/></a></p>
 <h3 id="init">init 初始化</h3>
 <p>让 <code>q[0]</code> 和 <code>q[1]</code> 同时指向 <span class="arithmatex">\([2, N - 1]\)</span> 的任意一个位置就行，我这里指向 2</p>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">(</span><span class="mf">1e5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
@@ -967,5 +970,5 @@
 <script src="../../../javascripts/mathjax.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom"});})</script></body>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
 </html>

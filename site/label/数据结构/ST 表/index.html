@@ -17,12 +17,15 @@
 <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
             html.glightbox-open { overflow: initial; height: 100%; }
-            .gdesc-inner { font-size: 0.75rem; }
             .gslide-title { margin-top: 0px; user-select: text; }
             .gslide-desc { color: #666; user-select: text; }
             .gslide-image img { background: white; }
             
                 .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
                 </style><script src="../../../assets/javascripts/glightbox.min.js"></script></head>
 <body data-md-color-accent="" data-md-color-primary="white" data-md-color-scheme="default" dir="ltr">
 <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
@@ -533,7 +536,7 @@
 <p>ST 表是用于解决 <strong>可重复贡献问题</strong> 的数据结构。</p>
 <p>若满足 <span class="arithmatex">\(f[x, x] = q[x]\)</span>，且若 <span class="arithmatex">\([x, y] = [x, a] \cup [b, y]\)</span>，则 <span class="arithmatex">\(f[x, y] = f\{f[x, a], f[b, y]\}\)</span>，都可称为 <strong>可重复贡献问题</strong>。</p>
 <p>例如下图的「区间最值」，就满足可重复贡献问题</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/ST%20%E8%A1%A8%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%B4%A1%E7%8C%AE%E5%9B%BE.png"><img alt="" src="../../../img/ST%20%E8%A1%A8%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%B4%A1%E7%8C%AE%E5%9B%BE.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../../img/ST%20%E8%A1%A8%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%B4%A1%E7%8C%AE%E5%9B%BE.png"><img alt="" src="../../../img/ST%20%E8%A1%A8%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%B4%A1%E7%8C%AE%E5%9B%BE.png"/></a></p>
 <p>同样道理：「区间 RMQ」、「区间 GCD」都是可重复贡献问题。RMQ 表示询问区间的最值。</p>
 <p>类似「动态规划」的设计过程，初始化时，先确定长度为 1 的最值，再确定长度为 2 的最值，再确定长度为 4 的最值，两两合并依此类推，不断倍增预处理出各区间段的最值。</p>
 <p>假设我要求区间 <span class="arithmatex">\([l, r]\)</span> 的最值，我们要寻找 <span class="arithmatex">\([l, r]\)</span> 的两个子区间：<span class="arithmatex">\([l, a]、[b, r]\)</span> 使得 <span class="arithmatex">\([l, a] \cup [b, r] = [l, r]\)</span>，从而有：<span class="arithmatex">\(f[l, r] = f\{f[l, a], f[b, r]\}\)</span>。</p>
@@ -557,7 +560,7 @@
 <p>使用类似动态规划的代码实现方式，先枚举每一个区间长度为 1 的，再枚举每一个区间长度为 2 的，接着枚举每一个区间长度为 4 的，依此类推：</p>
 <details class="note">
 <summary>ST 表树</summary>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/ST%20%E8%A1%A8%E6%A0%91.png"><img alt="ST%20表树" src="../../../img/ST%20%E8%A1%A8%E6%A0%91.png" width="100%"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../../img/ST%20%E8%A1%A8%E6%A0%91.png"><img alt="ST%20表树" src="../../../img/ST%20%E8%A1%A8%E6%A0%91.png" width="100%"/></a></p>
 <p>该树的每一个节点都会是以该节点为树根的子树的叶子节点的最大值。</p>
 <p>例如右图蓝色部分的子树，该子树的根节点是 <span class="arithmatex">\(6\)</span>，管理的叶子节点有 <span class="arithmatex">\([4, 6, 1]\)</span>，则 <span class="arithmatex">\(6\)</span> 就是管理该集合 <span class="arithmatex">\([4, 6, 1]\)</span> 的最大值。</p>
 </details>
@@ -788,5 +791,5 @@
 <script src="../../../javascripts/mathjax.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom"});})</script></body>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
 </html>

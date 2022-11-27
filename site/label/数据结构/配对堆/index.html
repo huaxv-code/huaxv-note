@@ -17,12 +17,15 @@
 <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
             html.glightbox-open { overflow: initial; height: 100%; }
-            .gdesc-inner { font-size: 0.75rem; }
             .gslide-title { margin-top: 0px; user-select: text; }
             .gslide-desc { color: #666; user-select: text; }
             .gslide-image img { background: white; }
             
                 .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
                 </style><script src="../../../assets/javascripts/glightbox.min.js"></script></head>
 <body data-md-color-accent="" data-md-color-primary="white" data-md-color-scheme="default" dir="ltr">
 <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
@@ -551,9 +554,9 @@
 </a>
 <h1 id="_1">配对堆</h1>
 <p>配对堆是一个支持「插入」，「查询」/「删除」最小值，「合并」，「修改」元素等操作的数据结构，也就是俗称的可并堆。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E5%8F%AF%E5%B9%B6%E5%A0%86%E7%A4%BA%E6%84%8F%E5%9B%BE.png"><img alt="可并堆示意图" src="../../../img/%E5%8F%AF%E5%B9%B6%E5%A0%86%E7%A4%BA%E6%84%8F%E5%9B%BE.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../../img/%E5%8F%AF%E5%B9%B6%E5%A0%86%E7%A4%BA%E6%84%8F%E5%9B%BE.png"><img alt="可并堆示意图" src="../../../img/%E5%8F%AF%E5%B9%B6%E5%A0%86%E7%A4%BA%E6%84%8F%E5%9B%BE.png"/></a></p>
 <p>通常我们使用「左儿子右兄弟表示法」储存一个配对堆（如下图）</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E5%8F%AF%E5%B9%B6%E5%A0%86%E5%84%BF%E5%AD%90%E5%85%84%E5%BC%9F%E8%A1%A8%E7%A4%BA%E6%B3%95.png"><img alt="可并堆儿子兄弟表示法" src="../../../img/%E5%8F%AF%E5%B9%B6%E5%A0%86%E5%84%BF%E5%AD%90%E5%85%84%E5%BC%9F%E8%A1%A8%E7%A4%BA%E6%B3%95.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../../img/%E5%8F%AF%E5%B9%B6%E5%A0%86%E5%84%BF%E5%AD%90%E5%85%84%E5%BC%9F%E8%A1%A8%E7%A4%BA%E6%B3%95.png"><img alt="可并堆儿子兄弟表示法" src="../../../img/%E5%8F%AF%E5%B9%B6%E5%A0%86%E5%84%BF%E5%AD%90%E5%85%84%E5%BC%9F%E8%A1%A8%E7%A4%BA%E6%B3%95.png"/></a></p>
 <h2 id="_2">结构体定义</h2>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">Node</span><span class="w"></span>
 <a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="p">{</span><span class="w"></span>
@@ -573,7 +576,7 @@
 </code></pre></div>
 <h2 id="meld">meld 合并两个配对堆</h2>
 <p>配对堆的合并操作极为简单，直接把根节点权值较大的那个配对堆设成另一个的儿子就好了。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E5%8F%AF%E5%B9%B6%E5%A0%86%E5%90%88%E5%B9%B6%E4%B8%A4%E5%A0%86.png"><img alt="可并堆合并两堆" src="../../../img/%E5%8F%AF%E5%B9%B6%E5%A0%86%E5%90%88%E5%B9%B6%E4%B8%A4%E5%A0%86.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../../img/%E5%8F%AF%E5%B9%B6%E5%A0%86%E5%90%88%E5%B9%B6%E4%B8%A4%E5%A0%86.png"><img alt="可并堆合并两堆" src="../../../img/%E5%8F%AF%E5%B9%B6%E5%A0%86%E5%90%88%E5%B9%B6%E4%B8%A4%E5%A0%86.png"/></a></p>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">Node</span><span class="o">*</span><span class="w"> </span><span class="nf">meld</span><span class="p">(</span><span class="n">Node</span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">Node</span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"></span>
 <a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="p">{</span><span class="w"></span>
 <a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">a</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"></span>
@@ -598,12 +601,12 @@
 </code></pre></div>
 <h2 id="pop">pop 删除堆根</h2>
 <p>上述的几个操作都很「慵懒」，关键是取出最小值后，次最小值要如何寻找呢？</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E5%8F%AF%E5%B9%B6%E5%A0%86%E7%9A%84%E6%AC%A1%E6%9C%80%E5%B0%8F%E5%80%BC.png"><img alt="可并堆的次最小值" src="../../../img/%E5%8F%AF%E5%B9%B6%E5%A0%86%E7%9A%84%E6%AC%A1%E6%9C%80%E5%B0%8F%E5%80%BC.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../../img/%E5%8F%AF%E5%B9%B6%E5%A0%86%E7%9A%84%E6%AC%A1%E6%9C%80%E5%B0%8F%E5%80%BC.png"><img alt="可并堆的次最小值" src="../../../img/%E5%8F%AF%E5%B9%B6%E5%A0%86%E7%9A%84%E6%AC%A1%E6%9C%80%E5%B0%8F%E5%80%BC.png"/></a></p>
 <p>如上图，最小值是 1，次最小值一定出现在「蓝色框」中，我可以暴力遍历蓝色框找出最小值，但我们一旦删除操作执行过多时，时间复杂度就会不断退化到 O(n) , 因此我们要求在删除最小值时，对该配对堆存储结构进行优化</p>
 <p>把儿子们 <strong>从左往右</strong> 两两配成一对，用 <code>meld</code> 操作把被配成同一对的两个儿子合并到一起（见下图 1)，再将新产生的堆 <strong>从右往左</strong> 暴力合并在一起（见下图 2）。</p>
 <p>删除操作均摊下来的时间复杂度为：<span class="arithmatex">\(O(log(n))\)</span></p>
 <p><span class="arithmatex">\(O(log(n))\)</span>是什么概念：<span class="arithmatex">\(log(1267650600228229401496703205376) = 100\)</span> 几乎约等于常数。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E5%8F%AF%E5%B9%B6%E5%A0%86%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C.png"><img alt="可并堆删除操作" src="../../../img/%E5%8F%AF%E5%B9%B6%E5%A0%86%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C.png"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../../img/%E5%8F%AF%E5%B9%B6%E5%A0%86%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C.png"><img alt="可并堆删除操作" src="../../../img/%E5%8F%AF%E5%B9%B6%E5%A0%86%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C.png"/></a></p>
 <p>详情见 <a href="https://oiwiki.org/ds/pairing-heap/">oi-wiki</a></p>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="n">Node</span><span class="o">*</span><span class="w"> </span><span class="nf">merges</span><span class="p">(</span><span class="n">Node</span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"></span>
 <a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="p">{</span><span class="w"></span>
@@ -734,5 +737,5 @@
 <script src="../../../javascripts/mathjax.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom"});})</script></body>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
 </html>

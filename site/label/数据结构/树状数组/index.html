@@ -17,12 +17,15 @@
 <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
             html.glightbox-open { overflow: initial; height: 100%; }
-            .gdesc-inner { font-size: 0.75rem; }
             .gslide-title { margin-top: 0px; user-select: text; }
             .gslide-desc { color: #666; user-select: text; }
             .gslide-image img { background: white; }
             
                 .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
                 </style><script src="../../../assets/javascripts/glightbox.min.js"></script></head>
 <body data-md-color-accent="" data-md-color-primary="white" data-md-color-scheme="default" dir="ltr">
 <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
@@ -631,7 +634,7 @@
 <p>树状数组可以很快的求出区间和。</p>
 <details class="info">
 <summary>树状数组举例图</summary>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E7%AE%A1%E7%90%86%E8%8C%83%E5%9B%B4.png"><img alt="树状数组管理范围" src="../../../img/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E7%AE%A1%E7%90%86%E8%8C%83%E5%9B%B4.png" width="100%"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../../img/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E7%AE%A1%E7%90%86%E8%8C%83%E5%9B%B4.png"><img alt="树状数组管理范围" src="../../../img/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E7%AE%A1%E7%90%86%E8%8C%83%E5%9B%B4.png" width="100%"/></a></p>
 </details>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>ci 管理的区间为: [i - lowbit(i) + 1, i]
 <a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>   管理的长度为：lowbit(i)
@@ -657,7 +660,7 @@
 <p>假设 <span class="arithmatex">\(a[N]\)</span> 是数据数组，参考树的结构，我们发现可以不断的通过子节点的值累加确定父节点的值：</p>
 <details class="info">
 <summary>树状数组举例图</summary>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E7%AE%A1%E7%90%86%E8%8C%83%E5%9B%B4.png"><img alt="树状数组管理范围" src="../../../img/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E7%AE%A1%E7%90%86%E8%8C%83%E5%9B%B4.png" width="100%"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../../img/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E7%AE%A1%E7%90%86%E8%8C%83%E5%9B%B4.png"><img alt="树状数组管理范围" src="../../../img/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E7%AE%A1%E7%90%86%E8%8C%83%E5%9B%B4.png" width="100%"/></a></p>
 <p>从左往右扫描，通过确定 <code>c2、c3、a4</code> 的值推导出 <code>c4</code> 的值。</p>
 </details>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">()</span><span class="w"></span>
@@ -1236,5 +1239,5 @@ s[i] = (i + 1) * a[i] - \sum_{j = 1}^{i} (j * b[j])
 <script src="../../../javascripts/mathjax.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom"});})</script></body>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
 </html>

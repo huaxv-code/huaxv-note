@@ -17,12 +17,15 @@
 <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
             html.glightbox-open { overflow: initial; height: 100%; }
-            .gdesc-inner { font-size: 0.75rem; }
             .gslide-title { margin-top: 0px; user-select: text; }
             .gslide-desc { color: #666; user-select: text; }
             .gslide-image img { background: white; }
             
                 .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
                 </style><script src="../../../assets/javascripts/glightbox.min.js"></script></head>
 <body data-md-color-accent="" data-md-color-primary="white" data-md-color-scheme="default" dir="ltr">
 <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
@@ -573,13 +576,13 @@
 <a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>该程序的执行顺序是：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91%E5%BC%95%E5%85%A5.png"><img alt="霍夫曼树引入" src="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91%E5%BC%95%E5%85%A5.png" width="60%"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91%E5%BC%95%E5%85%A5.png"><img alt="霍夫曼树引入" src="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91%E5%BC%95%E5%85%A5.png" width="60%"/></a></p>
 <p>该程序的执行效率是有问题的，因为我们发现成绩低于 <span class="arithmatex">\(60\)</span> 的学生仅占 <span class="arithmatex">\(5\%\)</span>，而高于 <span class="arithmatex">\(70\)</span> 分的学生却占了大多数 <span class="arithmatex">\(80\%\)</span>，假设该老师就用此程序来给学生划分等级，我们来算一下该程序总共执行了多少步：</p>
 <div class="arithmatex">\[
 5 + 15 * 2 + 40 * 3 + 30 * 4 + 10 * 4 = 315
 \]</div>
 <p>如果我们把分布越多，就越放开头会是怎样的情况呢？考虑下方的程序图：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91%E5%BC%95%E4%BE%8B2.png"><img alt="霍夫曼树引例2" src="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91%E5%BC%95%E4%BE%8B2.png" width="80%"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91%E5%BC%95%E4%BE%8B2.png"><img alt="霍夫曼树引例2" src="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91%E5%BC%95%E4%BE%8B2.png" width="80%"/></a></p>
 <p>我们来算一下使用该程序来给学生划分等级需要执行多少步：</p>
 <div class="arithmatex">\[
 5 * 3 + 15 * 3 + 40 * 2 + 30 * 2 + 10 * 2 = 220
@@ -587,7 +590,7 @@
 <p>该程序较之上面的程序差点就优化了 <span class="arithmatex">\(1/3\)</span> 的效率！</p>
 <h2 id="_3">定义与原理</h2>
 <p><strong>带权路径长度 WPL</strong>：从「根节点」到各「叶节点」的路径长度与相应叶节点的权值的乘积之和</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91WPL.png"><img alt="霍夫曼树WPL" src="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91WPL.png" width="50%"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91WPL.png"><img alt="霍夫曼树WPL" src="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91WPL.png" width="50%"/></a></p>
 <p>如上图的 <strong>WPL</strong> 的计算方法是：</p>
 <div class="arithmatex">\[
 WPL\ :\ 2 * 2 + 3 * 2 + 4 * 2 + 5 * 2 = 28
@@ -602,11 +605,11 @@ WPL\ :\ 2 * 2 + 3 * 2 + 4 * 2 + 5 * 2 = 28
 </ol>
 <details class="info">
 <summary>建树示例图</summary>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91%E5%BB%BA%E6%A0%91.png"><img alt="霍夫曼树建树" src="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91%E5%BB%BA%E6%A0%91.png" width="100%"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91%E5%BB%BA%E6%A0%91.png"><img alt="霍夫曼树建树" src="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91%E5%BB%BA%E6%A0%91.png" width="100%"/></a></p>
 </details>
 <h2 id="wpl">WPL 计算规律</h2>
 <p>考虑下面一棵霍夫曼树：</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91WPL%E7%89%B9%E5%BE%81.png"><img alt="霍夫曼树WPL特征" src="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91WPL%E7%89%B9%E5%BE%81.png" width="60%"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91WPL%E7%89%B9%E5%BE%81.png"><img alt="霍夫曼树WPL特征" src="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91WPL%E7%89%B9%E5%BE%81.png" width="60%"/></a></p>
 <p>数据节点均是叶子节点。</p>
 <p>该树的 WPL：</p>
 <div class="arithmatex">\[
@@ -618,7 +621,7 @@ sum = 1 + 5 + 6 + 6 + 12 + 9 + 21 + 8 + 7 + 15 = 90
 \]</div>
 <p>我们确实有这样的结论：<span class="arithmatex">\(WPL\)</span> 的值等于「非根节点的所有权值之和」。</p>
 <p>我们可以从构造的角度去分析，每合并出一个节点，就相当于叶子节点多加了一次，由叶子节点 1、5 合并出 6，则该 6 就代表 1 和 5 多加了一次；由 左边的 6 和 叶子节点 6 合并出 12，就代表 1、5、6 又多加了一次，剩下的请读者自己类推。</p>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91WPL%E8%A7%84%E5%BE%8B.png"><img alt="霍夫曼树WPL规律" src="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91WPL%E8%A7%84%E5%BE%8B.png" width="50%"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91WPL%E8%A7%84%E5%BE%8B.png"><img alt="霍夫曼树WPL规律" src="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91WPL%E8%A7%84%E5%BE%8B.png" width="50%"/></a></p>
 <details class="info">
 <summary>STL 的优先队列 priority_queue</summary>
 <ol>
@@ -709,7 +712,7 @@ sum = 1 + 5 + 6 + 6 + 12 + 9 + 21 + 8 + 7 + 15 = 90
 <p>由此构成的霍夫曼树如下图：</p>
 <details class="info">
 <summary>霍夫曼编码举例图</summary>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81.png"><img alt="霍夫曼编码" src="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81.png" width="100%"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81.png"><img alt="霍夫曼编码" src="../../../img/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81.png" width="100%"/></a></p>
 </details>
 <p>则 <code>a</code> 对应的霍夫曼编码为：<code>0001</code>；<code>f</code> 对应的霍夫曼编码为：<code>10</code>；剩下的依此类推</p>
 </details>
@@ -1168,5 +1171,5 @@ sum = 1 + 5 + 6 + 6 + 12 + 9 + 21 + 8 + 7 + 15 = 90
 <script src="../../../javascripts/mathjax.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom"});})</script></body>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
 </html>

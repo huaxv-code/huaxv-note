@@ -17,12 +17,15 @@
 <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
             html.glightbox-open { overflow: initial; height: 100%; }
-            .gdesc-inner { font-size: 0.75rem; }
             .gslide-title { margin-top: 0px; user-select: text; }
             .gslide-desc { color: #666; user-select: text; }
             .gslide-image img { background: white; }
             
                 .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
                 </style><script src="../../../assets/javascripts/glightbox.min.js"></script></head>
 <body data-md-color-accent="" data-md-color-primary="white" data-md-color-scheme="default" dir="ltr">
 <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
@@ -701,17 +704,17 @@
 <p>规定 <span class="arithmatex">\(q[0]\)</span> 是左指针，<span class="arithmatex">\(q[1]\)</span> 是右指针，并且左右指针都能往左或者往右移动</p>
 <details class="info">
 <summary>双端队列示意图</summary>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97%E7%A4%BA%E6%84%8F%E5%9B%BE.png"><img alt="双端队列示意图" src="../../../img/%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97%E7%A4%BA%E6%84%8F%E5%9B%BE.png" width="100%"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../../img/%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97%E7%A4%BA%E6%84%8F%E5%9B%BE.png"><img alt="双端队列示意图" src="../../../img/%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97%E7%A4%BA%E6%84%8F%E5%9B%BE.png" width="100%"/></a></p>
 </details>
 <h3 id="init">init 初始化</h3>
 <p>我们规定，数组下标为 <span class="arithmatex">\(q[0]\)</span>、<span class="arithmatex">\(q[1]\)</span> 的数据域不能存放数据，即 <span class="arithmatex">\(q[q[0]]\)</span> 和 <span class="arithmatex">\(q[q[1]]\)</span> 不能放数据， 初始化时，<span class="arithmatex">\(q[0] = 2, q[1] = 3\)</span></p>
 <details class="info">
 <summary>双端队列-不能放数据的两个下标</summary>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/sddl%E4%B8%8D%E8%83%BD%E6%94%BE%E6%95%B0%E6%8D%AE.png"><img alt="sddl不能放数据" src="../../../img/sddl%E4%B8%8D%E8%83%BD%E6%94%BE%E6%95%B0%E6%8D%AE.png" width="100%"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../../img/sddl%E4%B8%8D%E8%83%BD%E6%94%BE%E6%95%B0%E6%8D%AE.png"><img alt="sddl不能放数据" src="../../../img/sddl%E4%B8%8D%E8%83%BD%E6%94%BE%E6%95%B0%E6%8D%AE.png" width="100%"/></a></p>
 </details>
 <details class="info">
 <summary>双端队列-初始状态图片</summary>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E9%98%9F%E5%88%97%E5%88%9D%E5%A7%8B%E7%8A%B6%E6%80%81.png"><img alt="队列初始状态" src="../../../img/%E9%98%9F%E5%88%97%E5%88%9D%E5%A7%8B%E7%8A%B6%E6%80%81.png" width="100%"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../../img/%E9%98%9F%E5%88%97%E5%88%9D%E5%A7%8B%E7%8A%B6%E6%80%81.png"><img alt="队列初始状态" src="../../../img/%E9%98%9F%E5%88%97%E5%88%9D%E5%A7%8B%E7%8A%B6%E6%80%81.png" width="100%"/></a></p>
 </details>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
 <a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="p">{</span><span class="w"></span>
@@ -745,7 +748,7 @@
 <p>只要 <span class="arithmatex">\(q[0]\)</span> 紧跟在 <span class="arithmatex">\(q[1]\)</span> 的左手边，就说明双端队列为空</p>
 <details class="info">
 <summary>双端队列空状态图例</summary>
-<p><a class="glightbox" data-desc-position="bottom" data-description="" data-height="auto" data-title="" data-width="100%" href="../../../img/%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97%E7%A9%BA%E7%8A%B6%E6%80%81.png"><img alt="双端队列空状态" src="../../../img/%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97%E7%A9%BA%E7%8A%B6%E6%80%81.png" width="100%"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../../../img/%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97%E7%A9%BA%E7%8A%B6%E6%80%81.png"><img alt="双端队列空状态" src="../../../img/%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97%E7%A9%BA%E7%8A%B6%E6%80%81.png" width="100%"/></a></p>
 </details>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kt">bool</span><span class="w"> </span><span class="nf">empty</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">[])</span><span class="w"></span>
 <a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="p">{</span><span class="w"></span>
@@ -1133,5 +1136,5 @@
 <script src="../../../javascripts/mathjax.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom"});})</script></body>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
 </html>
