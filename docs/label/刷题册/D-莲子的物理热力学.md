@@ -109,3 +109,149 @@
 
 我们要如何确定出 $l$ 呢？
 
+只能从左边一个一个遍历，不断的假定当前的节点就是 $l$ 。
+
+如果 $l$ 固定为某个值，$r$ 怎么求？假设 $l - 1 \leq n - r$ ，则 $u + v + min(u, v) \leq m$ 就可以变成：$l - 1 + n - r + l - 1 = n + 2l - 2 - r \leq m$，则 $r \geq n + 2l - 2 - m$ 还得满足假设条件：$l - 1 \leq n - r$ 所以:
+> $n + 2l - 2 - m \leq r \leq n - l + 1$，此时 $3l - 3 \leq m$
+
+如果 $l$ 固定为某个值，并假设 $l - 1 \geq n - r$，则 $u + v + min(u, v) \leq m$ 就可以变成：$l - 1 + n - r + n - r = 2n - 2l + l - 1 \leq m$ 还要满足假设条件：$l - 1 \geq n - r$，所以有：
+> $2r \geq \max(2n - m + l - 1, 2n - 2l + 2)$
+
+由于上述两种假设相互对立，不是假设一成立，就是假设二成立，所以我们可以通过 $3l - 3 \leq m$ 是否成立来选取那种对应的假设，如果成立，选取 $n + 2l - 2 - m \leq r$；否则选取 $2r \geq \max(2n - m + l - 1, 2n - 2l + 2)$，这里的 $r$ 要向上取整，向上取整照样满足 $l - 1 \geq n - r$ 这个条件。
+
+当然 $l$ 最多只能去到 $m + 1$ ，$r$ 最大也只能是 $n$ 不能越界！
+
+若 $3l - 3 \leq m$，则 $n + 2l - 2 - m \leq n$；否则 $2n - m + l - 1 \leq 2n，2n - 2l + 2 \leq 2n$，若 $r$ 取值 各自范围的最小，都能保证 $r \leq n$ ，请放心使用。
+
+**特判：**
+
+如果 $m \geq n - 1$ 则把数组 $a$ 全部变成相同的值，极差为 0 ，此时最小。
+
+如果 $m = 0$ ，则极差为 $\max\{b\} - \min\{a\}$。
+
+??? note "代码参考"
+
+    ``` c++
+    #include <iostream>
+    #include <iomanip>
+    #include <algorithm>
+    #include <cstdio>
+    #include <cstdlib>
+    #include <cstring>
+    #include <string>
+    #include <vector>
+    #include <queue>
+    #include <deque>
+    #include <stack>
+    #include <map>
+    #include <set>
+    #include <unordered_map>
+    #include <unordered_set>
+
+    using namespace std;
+    #define endl '\n'
+    #define pique priority_queue
+    #define oier \
+                ios_base::sync_with_stdio(false);\
+                cin.tie(nullptr); cout.tie(nullptr);
+
+    #define cf int t; cin >> t; while (t --)
+            
+    #define upfor(i, l, r) for (i = (l); i <= (r); i ++)
+    #define downfor(i, l, r) for (i = (r); i >= (l); i --)
+                
+    // #define int long long
+    typedef long long LL;
+    typedef long double LD;
+    //typedef __int128_t int128;
+
+    const int inf = ~(1 << 31);  // 正无穷
+    const int ninf = (1 << 31);  // 负无穷
+
+    const LL infll = ~(1ll << 63); // 正无穷
+    const LL ninfll = (1ll << 63); // 负无穷
+
+    const int N = int (1e7 + 10);
+
+    inline LL rll() { oier LL x; cin >> x; return x; }
+    inline int rint() { oier int x; cin >> x; return x; }
+
+    /* ==========================代码区========================== */
+
+    int n, m;
+    int q[N];
+
+    void qsort(int l, int r)
+    { 
+        if (l >= r) return;
+        int x = q[(l + r) / 2];
+        int i = l - 1, j = r + 1;
+        while (i < j)
+        {
+            while (q[++i] < x);
+            while (x < q[--j]);
+            if (i < j) swap(q[i], q[j]);
+        }
+        qsort(l, j); qsort(j + 1, r);
+    }
+
+    void solve()
+    { 	oier
+        /* =========================== */
+        
+        n = rint(); m = rint();
+        for (int i = 1; i <= n; i ++) q[i] = rint();
+        if (m >= n - 1) { cout << 0 << endl; return; }
+        int res = inf; qsort(1, n);
+        if (m == 0) { cout << q[n] - q[1] << endl; return; }
+        for (int l = 1, r; l <= m + 1; l ++)
+        {
+            if (3 * l - 3 <= m) r = n + 2 * l - 2 - m;
+            else r = max(2 * n - m + l - 1, 2 * n - 2 * l + 2) / 2.0 + 0.5;
+            res = min(res, q[r] - q[l]); 
+        }
+        cout << res << endl;
+        
+        /* =========================== */
+    }
+
+    /* ==========================代码区========================== */
+
+    /**
+    *                             _ooOoo_
+    *                            o8888888o
+    *                            88" . "88
+    *                            (| -_- |)
+    *                            O\  =  /O
+    *                         ____/`---'\____
+    *                       .'  \\|     |//  `.
+    *                      /  \\|||  :  |||//  \
+    *                     /  _||||| -:- |||||-  \
+    *                     |   | \\\  -  /// |   |
+    *                     | \_|  ''\---/''  |   |
+    *                     \  .-\__  `-`  ___/-. /
+    *                   ___`. .'  /--.--\  `. . __
+    *                ."" '<  `.___\_<|>_/___.'  >'"".
+    *               | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+    *               \  \ `-.   \_ __\ /__ _/   .-` /  /
+    *          ======`-.____`-.___\_____/___.-`____.-'======
+    *                             `=---='
+    *          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    *                     佛祖保佑        永无BUG
+    *            佛曰:
+    *                   写字楼里写字间，写字间里程序员；
+    *                   程序人员写程序，又拿程序换酒钱。
+    *                   酒醒只在网上坐，酒醉还来网下眠；
+    *                   酒醉酒醒日复日，网上网下年复年。
+    *                   但愿老死电脑间，不愿鞠躬老板前；
+    *                   奔驰宝马贵者趣，公交自行程序员。
+    *                   别人笑我忒疯癫，我笑自己命太贱；
+    *                   不见满街漂亮妹，哪个归得程序员？
+    */
+
+    int main()
+    {
+        // oier cf solve(); return 0;
+        oier solve(); return 0;
+    }
+    ```
