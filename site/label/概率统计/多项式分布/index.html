@@ -510,7 +510,7 @@
 \sum_{k_1, k_2, \cdots, k_n}^{*}\frac{N!}{k_1!k_2!\cdots k_n!} p_1^{k_1} p_2^{k_2} \cdots p_n^{k_n} = (p_1 + p_2 + \cdots + p_n) ^ N = 1
 \]</div>
 <p>由于全概率求和公式化简的结果与 <mark class="critic"> 多项式公式<span class="arithmatex">\((x_1 + x_2 + \cdots + x_n) ^ N\)</span> </mark> 一致，就称呼为 <mark class="critic"> 多项式分布 </mark>。</p>
-<p>对于式子 <span class="arithmatex">\(\frac{N!}{k_1!k_2!\cdots k_n!} x_1^{k_1} x_2^{k_2} \cdots x_n^{k_n}\)</span>，若分子的和等于分母，即 <span class="arithmatex">\(k_1 + k_2 + \cdots + k_n = N\)</span>，且右边为随机变量 <span class="arithmatex">\(x_i^{k_i}\)</span> 其求和公式就可以化简成多项式的形式：<span class="arithmatex">\((x_1 + x_2 + \cdots + x_n) ^ N\)</span>。</p>
+<p>对于式子 <span class="arithmatex">\(\frac{N!}{k_1!k_2!\cdots k_n!} x_1^{k_1} x_2^{k_2} \cdots x_n^{k_n}\)</span>，若分母的和等于分子，即 <span class="arithmatex">\(k_1 + k_2 + \cdots + k_n = N\)</span>，且右边为随机变量 <span class="arithmatex">\(x_i^{k_i}\)</span> 其求和公式就可以化简成多项式的形式：<span class="arithmatex">\((x_1 + x_2 + \cdots + x_n) ^ N\)</span>。</p>
 <hr/>
 <div class="admonition question">
 <p class="admonition-title">Question</p>
@@ -542,9 +542,25 @@
 <p>将固定的值都提取出来：</p>
 <div class="arithmatex">\[
 \begin{aligned}
-    s
+    \frac{N!}{k_1!}p_1^{k_1} \sum^{*}_{k_2!, ,k_3!,\cdots, k_n!}\frac{1}{k_2!k_3!\cdots k_n!}p_2^{k_2}p_3^{k_3}\cdots p_n^{k_n}
 \end{aligned}
 \]</div>
+<p>化简成多项式的形式，分母的和为分子，右边为分母各项的次方：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+    \frac{N!}{k_1!(N - k_1)!}p_1^{k_1}(1 - p_1)^{N - k_1} \sum_{k_2,k_3,\cdots,k_n}^{*}\frac{(N - k_1)!}{k_2!k_3!\cdots k_n!}(\frac{p_2}{1 - p_1})^{k_2}(\frac{p_3}{1 - p_1})^{k_3} \cdots (\frac{p_n}{1 - p_1})^{k_n}
+\end{aligned}
+\]</div>
+<p>化简成多项式的形式：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+    \frac{N!}{k_1!(N - k_1)!}p_1^{k_1}(1 - p_1)^{N - k_1} (\frac{p_2}{1 - p_1} + \frac{p_3}{1 - p_1} + \cdots + \frac{p_n}{1 - p_1}) ^ N
+\end{aligned}
+\]</div>
+<p>结果为：</p>
+<blockquote>
+<p><span class="arithmatex">\(\frac{N!}{k_1!(N - k_1)!}p_1^{k_1}(1 - p_1)^{N - k_1}\)</span></p>
+</blockquote>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
