@@ -639,6 +639,21 @@
 </blockquote>
 <p><strong>结论：若将某些试验结果固定发生多少次，叫你求这样的概率，只需要将试验次数 <span class="arithmatex">\(N\)</span> 分成大小分别为 <span class="arithmatex">\(k_1、k_2、\cdots 、k_s 、(N - k_1 - k_2 - \cdots - k_s)\)</span> 的堆，分别代表事件 <span class="arithmatex">\(A_1、A_2、\cdots 、A_s、\bar{A}\)</span> 发生的次数，每一个试验分别发生的概率分别对应 <span class="arithmatex">\(p_1、p_2、\cdots 、p_s、(1 - p_1、p_2、\cdots 、p_s)\)</span>，求这样的概率</strong></p>
 <h2 id="_4">在多项式分布中，在已知某事件固定发生了几次的情况下，求另一事件发生某次的概率</h2>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>若进行一次试验，其可能的结果为 <span class="arithmatex">\(A_1、A_2、\cdots 、A_n\)</span> 中的一种，并且这些可能的结果相互排斥，每一次试验有且仅有一种结果发生。</p>
+<p>每一种结果分别对应的发生概率为：<span class="arithmatex">\(p_1、p_2、\cdots 、p_n\)</span>。</p>
+<p>若进行 <span class="arithmatex">\(N\)</span> 次独立的试验，已知结果为 <span class="arithmatex">\(A_2\)</span> 发生了 <span class="arithmatex">\(k_2\)</span> 次，求此时 <span class="arithmatex">\(A_1\)</span> 发生了 <span class="arithmatex">\(k_1\)</span> 次的概率。</p>
+</div>
+<p>先求 <span class="arithmatex">\(p(A_2 = k_2)\)</span> 的概率，再求 <span class="arithmatex">\(p(A_1 = k_1, A_2 = k_2)\)</span> 的概率，那么答案就是：</p>
+<blockquote>
+<p><span class="arithmatex">\(\frac{p(A_1 = k_1, A_2 = k_2)}{p(A_2 = k_2)}\)</span> </p>
+</blockquote>
+<p>由上面的结论我们容易得：</p>
+<blockquote>
+<p><span class="arithmatex">\(p(A_2 = k_2) = \frac{N!}{k_2!(N - k_2)!}p_2^{k_2}(1 - p_2) ^ (N - k_2)\)</span></p>
+<p><span class="arithmatex">\(p(A_1 = k_1, A_2 = k_2) = \frac{N!}{k_1!k_2!}p_1^{k_1}p_2^{k_2}(1 - p_1 - p_2) ^ (N - k_1 - k_2)\)</span> </p>
+</blockquote>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
