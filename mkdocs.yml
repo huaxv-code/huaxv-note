@@ -116,6 +116,7 @@ extra_javascript:
 nav:
   - 简介:
     - index.md
+    - git.md
   - 数据结构:
     - 一些配置: label/数据结构/index.md
     - 单链表: label/数据结构/单链表.md
