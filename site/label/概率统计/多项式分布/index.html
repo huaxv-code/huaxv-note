@@ -472,6 +472,11 @@
     推广到多个试验结果固定次数，求概率
   </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_4">
+    在多项式分布中，在已知某事件固定发生了几次的情况下，求另一事件发生某次的概率
+  </a>
+</li>
 </ul>
 </nav>
 </li>
@@ -525,6 +530,11 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#_3">
     推广到多个试验结果固定次数，求概率
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_4">
+    在多项式分布中，在已知某事件固定发生了几次的情况下，求另一事件发生某次的概率
   </a>
 </li>
 </ul>
@@ -607,7 +617,28 @@
 <blockquote>
 <p><span class="arithmatex">\(\frac{N!}{k_1!(N - k_1)!}p_1^{k_1}(1 - p_1)^{N - k_1}\)</span></p>
 </blockquote>
+<p><strong>结论：若要求某试验结果 <span class="arithmatex">\(A_i\)</span> 固定发生了 <span class="arithmatex">\(k_i\)</span> 次的概率，只需要当作二项分布 <span class="arithmatex">\(b(k_i; N, p_i)\)</span> 来求就行。</strong></p>
 <h2 id="_3">推广到多个试验结果固定次数，求概率</h2>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>若一个试验的试验结果是 <span class="arithmatex">\(\{A_1, A_2, \cdots , A_n\}\)</span> 中的一种，且上面的试验结果互相排斥，每一次试验有且仅有一种试验结果发生，对于任意一个试验结果 <span class="arithmatex">\(A_i\)</span> 发生的概率为 <span class="arithmatex">\(p_i\)</span>。</p>
+<p>若对该试验进行了 <span class="arithmatex">\(N\)</span> 次，请你求试验结果 <span class="arithmatex">\(A_1、A_2、\cdots 、A_s\)</span> 分别发生 <span class="arithmatex">\(k_1、k_2、\cdots 、k_s\)</span> 次的概率。</p>
+</div>
+<p>将 <span class="arithmatex">\(N\)</span> 分成大小分别为：<span class="arithmatex">\(k_1、k_2、\cdots、k_s、(N - k_1 - k_2 - \cdots - k_s)\)</span> 的堆，总共有多少种分法：</p>
+<blockquote>
+<p>总共有 <span class="arithmatex">\(\frac{N!}{k_1!k_2!\cdots k_s!(N - k_1 - k_2 - \cdots - k_s)!}\)</span> 种分法</p>
+</blockquote>
+<p>假设有这样的试验 <span class="arithmatex">\(B\)</span> 其试验结果为：<span class="arithmatex">\(A_{s+1} \cdots A_n\)</span>，且对于任意的试验结果 <span class="arithmatex">\(A_i(i \geq s + 1)\)</span> 来说，其发生的概率为：<span class="arithmatex">\(\frac{p_i}{1 - (p_1 + p_2 + \cdots p_s)}\)</span></p>
+<p>所以题目所求的概率为：</p>
+<blockquote>
+<p><span class="arithmatex">\(\frac{N!}{k_1!k_2!\cdots k_s!(N - k_1 - k_2 - \cdots - k_s)!}p_1^{k_1} \cdots p_s^{k_s} \times (1 - p_1 - \cdots p_s) ^ (N - k_1 - \cdots k_s)\)</span></p>
+<p><span class="arithmatex">\(\times\)</span></p>
+<p><span class="arithmatex">\(\sum_{k_{s + 1} \cdots k_n}^{*}\frac{(N - k_1 - \cdots k_s)!}{k_{s + 1}!k_{s + 2}!\cdots, k_n!}(\frac{p_{s + 1}}{1 - k_1 - \cdots k_s}) ^ {k_{s + 1}} \cdots (\frac{p_n}{1 - k_1 - \cdots k_s}) ^ {k_n}\)</span></p>
+<p><span class="arithmatex">\(=\)</span></p>
+<p><span class="arithmatex">\(\frac{N!}{k_1!k_2!\cdots k_s!(N - k_1 - k_2 - \cdots - k_s)!}p_1^{k_1} \cdots p_s^{k_s} \times (1 - p_1 - \cdots p_s) ^ (N - k_1 - \cdots k_s)\)</span></p>
+</blockquote>
+<p><strong>结论：若将某些试验结果固定发生多少次，叫你求这样的概率，只需要将试验次数 <span class="arithmatex">\(N\)</span> 分成大小分别为 <span class="arithmatex">\(k_1、k_2、\cdots 、k_s 、(N - k_1 - k_2 - \cdots - k_s)\)</span> 的堆，分别代表事件 <span class="arithmatex">\(A_1、A_2、\cdots 、A_s、\bar{A}\)</span> 发生的次数，每一个试验分别发生的概率分别对应 <span class="arithmatex">\(p_1、p_2、\cdots 、p_s、(1 - p_1、p_2、\cdots 、p_s)\)</span>，求这样的概率</strong></p>
+<h2 id="_4">在多项式分布中，在已知某事件固定发生了几次的情况下，求另一事件发生某次的概率</h2>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
