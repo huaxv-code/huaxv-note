@@ -54,9 +54,16 @@ using namespace std;
 #define oier \
 			ios_base::sync_with_stdio(false);\
 			cin.tie(nullptr); cout.tie(nullptr);
+
+#define cf int t; cin >> t; while (t --)
+		
+#define upfor(i, l, r) for (i = (l); i <= (r); i ++)
+#define downfor(i, l, r) for (i = (r); i >= (l); i --)
+			
+// #define int long long
 typedef long long LL;
 typedef long double LD;
-typedef __int128_t int128;
+//typedef __int128_t int128;
 
 const int inf = ~(1 << 31);  // 正无穷
 const int ninf = (1 << 31);  // 负无穷
@@ -64,14 +71,19 @@ const int ninf = (1 << 31);  // 负无穷
 const LL infll = ~(1ll << 63); // 正无穷
 const LL ninfll = (1ll << 63); // 负无穷
 
+inline LL rll() { oier LL x; cin >> x; return x; }
+inline int rint() { oier int x; cin >> x; return x; }
+
 const int N = int (1e7 + 10);
 
-/* ==========================代码区========================== */
+// 由于情报不足，只能透过「试行错误」来获取。
+
+/* =============================代码区============================= */
 
 
 
 void solve()
-{ oier
+{ 	oier
 	/* =========================== */
 	
 	
@@ -79,7 +91,7 @@ void solve()
 	/* =========================== */
 }
 
-/* ==========================代码区========================== */
+/* =============================代码区============================= */
 
 /**
  *                             _ooOoo_
@@ -111,11 +123,14 @@ void solve()
  *                   奔驰宝马贵者趣，公交自行程序员。
  *                   别人笑我忒疯癫，我笑自己命太贱；
  *                   不见满街漂亮妹，哪个归得程序员？
-*/
+**/
+
+/* ========================佛祖保佑, 永无bug======================== */
 
 int main()
 {
-	solve(); return 0;
+	// oier cf solve(); return 0;
+	oier solve(); return 0;
 }
 ```
 
