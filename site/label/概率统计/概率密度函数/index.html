@@ -518,7 +518,32 @@
 <div class="admonition question">
 <p class="admonition-title">Question</p>
 <p>已知随机变量 <span class="arithmatex">\(X\)</span> 的密度函数为：</p>
+<blockquote>
+<p><span class="arithmatex">\(f(x) = Ae^{-|x|}，-\infty &lt; x &lt; + \infty\)</span></p>
+</blockquote>
+<p>求：</p>
+<ol>
+<li><span class="arithmatex">\(A\)</span> 值；</li>
+<li><span class="arithmatex">\(P\{0 &lt; X &lt; 1\}\)</span></li>
+<li><span class="arithmatex">\(F(x)\)</span></li>
+</ol>
 </div>
+<p>由全概率和为 <span class="arithmatex">\(1\)</span> 可得：</p>
+<blockquote>
+<p><span class="arithmatex">\(\int_{-\infty}^{+\infty}f(x) = 1\)</span></p>
+</blockquote>
+<p>解得 <span class="arithmatex">\(A = \frac{1}{2}\)</span>。</p>
+<hr/>
+<p><span class="arithmatex">\(P\{0 &lt; X &lt; 1\} = \int_{0}^{1}f(x)dx = \int_{0}^{1}\frac{1}{2}e^{-x}dx = A - Ae^{-1}\)</span></p>
+<hr/>
+<p>当 <span class="arithmatex">\(x &lt; 0\)</span> 时:</p>
+<blockquote>
+<p><span class="arithmatex">\(F(x) = \int_{-\infty}^{x}\frac{1}{2}e^{x}dx = \frac{1}{2}e^{x}\)</span></p>
+</blockquote>
+<p>当 <span class="arithmatex">\(x \geq 0\)</span> 时:</p>
+<blockquote>
+<p><span class="arithmatex">\(F(x) = \int_{-\infty}^{0}\frac{1}{2}e^xdx + \int_{0}^{x}\frac{1}{2}e^{-x}dx = 1 - \frac{1}{2}e^{-x}\)</span></p>
+</blockquote>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
