@@ -535,7 +535,27 @@
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
 <h1 id="_1">分布函数简单例题</h1>
-<p>!!! </p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>设连续型随机变量 <span class="arithmatex">\(X\)</span> 的分布函数为：</p>
+<blockquote>
+<p><span class="arithmatex">\(F(x) = A + Be^{-\lambda x}，x \geq 0, \lambda &gt; 0\)</span></p>
+</blockquote>
+<p>求出 <span class="arithmatex">\(A、B\)</span> 的值；</p>
+<p>求出概率密度函数 <span class="arithmatex">\(f(x)\)</span>。</p>
+</div>
+<p>由于当 <span class="arithmatex">\(x \rightarrow +\infty\)</span> 时，<span class="arithmatex">\(F(x) \rightarrow 1\)</span>，所以：</p>
+<blockquote>
+<p><span class="arithmatex">\(A = 1\)</span></p>
+</blockquote>
+<p>由于该分布函数连续，所以 <span class="arithmatex">\(F(0) \rightarrow F(^-0) = 0\)</span>，所以：</p>
+<blockquote>
+<p><span class="arithmatex">\(A + B = 0\)</span> 解得 <span class="arithmatex">\(B = -1\)</span></p>
+</blockquote>
+<p>所以概率密度函数 <span class="arithmatex">\(f(x) = {F}'(x)\)</span>:</p>
+<blockquote>
+<p><span class="arithmatex">\(f(x) = \lambda e ^ {- \lambda x}\)</span></p>
+</blockquote>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
