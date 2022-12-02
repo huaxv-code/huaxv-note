@@ -7,7 +7,7 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <link href="../../../img/头像.png" rel="icon"/>
 <meta content="mkdocs-1.4.2, mkdocs-material-8.5.10" name="generator"/>
-<title>多项式分布 - 玉子的笔记本</title>
+<title>分布函数简单例题 - 玉子的笔记本</title>
 <link href="../../../assets/stylesheets/main.472b142f.min.css" rel="stylesheet"/>
 <link href="../../../assets/stylesheets/palette.08040f6c.min.css" rel="stylesheet"/>
 <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25 0 0 1 .25-.25h5.025a.25.25 0 0 1 .177.073l6.25 6.25a.25.25 0 0 1 0 .354l-5.025 5.025a.25.25 0 0 1-.354 0l-6.25-6.25a.25.25 0 0 1-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 0 1 0 2.474l-5.026 5.026a1.75 1.75 0 0 1-2.474 0l-6.25-6.25A1.75 1.75 0 0 1 1 7.775zM6 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2.5 1.75a.25.25 0 0 1 .25-.25h8.5a.25.25 0 0 1 .25.25v7.736a.75.75 0 1 0 1.5 0V1.75A1.75 1.75 0 0 0 11.25 0h-8.5A1.75 1.75 0 0 0 1 1.75v11.5c0 .966.784 1.75 1.75 1.75h3.17a.75.75 0 0 0 0-1.5H2.75a.25.25 0 0 1-.25-.25V1.75zM4.75 4a.75.75 0 0 0 0 1.5h4.5a.75.75 0 0 0 0-1.5h-4.5zM4 7.75A.75.75 0 0 1 4.75 7h2a.75.75 0 0 1 0 1.5h-2A.75.75 0 0 1 4 7.75zm11.774 3.537a.75.75 0 0 0-1.048-1.074L10.7 14.145 9.281 12.72a.75.75 0 0 0-1.062 1.058l1.943 1.95a.75.75 0 0 0 1.055.008l4.557-4.45z"/></svg>');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm6.5-.25A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75zM8 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.499.75a.75.75 0 0 1 1.5 0v.996C5.9 2.903 6.793 3.65 7.662 4.376l.24.202c-.036-.694.055-1.422.426-2.163C9.1.873 10.794-.045 12.622.26 14.408.558 16 1.94 16 4.25c0 1.278-.954 2.575-2.44 2.734l.146.508.065.22c.203.701.412 1.455.476 2.226.142 1.707-.4 3.03-1.487 3.898C11.714 14.671 10.27 15 8.75 15h-6a.75.75 0 0 1 0-1.5h1.376a4.489 4.489 0 0 1-.563-1.191 3.833 3.833 0 0 1-.05-2.063 4.636 4.636 0 0 1-2.025-.293.75.75 0 1 1 .525-1.406c1.357.507 2.376-.006 2.698-.318l.009-.01a.748.748 0 0 1 1.06 0 .75.75 0 0 1-.012 1.074c-.912.92-.992 1.835-.768 2.586.221.74.745 1.337 1.196 1.621H8.75c1.343 0 2.398-.296 3.074-.836.635-.507 1.036-1.31.928-2.602-.05-.603-.216-1.224-.422-1.93l-.064-.221c-.12-.407-.246-.84-.353-1.29a2.404 2.404 0 0 1-.507-.441 3.063 3.063 0 0 1-.633-1.248.75.75 0 0 1 1.455-.364c.046.185.144.436.31.627.146.168.353.305.712.305.738 0 1.25-.615 1.25-1.25 0-1.47-.95-2.315-2.123-2.51-1.172-.196-2.227.387-2.706 1.345-.46.92-.27 1.774.019 3.062l.042.19a.753.753 0 0 1 .01.05c.348.443.666.949.94 1.553a.75.75 0 1 1-1.365.62c-.553-1.217-1.32-1.94-2.3-2.768a85.08 85.08 0 0 0-.317-.265c-.814-.68-1.75-1.462-2.692-2.619a3.74 3.74 0 0 0-1.023.88c-.406.495-.663 1.036-.722 1.508.116.122.306.21.591.239.388.038.797-.06 1.032-.19a.75.75 0 0 1 .728 1.31c-.515.287-1.23.439-1.906.373-.682-.067-1.473-.38-1.879-1.193L.75 5.677V5.5c0-.984.48-1.94 1.077-2.664.46-.559 1.05-1.055 1.673-1.353V.75z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm9 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM6.92 6.085c.081-.16.19-.299.34-.398.145-.097.371-.187.74-.187.28 0 .553.087.738.225A.613.613 0 0 1 9 6.25c0 .177-.04.264-.077.318a.956.956 0 0 1-.277.245c-.076.051-.158.1-.258.161l-.007.004a7.728 7.728 0 0 0-.313.195 2.416 2.416 0 0 0-.692.661.75.75 0 0 0 1.248.832.956.956 0 0 1 .276-.245 6.3 6.3 0 0 1 .26-.16l.006-.004c.093-.057.204-.123.313-.195.222-.149.487-.355.692-.662.214-.32.329-.702.329-1.15 0-.76-.36-1.348-.863-1.725A2.76 2.76 0 0 0 8 4c-.631 0-1.155.16-1.572.438-.413.276-.68.638-.849.977a.75.75 0 1 0 1.342.67z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.22 1.754a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575L6.457 1.047zM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-.25-5.25a.75.75 0 0 0-1.5 0v2.5a.75.75 0 0 0 1.5 0v-2.5z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.404 12.596a6.5 6.5 0 1 1 9.192-9.192 6.5 6.5 0 0 1-9.192 9.192zM2.344 2.343a8 8 0 1 0 11.313 11.314A8 8 0 0 0 2.343 2.343zM6.03 4.97a.75.75 0 0 0-1.06 1.06L6.94 8 4.97 9.97a.75.75 0 1 0 1.06 1.06L8 9.06l1.97 1.97a.75.75 0 1 0 1.06-1.06L9.06 8l1.97-1.97a.75.75 0 1 0-1.06-1.06L8 6.94 6.03 4.97z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M10.561 1.5a.016.016 0 0 0-.01.004L3.286 8.571A.25.25 0 0 0 3.462 9H6.75a.75.75 0 0 1 .694 1.034l-1.713 4.188 6.982-6.793A.25.25 0 0 0 12.538 7H9.25a.75.75 0 0 1-.683-1.06l2.008-4.418.003-.006a.02.02 0 0 0-.004-.009.02.02 0 0 0-.006-.006L10.56 1.5zM9.504.43a1.516 1.516 0 0 1 2.437 1.713L10.415 5.5h2.123c1.57 0 2.346 1.909 1.22 3.004l-7.34 7.142a1.25 1.25 0 0 1-.871.354h-.302a1.25 1.25 0 0 1-1.157-1.723L5.633 10.5H3.462c-1.57 0-2.346-1.909-1.22-3.004L9.503.429z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.72.22a.75.75 0 0 1 1.06 0l1 .999a3.492 3.492 0 0 1 2.441 0l.999-1a.75.75 0 1 1 1.06 1.061l-.775.776c.616.63.995 1.493.995 2.444v.327c0 .1-.009.197-.025.292.408.14.764.392 1.029.722l1.968-.787a.75.75 0 0 1 .556 1.392L13 7.258V9h2.25a.75.75 0 0 1 0 1.5H13v.5c0 .409-.049.806-.141 1.186l2.17.868a.75.75 0 0 1-.557 1.392l-2.184-.873A4.997 4.997 0 0 1 8 16a4.997 4.997 0 0 1-4.288-2.427l-2.183.873a.75.75 0 0 1-.558-1.392l2.17-.868A5.013 5.013 0 0 1 3 11v-.5H.75a.75.75 0 0 1 0-1.5H3V7.258L.971 6.446a.75.75 0 0 1 .558-1.392l1.967.787c.265-.33.62-.583 1.03-.722a1.684 1.684 0 0 1-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72 1.28a.75.75 0 0 1 0-1.06zM6.173 5h3.654A.173.173 0 0 0 10 4.827V4.5a2 2 0 1 0-4 0v.327c0 .096.077.173.173.173zM5.25 6.5a.75.75 0 0 0-.75.75V11a3.5 3.5 0 1 0 7 0V7.25a.75.75 0 0 0-.75-.75h-5.5z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M5 5.782V2.5h-.25a.75.75 0 0 1 0-1.5h6.5a.75.75 0 0 1 0 1.5H11v3.282l3.666 5.76C15.619 13.04 14.543 15 12.767 15H3.233c-1.776 0-2.852-1.96-1.899-3.458L5 5.782zM9.5 2.5h-3V6a.75.75 0 0 1-.117.403L4.73 9h6.54L9.617 6.403A.75.75 0 0 1 9.5 6V2.5zm-6.9 9.847L3.775 10.5h8.45l1.175 1.847a.75.75 0 0 1-.633 1.153H3.233a.75.75 0 0 1-.633-1.153z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.75 2.5a.75.75 0 0 0 0 1.5h10.5a.75.75 0 0 0 0-1.5H1.75zm4 5a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5zm0 5a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5zM2.5 7.75a.75.75 0 0 0-1.5 0v6a.75.75 0 0 0 1.5 0v-6z"/></svg>');}</style>
@@ -57,7 +57,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              多项式分布
+              分布函数简单例题
             
           </span>
 </div>
@@ -447,38 +447,10 @@
         多维离散型随机向量
       </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-          多项式分布
-          <span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%88%86%E5%B8%83/">
         多项式分布
       </a>
-<nav aria-label="目录" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_2">
-    固定一个试验结果发生的次数，求概率
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_3">
-    推广到多个试验结果固定次数，求概率
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_4">
-    在多项式分布中，在已知某事件固定发生了几次的情况下，求另一事件发生某次的概率
-  </a>
-</li>
-</ul>
-</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../%E5%8F%96%E5%87%BA%E6%AC%A1%E5%93%81%E7%9A%84%E4%B8%AA%E6%95%B0/">
@@ -510,8 +482,9 @@
         正太分布简单例题
       </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../%E5%88%86%E5%B8%83%E5%87%BD%E6%95%B0%E7%AE%80%E5%8D%95%E4%BE%8B%E9%A2%98/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<a class="md-nav__link md-nav__link--active" href="./">
         分布函数简单例题
       </a>
 </li>
@@ -552,149 +525,17 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="目录" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_2">
-    固定一个试验结果发生的次数，求概率
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_3">
-    推广到多个试验结果固定次数，求概率
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_4">
-    在多项式分布中，在已知某事件固定发生了几次的情况下，求另一事件发生某次的概率
-  </a>
-</li>
-</ul>
 </nav>
 </div>
 </div>
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/huaxv-code/huaxv-note/edit/master/docs/label/概率统计/多项式分布.md" title="编辑此页">
+<a class="md-content__button md-icon" href="https://github.com/huaxv-code/huaxv-note/edit/master/docs/label/概率统计/分布函数简单例题.md" title="编辑此页">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
-<h1 id="_1">多项式分布</h1>
-<p>我们将一个试验独立的进行一次，其完备事件群为：<span class="arithmatex">\(\{A_1, A_2, \cdots , A_n\}\)</span> ，且事件群中，任意两个事件相互排斥，不可能同时发生多个，一次只能且必定发生其中一个。</p>
-<p>对于事件 <span class="arithmatex">\(A_i\)</span> 发生的概率为 <span class="arithmatex">\(p_i\)</span>，则 <span class="arithmatex">\(p_1 + p_2 + \cdots + p_n = 1\)</span>。</p>
-<p>我们将试验独立的进行 <span class="arithmatex">\(N\)</span> 次，记 <span class="arithmatex">\(k_i\)</span> 为事件 <span class="arithmatex">\(A_i\)</span> 发生的次数，则 <span class="arithmatex">\(k_1 + k_2 + \cdots + k_n = N\)</span>。</p>
-<p><span class="arithmatex">\(p(k_1, k_2, \cdots, k_n) = \frac{N!}{k_1!k_2!\cdots k_n!} p_1^{k_1} p_2^{k_2} \cdots p_n^{k_n}\)</span>，想象成将 <span class="arithmatex">\(N\)</span> 分成大小分别为 <span class="arithmatex">\(k_1, k_2, \cdots k_n\)</span> 的堆。</p>
-<p>由于 <span class="arithmatex">\(k_1, k_2, \cdots , k_n\)</span> 的值并不固定，只需要满足 <span class="arithmatex">\(k_i\)</span> 是非负整数，<span class="arithmatex">\(k_1 + k_2 + \cdots + k_n = N\)</span> 即可。</p>
-<p>所以 <span class="arithmatex">\(k_1, k_2, \cdots , k_n\)</span> 的全概率和为：</p>
-<div class="arithmatex">\[
-\sum_{k_1, k_2, \cdots, k_n}^{*}\frac{N!}{k_1!k_2!\cdots k_n!} p_1^{k_1} p_2^{k_2} \cdots p_n^{k_n} = (p_1 + p_2 + \cdots + p_n) ^ N = 1
-\]</div>
-<p>由于全概率求和公式化简的结果与 <mark class="critic"> 多项式公式<span class="arithmatex">\((x_1 + x_2 + \cdots + x_n) ^ N\)</span> </mark> 一致，就称呼为 <mark class="critic"> 多项式分布 </mark>。</p>
-<p>对于式子 <span class="arithmatex">\(\frac{N!}{k_1!k_2!\cdots k_n!} x_1^{k_1} x_2^{k_2} \cdots x_n^{k_n}\)</span>，若分母的和等于分子，即 <span class="arithmatex">\(k_1 + k_2 + \cdots + k_n = N\)</span>，且右边为随机变量 <span class="arithmatex">\(x_i^{k_i}\)</span> 其求和公式就可以化简成多项式的形式：<span class="arithmatex">\((x_1 + x_2 + \cdots + x_n) ^ N\)</span>。</p>
-<h2 id="_2">固定一个试验结果发生的次数，求概率</h2>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>某种试验的结果为：<span class="arithmatex">\(A_1, A_2, \cdots , A_n\)</span> 中的一种，并且每一种可能的结果互相排斥；</p>
-<p>对于结果 <span class="arithmatex">\(A_i\)</span> 发生的概率为：<span class="arithmatex">\(p_i\)</span>；</p>
-<p>若对该试验独立进行了 <span class="arithmatex">\(N\)</span> 次，求试验结果 <span class="arithmatex">\(A_1\)</span> 发生 <span class="arithmatex">\(k_1\)</span> 次的概率。</p>
-</div>
-<hr/>
-<p><strong>思路一：</strong></p>
-<p>将 <span class="arithmatex">\(N\)</span> 分成大小分别为 <span class="arithmatex">\(k_1、N - k_1\)</span> 的两个堆，则有 <span class="arithmatex">\(\frac{N!}{k_1!(N - k_1)!}\)</span> 种划分方法；</p>
-<p>其中大小为 <span class="arithmatex">\(k_1\)</span> 的堆为 <span class="arithmatex">\(A_1\)</span> 发生所在的堆，剩下的大小为 <span class="arithmatex">\(N - k_1\)</span> 的堆由剩下的试验结果 <span class="arithmatex">\(A_2、\cdots、A_n\)</span> 发生的次数构成；</p>
-<p>我们将试验结果 <span class="arithmatex">\(A_1\)</span> 独立出去，将剩下的试验结果看成是某种试验 <span class="arithmatex">\(B\)</span> 进行一次的可能取值，则对于 <span class="arithmatex">\(A_i, i \geq 2\)</span> 在试验 <span class="arithmatex">\(B\)</span> 中发生的可能性为：<span class="arithmatex">\(\frac{p_i}{1 - p_i}\)</span></p>
-<p>由全概率和公式：</p>
-<div class="arithmatex">\[
-\begin{aligned}
-\sum_{k_2、k_3、\cdots 、k_n}^{*}\frac{N(N-k_1)!}{k_2!k_3! \cdots k_n!}(\frac{p_2}{1 - p_1})^{k_2}(\frac{p_3}{1 - p_1})^{k_3} \cdots (\frac{p_n}{1 - p_1})^{k_n} \\ = (\frac{p_2}{1 - p_1} + \frac{p_3}{1 - p_1} + \cdots + \frac{p_n}{1 - p_1}) ^ N = 1
-\end{aligned}
-\]</div>
-<p>所以 <span class="arithmatex">\(A_1\)</span> 固定发生 <span class="arithmatex">\(k_1\)</span> 次的概率为:</p>
-<blockquote>
-<p><span class="arithmatex">\(\frac{N!}{k_1!(N-k_1)!}p_1^{k_1}(1 - p_1)^(N - k_1)\)</span></p>
-</blockquote>
-<hr/>
-<p><strong>思路二：</strong></p>
-<p>由于 <span class="arithmatex">\(k_1\)</span> 固定，但 <span class="arithmatex">\(k_2、k_3、\cdots 、k_n\)</span> 不是固定，所以概率和为：</p>
-<div class="arithmatex">\[
-\begin{aligned}
-    \sum^{*}_{k_2, k_3, \cdots , k_n} \frac{N!}{k_1!k_2!\cdots k_n!} p_1^{k_1}p_2^{k_2}\cdots p_n^{k_n}
-\end{aligned}
-\]</div>
-<p>将固定的值都提取出来：</p>
-<div class="arithmatex">\[
-\begin{aligned}
-    \frac{N!}{k_1!}p_1^{k_1} \sum^{*}_{k_2!, ,k_3!,\cdots, k_n!}\frac{1}{k_2!k_3!\cdots k_n!}p_2^{k_2}p_3^{k_3}\cdots p_n^{k_n}
-\end{aligned}
-\]</div>
-<p>化简成多项式的形式，分母的和为分子，右边为分母各项的次方：</p>
-<div class="arithmatex">\[
-\begin{aligned}
-    \frac{N!}{k_1!(N - k_1)!}p_1^{k_1}(1 - p_1)^{N - k_1} \sum_{k_2,k_3,\cdots,k_n}^{*}\frac{(N - k_1)!}{k_2!k_3!\cdots k_n!}(\frac{p_2}{1 - p_1})^{k_2}(\frac{p_3}{1 - p_1})^{k_3} \cdots (\frac{p_n}{1 - p_1})^{k_n}
-\end{aligned}
-\]</div>
-<p>化简成多项式的形式：</p>
-<div class="arithmatex">\[
-\begin{aligned}
-    \frac{N!}{k_1!(N - k_1)!}p_1^{k_1}(1 - p_1)^{N - k_1} (\frac{p_2}{1 - p_1} + \frac{p_3}{1 - p_1} + \cdots + \frac{p_n}{1 - p_1}) ^ N
-\end{aligned}
-\]</div>
-<p>结果为：</p>
-<blockquote>
-<p><span class="arithmatex">\(\frac{N!}{k_1!(N - k_1)!}p_1^{k_1}(1 - p_1)^{N - k_1}\)</span></p>
-</blockquote>
-<hr/>
-<p><strong>思路三：</strong></p>
-<p>想象成二项分布事件，实验结果 <span class="arithmatex">\(A_1\)</span> 发生了 <span class="arithmatex">\(k_1\)</span> 次，没有发生 <span class="arithmatex">\(N - k_1\)</span> 次的概率为:</p>
-<blockquote>
-<p><span class="arithmatex">\(\frac{N!}{k_1!(N - k_1)!}p_1^{k_1}(1 - p_1)^{N - k_1}\)</span></p>
-</blockquote>
-<p><strong>结论：若要求某试验结果 <span class="arithmatex">\(A_i\)</span> 固定发生了 <span class="arithmatex">\(k_i\)</span> 次的概率，只需要当作二项分布 <span class="arithmatex">\(b(k_i; N, p_i)\)</span> 来求就行。</strong></p>
-<h2 id="_3">推广到多个试验结果固定次数，求概率</h2>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>若一个试验的试验结果是 <span class="arithmatex">\(\{A_1, A_2, \cdots , A_n\}\)</span> 中的一种，且上面的试验结果互相排斥，每一次试验有且仅有一种试验结果发生，对于任意一个试验结果 <span class="arithmatex">\(A_i\)</span> 发生的概率为 <span class="arithmatex">\(p_i\)</span>。</p>
-<p>若对该试验进行了 <span class="arithmatex">\(N\)</span> 次，请你求试验结果 <span class="arithmatex">\(A_1、A_2、\cdots 、A_s\)</span> 分别发生 <span class="arithmatex">\(k_1、k_2、\cdots 、k_s\)</span> 次的概率。</p>
-</div>
-<p>将 <span class="arithmatex">\(N\)</span> 分成大小分别为：<span class="arithmatex">\(k_1、k_2、\cdots、k_s、(N - k_1 - k_2 - \cdots - k_s)\)</span> 的堆，总共有多少种分法：</p>
-<blockquote>
-<p>总共有 <span class="arithmatex">\(\frac{N!}{k_1!k_2!\cdots k_s!(N - k_1 - k_2 - \cdots - k_s)!}\)</span> 种分法</p>
-</blockquote>
-<p>假设有这样的试验 <span class="arithmatex">\(B\)</span> 其试验结果为：<span class="arithmatex">\(A_{s+1} \cdots A_n\)</span>，且对于任意的试验结果 <span class="arithmatex">\(A_i(i \geq s + 1)\)</span> 来说，其发生的概率为：<span class="arithmatex">\(\frac{p_i}{1 - (p_1 + p_2 + \cdots p_s)}\)</span></p>
-<p>所以题目所求的概率为：</p>
-<blockquote>
-<p><span class="arithmatex">\(\frac{N!}{k_1!k_2!\cdots k_s!(N - k_1 - k_2 - \cdots - k_s)!}p_1^{k_1} \cdots p_s^{k_s} \times (1 - p_1 - \cdots p_s) ^ (N - k_1 - \cdots k_s)\)</span></p>
-<p><span class="arithmatex">\(\times\)</span></p>
-<p><span class="arithmatex">\(\sum_{k_{s + 1} \cdots k_n}^{*}\frac{(N - k_1 - \cdots k_s)!}{k_{s + 1}!k_{s + 2}!\cdots, k_n!}(\frac{p_{s + 1}}{1 - k_1 - \cdots k_s}) ^ {k_{s + 1}} \cdots (\frac{p_n}{1 - k_1 - \cdots k_s}) ^ {k_n}\)</span></p>
-<p><span class="arithmatex">\(=\)</span></p>
-<p><span class="arithmatex">\(\frac{N!}{k_1!k_2!\cdots k_s!(N - k_1 - k_2 - \cdots - k_s)!}p_1^{k_1} \cdots p_s^{k_s} \times (1 - p_1 - \cdots p_s) ^ (N - k_1 - \cdots k_s)\)</span></p>
-</blockquote>
-<p><strong>结论：若将某些试验结果固定发生多少次，叫你求这样的概率，只需要将试验次数 <span class="arithmatex">\(N\)</span> 分成大小分别为 <span class="arithmatex">\(k_1、k_2、\cdots 、k_s 、(N - k_1 - k_2 - \cdots - k_s)\)</span> 的堆，分别代表事件 <span class="arithmatex">\(A_1、A_2、\cdots 、A_s、\bar{A}\)</span> 发生的次数，每一个试验分别发生的概率分别对应 <span class="arithmatex">\(p_1、p_2、\cdots 、p_s、(1 - p_1、p_2、\cdots 、p_s)\)</span>，求这样的概率</strong></p>
-<h2 id="_4">在多项式分布中，在已知某事件固定发生了几次的情况下，求另一事件发生某次的概率</h2>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>若进行一次试验，其可能的结果为 <span class="arithmatex">\(A_1、A_2、\cdots 、A_n\)</span> 中的一种，并且这些可能的结果相互排斥，每一次试验有且仅有一种结果发生。</p>
-<p>每一种结果分别对应的发生概率为：<span class="arithmatex">\(p_1、p_2、\cdots 、p_n\)</span>。</p>
-<p>若进行 <span class="arithmatex">\(N\)</span> 次独立的试验，已知结果为 <span class="arithmatex">\(A_2\)</span> 发生了 <span class="arithmatex">\(k_2\)</span> 次，求此时 <span class="arithmatex">\(A_1\)</span> 发生了 <span class="arithmatex">\(k_1\)</span> 次的概率。</p>
-</div>
-<p>先求 <span class="arithmatex">\(p(A_2 = k_2)\)</span> 的概率，再求 <span class="arithmatex">\(p(A_1 = k_1, A_2 = k_2)\)</span> 的概率，那么答案就是：</p>
-<blockquote>
-<p><span class="arithmatex">\(\frac{p(A_1 = k_1, A_2 = k_2)}{p(A_2 = k_2)}\)</span> </p>
-</blockquote>
-<p>由上面的结论我们容易得：</p>
-<blockquote>
-<p><span class="arithmatex">\(p(A_2 = k_2) = \frac{N!}{k_2!(N - k_2)!}p_2^{k_2}(1 - p_2) ^ (N - k_2)\)</span></p>
-<p><span class="arithmatex">\(p(A_1 = k_1, A_2 = k_2) = \frac{N!}{k_1!k_2!(N - k_1 - k_2)!}p_1^{k_1}p_2^{k_2}(1 - p_1 - p_2) ^ (N - k_1 - k_2)\)</span> </p>
-<p>所以 <span class="arithmatex">\(p(A_1 = k_1 | A_2 = k_2) \frac{p(A_1 = k_1, A_2 = k_2)}{p(A_2 = k_2)} = \frac{p_1^{k_1}(1 - p_1 - p_2) ^ {N - k_ 2 - k_1} (N - k_2)!}{k_1!(N - k_1 - k_2)!(1 - p_2)^{N - k_2}}\)</span></p>
-<p>化简步骤也看一看吧：</p>
-<p><span class="arithmatex">\(\frac{p_1^{k_1}(1 - p_1 - p_2) ^ {N - k_ 2 - k_1} (N - k_2)!}{k_1!(N - k_1 - k_2)!(1 - p_2)^{N - k_2}} = \frac{p_1^{k_1}(1 - p_1 - p_2) ^ {N - k_ 2 - k_1} (N - k_2)!}{(1 - p_2) ^ {k_1} k_1!(N - k_1 - k_2)!(1 - p_2)^{N - k_2 - k_1}}\)</span></p>
-<p>最终可化简成：</p>
-<p><span class="arithmatex">\(\frac{(N - k_2)!}{k_1!(N - k_1 - k_2)!}(\frac{p_1}{1 - p_2}) ^ {k_1} (1 - \frac{p_1}{1 - p_2}) ^ {N - k_1 - k_2}\)</span></p>
-<p><mark class="critic"> 可以表示成二项分布：<span class="arithmatex">\(b(k_1; N - k_2, \frac{p_1}{1 - p_2})\)</span> </mark></p>
-</blockquote>
+<h1 id="_1">分布函数简单例题</h1>
+<p>!!! </p>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
@@ -706,7 +547,7 @@
 </main>
 <footer class="md-footer">
 <nav aria-label="页脚" class="md-footer__inner md-grid">
-<a aria-label="上一页: 多维离散型随机向量" class="md-footer__link md-footer__link--prev" href="../%E5%A4%9A%E7%BB%B4%E7%A6%BB%E6%95%A3%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%90%91%E9%87%8F/" rel="prev">
+<a aria-label="上一页: 正太分布简单例题" class="md-footer__link md-footer__link--prev" href="../%E6%AD%A3%E5%A4%AA%E5%88%86%E5%B8%83%E7%AE%80%E5%8D%95%E4%BE%8B%E9%A2%98/" rel="prev">
 <div class="md-footer__button md-icon">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
 </div>
@@ -715,17 +556,17 @@
 <span class="md-footer__direction">
                 上一页
               </span>
-              多维离散型随机向量
+              正太分布简单例题
             </div>
 </div>
 </a>
-<a aria-label="下一页: 取出次品的个数" class="md-footer__link md-footer__link--next" href="../%E5%8F%96%E5%87%BA%E6%AC%A1%E5%93%81%E7%9A%84%E4%B8%AA%E6%95%B0/" rel="next">
+<a aria-label="下一页: D-莲子的物理热力学" class="md-footer__link md-footer__link--next" href="../../%E5%88%B7%E9%A2%98%E5%86%8C/D-%E8%8E%B2%E5%AD%90%E7%9A%84%E7%89%A9%E7%90%86%E7%83%AD%E5%8A%9B%E5%AD%A6/" rel="next">
 <div class="md-footer__title">
 <div class="md-ellipsis">
 <span class="md-footer__direction">
                 下一页
               </span>
-              取出次品的个数
+              D-莲子的物理热力学
             </div>
 </div>
 <div class="md-footer__button md-icon">
