@@ -137,6 +137,8 @@ nav:
     - 字符串哈希: label/数据结构/字符串哈希.md
     - 二叉树: label/数据结构/二叉树.md
     - 线段树: label/数据结构/线段树.md
+  - 图论:
+    - dijkstra 算法正权路径求最短路: label/图论/dijkstra算法正权路径求最短路
   - 数论:
     - lowbit: label/数论/lowbit.md
     - 二进制 1 的个数: label/数论/二进制 1 的个数.md
@@ -170,6 +172,7 @@ nav:
     - label/概率统计/分布函数与概率密度函数.md
     - label/概率统计/正太分布.md
     - label/概率统计/指数分布.md
+    - label/概率统计/均匀分布.md
     - label/概率统计/多维离散型随机向量.md
     - label/概率统计/多项式分布.md
     - label/概率统计/取出次品的个数.md
