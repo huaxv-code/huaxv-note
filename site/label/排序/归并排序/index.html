@@ -304,9 +304,26 @@
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          归并排序
+          <span class="md-nav__icon md-icon"></span>
+</label>
 <a class="md-nav__link md-nav__link--active" href="./">
         归并排序
       </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+    归并排序求逆序对思路
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -645,6 +662,17 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+    归并排序求逆序对思路
+  </a>
+</li>
+</ul>
 </nav>
 </div>
 </div>
@@ -681,7 +709,6 @@
 <a href="#__codelineno-0-23" id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>序列中逆序对的数量，例如对于序列 <span class="arithmatex">\(1, 2, 6, 3, 4, 5\)</span> 逆序对有 <span class="arithmatex">\(&lt;6, 3&gt;、&lt;6, 4&gt;、&lt;6, 5&gt;\)</span> 总共 <span class="arithmatex">\(3\)</span> 个。</p>
-<p>对于归并排序，若序列长度只有 <span class="arithmatex">\(2\)</span> 个，例如 ：<span class="arithmatex">\(2,1\)</span></p>
 <div class="admonition question">
 <p class="admonition-title">Question</p>
 <p><code>bobo</code> 有一个长度为 <span class="arithmatex">\(n\)</span> 的非负整数序列 <span class="arithmatex">\(a_1, a _ 2, a_3, \cdots , a _ n\)</span>，他至多允许你交换 <span class="arithmatex">\(k\)</span> 次相邻数。</p>
@@ -700,6 +727,76 @@
 <a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a>2
 </code></pre></div>
 </div>
+<h2 id="_2">归并排序求逆序对思路</h2>
+<p>若 <span class="arithmatex">\(k = 0\)</span>，那么答案就是逆序对的数量；</p>
+<p>我们如何才能减少逆序对的数量？</p>
+<p>对于例子 <span class="arithmatex">\(1,2,3,6,4,5\)</span> 逆序对有 <span class="arithmatex">\(2\)</span> 个；</p>
+<p>对不是逆序对的相邻数交换一次，例如交换 <span class="arithmatex">\(1、2\)</span>：<span class="arithmatex">\(2,1,3,6,4,5\)</span> ，逆序对变为 <span class="arithmatex">\(3\)</span> 个，反而还变多了；</p>
+<p>若交换相邻数且符合逆序对的，例如交换 <span class="arithmatex">\(6、4\)</span>：<span class="arithmatex">\(1,2,3,4,6,5\)</span> 逆序对数减少为 <span class="arithmatex">\(1\)</span>.</p>
+<p>我们是否有结论：只要交换 <span class="arithmatex">\(k\)</span> 次连续的逆序对是否就可以将逆序对数量从原来的 <span class="arithmatex">\(x\)</span> 减低到 <span class="arithmatex">\(x - k\)</span> ?</p>
+<p>若有连续的逆序对，并使其交换一次是一定可以使得总逆序对的数量只降低一次</p>
+<p>那是不是一定存在连续的逆序对呢？</p>
+<p><strong>反证法：</strong> 假设原序列存在逆序对，但是不存在连续的逆序对，那么该序列任意一对连续的数都是单调递增的，这会导致总序列单调递增，就会不存在逆序对，与原假设矛盾，所以一定存在连续的逆序对。</p>
+<details class="success">
+<summary>归并排序求逆序对</summary>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a>
+<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a>
+<a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1e7</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-3-6" id="__codelineno-3-6" name="__codelineno-3-6"></a>
+<a href="#__codelineno-3-7" id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="k">typedef</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">LL</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-3-8" id="__codelineno-3-8" name="__codelineno-3-8"></a>
+<a href="#__codelineno-3-9" id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="n">LL</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">N</span><span class="p">],</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="n">N</span><span class="p">],</span><span class="w"> </span><span class="n">cnt</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-3-10" id="__codelineno-3-10" name="__codelineno-3-10"></a>
+<a href="#__codelineno-3-11" id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="c1">// 归并排序统计逆序对</span>
+<a href="#__codelineno-3-12" id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="kt">void</span><span class="w"> </span><span class="nf">merge</span><span class="p">(</span><span class="n">LL</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">LL</span><span class="w"> </span><span class="n">mid</span><span class="p">,</span><span class="w"> </span><span class="n">LL</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"></span>
+<a href="#__codelineno-3-13" id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-3-14" id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="w">    </span><span class="n">LL</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-3-15" id="__codelineno-3-15" name="__codelineno-3-15"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"></span>
+<a href="#__codelineno-3-16" id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-3-17" id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="w"></span>
+<a href="#__codelineno-3-18" id="__codelineno-3-18" name="__codelineno-3-18"></a><span class="w">        </span><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-3-19" id="__codelineno-3-19" name="__codelineno-3-19"></a><span class="w">            </span><span class="n">b</span><span class="p">[</span><span class="n">t</span><span class="w"> </span><span class="o">++</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="w"> </span><span class="o">++</span><span class="p">];</span><span class="w"></span>
+<a href="#__codelineno-3-20" id="__codelineno-3-20" name="__codelineno-3-20"></a><span class="w">            </span><span class="n">cnt</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span>
+<a href="#__codelineno-3-21" id="__codelineno-3-21" name="__codelineno-3-21"></a><span class="w">            </span><span class="c1">// 如果左区间第 i 个元素大于右区间第 j 个元素</span>
+<a href="#__codelineno-3-22" id="__codelineno-3-22" name="__codelineno-3-22"></a><span class="w">            </span><span class="c1">// 按照归并排序的特点，左区间和右区间都已经是单调递增了的</span>
+<a href="#__codelineno-3-23" id="__codelineno-3-23" name="__codelineno-3-23"></a><span class="w">            </span><span class="c1">// 那么逆序对的数量要增加 mid - i + 1 个.</span>
+<a href="#__codelineno-3-24" id="__codelineno-3-24" name="__codelineno-3-24"></a><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<a href="#__codelineno-3-25" id="__codelineno-3-25" name="__codelineno-3-25"></a><span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="n">t</span><span class="w"> </span><span class="o">++</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">++</span><span class="p">];</span><span class="w"></span>
+<a href="#__codelineno-3-26" id="__codelineno-3-26" name="__codelineno-3-26"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a href="#__codelineno-3-27" id="__codelineno-3-27" name="__codelineno-3-27"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">mid</span><span class="p">)</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="n">t</span><span class="w"> </span><span class="o">++</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">++</span><span class="p">];</span><span class="w"></span>
+<a href="#__codelineno-3-28" id="__codelineno-3-28" name="__codelineno-3-28"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="n">t</span><span class="w"> </span><span class="o">++</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="w"> </span><span class="o">++</span><span class="p">];</span><span class="w"></span>
+<a href="#__codelineno-3-29" id="__codelineno-3-29" name="__codelineno-3-29"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">t</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"></span>
+<a href="#__codelineno-3-30" id="__codelineno-3-30" name="__codelineno-3-30"></a><span class="p">}</span><span class="w"></span>
+<a href="#__codelineno-3-31" id="__codelineno-3-31" name="__codelineno-3-31"></a>
+<a href="#__codelineno-3-32" id="__codelineno-3-32" name="__codelineno-3-32"></a><span class="kt">void</span><span class="w"> </span><span class="nf">msort</span><span class="p">(</span><span class="n">LL</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">LL</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"></span>
+<a href="#__codelineno-3-33" id="__codelineno-3-33" name="__codelineno-3-33"></a><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-3-34" id="__codelineno-3-34" name="__codelineno-3-34"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-3-35" id="__codelineno-3-35" name="__codelineno-3-35"></a><span class="w">    </span><span class="n">LL</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-3-36" id="__codelineno-3-36" name="__codelineno-3-36"></a><span class="w">    </span><span class="n">msort</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">mid</span><span class="p">);</span><span class="w"> </span><span class="n">msort</span><span class="p">(</span><span class="n">mid</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">);</span><span class="w"></span>
+<a href="#__codelineno-3-37" id="__codelineno-3-37" name="__codelineno-3-37"></a><span class="w">    </span><span class="n">merge</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">mid</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">);</span><span class="w"></span>
+<a href="#__codelineno-3-38" id="__codelineno-3-38" name="__codelineno-3-38"></a><span class="p">}</span><span class="w"></span>
+<a href="#__codelineno-3-39" id="__codelineno-3-39" name="__codelineno-3-39"></a>
+<a href="#__codelineno-3-40" id="__codelineno-3-40" name="__codelineno-3-40"></a><span class="kt">void</span><span class="w"> </span><span class="nf">solve</span><span class="p">()</span><span class="w"></span>
+<a href="#__codelineno-3-41" id="__codelineno-3-41" name="__codelineno-3-41"></a><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-3-42" id="__codelineno-3-42" name="__codelineno-3-42"></a><span class="w">    </span><span class="n">LL</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-3-43" id="__codelineno-3-43" name="__codelineno-3-43"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"></span>
+<a href="#__codelineno-3-44" id="__codelineno-3-44" name="__codelineno-3-44"></a><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-3-45" id="__codelineno-3-45" name="__codelineno-3-45"></a><span class="w">        </span><span class="n">cnt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-3-46" id="__codelineno-3-46" name="__codelineno-3-46"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">LL</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"></span>
+<a href="#__codelineno-3-47" id="__codelineno-3-47" name="__codelineno-3-47"></a><span class="w">        </span><span class="n">msort</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span><span class="w"> </span>
+<a href="#__codelineno-3-48" id="__codelineno-3-48" name="__codelineno-3-48"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cnt</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-3-49" id="__codelineno-3-49" name="__codelineno-3-49"></a><span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">cnt</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-3-50" id="__codelineno-3-50" name="__codelineno-3-50"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a href="#__codelineno-3-51" id="__codelineno-3-51" name="__codelineno-3-51"></a><span class="p">}</span><span class="w"></span>
+<a href="#__codelineno-3-52" id="__codelineno-3-52" name="__codelineno-3-52"></a>
+<a href="#__codelineno-3-53" id="__codelineno-3-53" name="__codelineno-3-53"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
+<a href="#__codelineno-3-54" id="__codelineno-3-54" name="__codelineno-3-54"></a><span class="p">{</span><span class="w"></span>
+<a href="#__codelineno-3-55" id="__codelineno-3-55" name="__codelineno-3-55"></a><span class="w">    </span><span class="n">solve</span><span class="p">();</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<a href="#__codelineno-3-56" id="__codelineno-3-56" name="__codelineno-3-56"></a><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+</details>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
