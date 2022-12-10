@@ -139,6 +139,7 @@ nav:
     - 线段树: label/数据结构/线段树.md
   - 排序:
     - label/排序/归并排序.md
+    - label/排序/快速排序.md
   - 图论:
     - dijkstra 算法正权路径求最短路: label/图论/dijkstra算法正权路径求最短路
   - 数论:
