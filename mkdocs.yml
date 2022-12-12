@@ -65,10 +65,10 @@ theme:
   features:
     - navigation.instant
     - navigation.tracking
-    - navigation.tabs
+    - navigation.tabs 
     # - navigation.tabs.sticky
     - navigation.sections
-    # - toc.integrate
+    # - toc.integrate # 屏蔽右侧导航栏，合并到左边
     - navigation.expand
     # - navigation.prune
     - navigation.prune 
@@ -103,7 +103,12 @@ theme:
 
 plugins:
   - glightbox
-  # - search:
+  - search:
+      # lang:
+      #   - en
+      #   - ja
+      # separator: '[\s\-\.]+'
+      separator: '[\s\u200b\-]'
   #   separator: '[\s\u200b\-]'
   # - with-pdf
     # verbose: true
