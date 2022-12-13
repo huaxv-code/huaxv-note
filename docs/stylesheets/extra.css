@@ -1,0 +1,18 @@
+div strong,details strong {
+    color: green;
+    font-weight: bolder;
+}
+
+p strong {
+    color: #e061cf;
+    font-weight: bolder;
+    font-size: .8rem;
+}
+
+h2 , h3, h4, h5, h6 {
+    color: #1f84f7 !important;
+}
+
+h1 {
+    color: royalblue !important;
+}
