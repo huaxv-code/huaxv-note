@@ -64,19 +64,19 @@ theme:
   name: material
   features:
     - navigation.instant
-    - navigation.tracking
+    # - navigation.tracking
     - navigation.tabs 
     # - navigation.tabs.sticky
-    - navigation.sections
+    # - navigation.sections
     # - toc.integrate # 屏蔽右侧导航栏，合并到左边
-    - navigation.expand
+    # - navigation.expand
     # - navigation.prune
-    - navigation.prune 
-    - toc.follow
+    # - navigation.prune 
+    # - toc.follow
     - navigation.top
     # - toc.integrate
-    - content.code.annotate
-    - content.tabs.link
+    # - content.code.annotate
+    # - content.tabs.link
   palette:
 
     # Palette toggle for light mode
@@ -125,47 +125,53 @@ nav:
   - 简介:
     - index.md
     - git.md
-  - 数据结构:
-    - 一些配置: label/数据结构/index.md
-    - 单链表: label/数据结构/单链表.md
-    - 栈: label/数据结构/栈.md
-    - 后缀表达式: label/数据结构/后缀表达式.md
-    - 队列: label/数据结构/队列.md
-    - 双端队列: label/数据结构/双端队列.md
-    - 二叉堆: label/数据结构/二叉堆.md
-    - 配对堆 (可并堆): label/数据结构/配对堆.md
-    - 左偏树 (可并堆): label/数据结构/左偏树.md
-    - 并查集: label/数据结构/并查集.md
-    - 分块思想: label/数据结构/分块思想.md
-    - 单调栈: label/数据结构/单调栈.md
-    - 单调队列: label/数据结构/单调队列.md
-    - ST 表: label/数据结构/ST 表.md
-    - 树状数组: label/数据结构/树状数组.md
-    - 霍夫曼树: label/数据结构/霍夫曼树.md
-    - 字符串哈希: label/数据结构/字符串哈希.md
-    - 二叉树: label/数据结构/二叉树.md
-    - 线段树: label/数据结构/线段树.md
-  - 排序:
-    - label/排序/归并排序.md
-    - label/排序/快速排序.md
-  - 图论:
-    - dijkstra 算法正权路径求最短路: label/图论/dijkstra算法正权路径求最短路
-  - 数论:
-    - lowbit: label/数论/lowbit.md
-    - 二进制 1 的个数: label/数论/二进制 1 的个数.md
-    - 试除法判质数: label/数论/试除法判质数.md
-    - 暴力分解质因子: label/数论/暴力分解质因子.md
-    - 欧拉筛质数: label/数论/欧拉筛质数.md
-    - 介绍大数 __int128_t: label/数论/int128.md
-    - 快速幂: label/数论/快速幂.md
-    # - 素性探测: label/数论/素性探测.md
-    - 素性探测判质数: label/数论/素性探测判质数.md
-    - 最大公约数 gcd: label/数论/最大公约数 gcd.md
-    - 最小公倍数 lcm: label/数论/最小公倍数 lcm.md
-    - 扩展欧几里得算法: label/数论/扩展欧几里得算法.md
-    - 试除法求约数: label/数论/试除法求约数.md
-    - 约数和定理: label/数论/约数和定理.md
-    - 欧拉函数: label/数论/欧拉函数.md
+  - 算法学习:
+    - 数据结构:
+      - 一些配置: label/算法学习/数据结构/index.md
+      - 单链表: label/算法学习/数据结构/单链表.md
+      - 栈: label/算法学习/数据结构/栈.md
+      - 后缀表达式: label/算法学习/数据结构/后缀表达式.md
+      - 队列: label/算法学习/数据结构/队列.md
+      - 双端队列: label/算法学习/数据结构/双端队列.md
+      - 二叉堆: label/算法学习/数据结构/二叉堆.md
+      - 配对堆 (可并堆): label/算法学习/数据结构/配对堆.md
+      - 左偏树 (可并堆): label/算法学习/数据结构/左偏树.md
+      - 并查集: label/算法学习/数据结构/并查集.md
+      - 分块思想: label/算法学习/数据结构/分块思想.md
+      - 单调栈: label/算法学习/数据结构/单调栈.md
+      - 单调队列: label/算法学习/数据结构/单调队列.md
+      - ST 表: label/算法学习/数据结构/ST 表.md
+      - 树状数组: label/算法学习/数据结构/树状数组.md
+      - 霍夫曼树: label/算法学习/数据结构/霍夫曼树.md
+      - 字符串哈希: label/算法学习/数据结构/字符串哈希.md
+      - 二叉树: label/算法学习/数据结构/二叉树.md
+      - 线段树: label/算法学习/数据结构/线段树.md
+    - 排序:
+      - 快速排序: label/算法学习/排序/快速排序.md
+      - 归并排序: label/算法学习/排序/归并排序.md
+    - 查找:
+      - label/算法学习/查找/猜分数.md
+    - 数论:
+      - lowbit: label/算法学习/数论/lowbit.md
+      - 二进制 1 的个数: label/算法学习/数论/二进制 1 的个数.md
+      - 试除法判质数: label/算法学习/数论/试除法判质数.md
+      - 暴力分解质因子: label/算法学习/数论/暴力分解质因子.md
+      - 欧拉筛质数: label/算法学习/数论/欧拉筛质数.md
+      - 介绍大数 __int128_t: label/算法学习/数论/int128.md
+      - 快速幂: label/算法学习/数论/快速幂.md
+      # - 素性探测: label/算法学习/数论/素性探测.md
+      - 素性探测判质数: label/算法学习/数论/素性探测判质数.md
+      - 最大公约数 gcd: label/算法学习/数论/最大公约数 gcd.md
+      - 最小公倍数 lcm: label/算法学习/数论/最小公倍数 lcm.md
+      - 扩展欧几里得算法: label/算法学习/数论/扩展欧几里得算法.md
+      - 试除法求约数: label/算法学习/数论/试除法求约数.md
+      - 约数和定理: label/算法学习/数论/约数和定理.md
+      - 欧拉函数: label/算法学习/数论/欧拉函数.md
+    - 图论:
+      - dijkstra 算法正权路径求最短路: label/算法学习/图论/dijkstra算法正权路径求最短路.md
+    - 字符串:
+      - kmp: label/算法学习/字符串/kmp.md
+
   - 概率统计:
     - 读我: label/概率统计/读我.md
     - 赌局中断: label/概率统计/赌局中断.md
@@ -202,16 +208,8 @@ nav:
   - 刷题册:
     - 剩下的数: label/刷题册/剩下的数.md
     - D-莲子的物理热力学: label/刷题册/D-莲子的物理热力学.md
-    - 盛最多水的容器: label/贪心题集/盛最多水的容器.md
-    - 消耗体力爬得更高: label/贪心题集/消耗体力爬得更高.md
+    - 盛最多水的容器: label/刷题册/盛最多水的容器.md
+    - 消耗体力爬得更高: label/刷题册/消耗体力爬得更高.md
     - 最大子段和: label/刷题册/最大子段和.md
     - 验证栈序列: label/刷题册/验证栈序列.md
     - 约瑟夫问题: label/刷题册/约瑟夫问题.md
-
-  # - 贪心题集:
-  #   - D-莲子的物理热力学: label/刷题册/D-莲子的物理热力学.md
-  #   - 盛最多水的容器: label/贪心题集/盛最多水的容器.md
-  #   - 消耗体力爬得更高: label/贪心题集/消耗体力爬得更高.md
-
-  - 二分查找:
-    - 猜分数: label/二分查找/猜分数.md

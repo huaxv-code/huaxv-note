@@ -1,4 +1,4 @@
-# [[传智杯 #5 初赛] D-莲子的物理热力学](https://www.luogu.com.cn/problem/P8872)
+# [D-莲子的物理热力学](https://www.luogu.com.cn/problem/P8872)
 
 ## 题目背景
 
