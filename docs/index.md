@@ -13,7 +13,7 @@
 - [oi-wiki](https://oiwiki.org/contest/resources/)
 - [LibreOJ](https://loj.ac/p)
 
-作者：韶关学院/信息工程学院/21 级计算机科学与技术 2 班/林日清
+<!-- 作者：韶关学院/信息工程学院/21 级计算机科学与技术 2 班/林日清 -->
 
 邮箱：[1325595056@qq.com]()
 
