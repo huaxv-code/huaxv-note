@@ -188,7 +188,8 @@ nav:
       - dijkstra 算法正权路径求最短路: label/算法学习/图论/dijkstra算法正权路径求最短路.md
     - 字符串:
       - kmp: label/算法学习/字符串/kmp.md
-
+  # - 高等数学:
+  #   - 二重积分: label/高等数学/二重积分.md
   - 概率统计:
     - 读我: label/概率统计/读我.md
     - 赌局中断: label/概率统计/赌局中断.md
