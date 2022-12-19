@@ -967,7 +967,7 @@
 </a>
 <h1 id="_1">孤独的照片</h1>
 <details class="question">
-<summary><a href="https://www.acwing.com/activity/content/problem/content/7861/">问题描述</a></summary>
+<summary>AcWing 4261</summary>
 <p>给定一个长度范围在 <span class="arithmatex">\(3 \leq n \leq n\)</span> 的字符串，并且该字符串只会由 <code>G</code> 和 <code>H</code> 这两种字符组成。</p>
 <p>现在有一个任务就是将该字符串按照长度 <span class="arithmatex">\(k\)</span> 划分成连续的子串 <span class="arithmatex">\(3 \leq k \leq n\)</span>，若 <span class="arithmatex">\(k\)</span> 从 <span class="arithmatex">\(3\)</span> 开始一直枚举到 <span class="arithmatex">\(n\)</span>，请问划分成的连续子串中，有多少个含有孤独元素的？</p>
 <p>孤独元素：在一个子串中，如果某个字符在该子串中只出现了 <span class="arithmatex">\(1\)</span> 次，就说明该子串含有孤独元素。</p>
@@ -987,11 +987,11 @@
 <a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="n">GHGH</span><span class="err">、</span><span class="n">HGHG</span><span class="err">、</span><span class="w"></span>
 <a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="n">GHGHG</span><span class="w"></span>
 </code></pre></div>
-<p>含有孤独元素的子串是 <code class="highlight"><span class="n">GHG</span><span class="err">、</span><span class="n">HGH</span><span class="err">、</span><span class="n">GHG</span><span class="w"></span></code>，总共有 <span class="arithmatex">\(3\)</span> 个，所以输出 <span class="arithmatex">\(3\)</span>。</p>
+<p>含有孤独元素的子串是 <code>GHG、HGH、GHG</code>，总共有 <span class="arithmatex">\(3\)</span> 个，所以输出 <span class="arithmatex">\(3\)</span>。</p>
 </details>
 <p><strong>先分析特征</strong></p>
 <p>若该子串含有孤独元素，那么从该孤独子串开始，向左右两边延伸，字符都会是另外一个字符，例如对于该字串 <code>GHG</code> 来说，孤独元素 <code>H</code>，围绕在 <code>H</code> 周围的元素都是 <code>G</code>，这是一个孤独元素的特征。</p>
-<p>若有这样的字符串 <code>GGGGGHGGGGG</code>，我们采取的策略是从孤独元素开始 <code class="highlight"><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="w"></span></code>，定义左右指针 <code class="highlight"><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"></span></code>，左指针 <code class="highlight"><span class="n">l</span><span class="w"></span></code> 从 <code class="highlight"><span class="n">i</span><span class="w"></span></code> 开始往左边遍历到最左边且连续的 <code class="highlight"><span class="n">G</span><span class="w"></span></code>，那么此时能构成孤独子串的个数有 <code class="highlight"><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">0</span><span class="w"></span></code> 个；右指针 <code class="highlight"><span class="n">r</span><span class="w"></span></code> 从 <code class="highlight"><span class="n">i</span><span class="w"></span></code> 开始往右边遍历，一直遍历到最右边且连续的 <code class="highlight"><span class="n">G</span><span class="w"></span></code>，每遍历一次，此时能构成孤独子串的个数就有 <code>r - i + 1 &gt;= 3 ? i - l + 1 : r - l + 1 &gt;= 3 ? r - l - 1 : 0</code>。</p>
+<p>若有这样的字符串 <code>GGGGGHGGGGG</code>，我们采取的策略是从孤独元素开始 <code>i = 6</code>，定义左右指针 <code>l = r = i</code>，左指针 <code>l</code> 从 <code>i</code> 开始往左边遍历到最左边且连续的 <code>G</code>，那么此时能构成孤独子串的个数有 <code>i - l + 1 &gt;= 3 ? i - l - 1 : 0</code> 个；右指针 <code>r</code> 从 <code>i</code> 开始往右边遍历，一直遍历到最右边且连续的 <code>G</code>，每遍历一次，此时能构成孤独子串的个数就有 <code>r - i + 1 &gt;= 3 ? i - l + 1 : r - l + 1 &gt;= 3 ? r - l - 1 : 0</code>。</p>
 <p>结果就是他们两个的和。</p>
 <p>这只是一个孤独字符的情况，多个的情况下只需按照相同的逻辑一一遍历即可。</p>
 <details class="success">
