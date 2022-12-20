@@ -103,15 +103,15 @@ theme:
 
 plugins:
   - glightbox
-  - search:
-      # lang:
-      #   - en
-      #   - ja
-      # separator: '[\s\-\.]+'
-      separator: '[\s\u200b\-]'
-  #   separator: '[\s\u200b\-]'
-  # - with-pdf
-    # verbose: true
+  # - search:
+  #     # lang:
+  #     #   - en
+  #     #   - ja
+  #     # separator: '[\s\-\.]+'
+  #     separator: '[\s\u200b\-]'
+  # #   separator: '[\s\u200b\-]'
+  # # - with-pdf
+  #   # verbose: true
 
 extra_css:
   - stylesheets/extra.css
@@ -234,3 +234,4 @@ nav:
     - 孤独的照片: label/刷题册/孤独的照片.md
     - 判断连通: label/刷题册/判断连通.md
     - 三数之和: label/刷题册/三数之和.md
+    - 袋子里最少数目的球: label/刷题册/袋子里最少数目的球.md
