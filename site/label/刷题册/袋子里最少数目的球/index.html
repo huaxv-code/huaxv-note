@@ -977,7 +977,7 @@
 </a>
 <h1 id="_1">袋子里最少数目的球</h1>
 <details class="question">
-<summary>力扣 1760</summary>
+<summary><a href="https://leetcode.cn/problems/minimum-limit-of-balls-in-a-bag/description/">力扣 1760</a></summary>
 <p>给你一个数组 <code>nums</code>，允许你操作 <code>k</code> 次。</p>
 <p>对于每一次操作，你可以将 <code>nums</code> 里面的元素 <code>nums[i]</code> 切割成两个正整数 <code>a</code>、<code>b</code>，并将切割后的正整数放入 <code>nums</code> 中。</p>
 <p>他问你，你切割后得到的新数组的最大值最小为多少？</p>
@@ -1007,6 +1007,7 @@
 <p>定义中间游标为 <code>mid = (l + r) / 2</code>，如果将数组中的所有元素都切割成 <code>mid</code> 需要的操作数设为 <code>t</code>;</p>
 <p>如果 <code>t &gt; k</code> 说明 <code>mid</code> 太小了，切割次数不够用，此时让 <code>l = mid + 1</code> ；</p>
 <p>如果 <code>t &lt; k</code> 说明 <code>mid</code> 太大了，还没用完切割次数，此时让 <code>r = mid</code> 查找左区间的形式。</p>
+<p>时间复杂度为: <span class="arithmatex">\(O(nlog(n))\)</span></p>
 <details class="success">
 <summary>代码参考</summary>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
