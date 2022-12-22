@@ -1014,6 +1014,8 @@
 </details>
 <h2 id="_2">暴力模拟</h2>
 <p>时间复杂度为 <span class="arithmatex">\(O(n^2)\)</span>。</p>
+<details class="success">
+<summary>代码示例</summary>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="k">public</span><span class="o">:</span><span class="w"></span>
 <a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">minOperations</span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">boxes</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -1025,6 +1027,7 @@
 <a href="#__codelineno-2-9" id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
 <a href="#__codelineno-2-10" id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="p">};</span><span class="w"></span>
 </code></pre></div>
+</details>
 <h2 id="_3">逐步积累</h2>
 <p>对于位置 <code>i</code> 若我已知将 <span class="arithmatex">\(0 \sim i - 1\)</span> 的箱子都推到 <code>i - 1</code> 位置需要消耗 <code>a[i - 1]</code> 那么多次，并且此时 <code>i - 1</code> 号位置上的箱子数为 <code>b[i - 1]</code>；</p>
 <p>那么将 <span class="arithmatex">\(0 \sim i\)</span> 位置上的箱子都推动到 <code>i</code> 位置上需要的次数就为：<code>a[i] += a[i - 1] + b[i - 1]</code>，此时箱子数为 <code>b[i] = s[i] + b[i - 1]</code>；</p>
@@ -1032,6 +1035,8 @@
 <p>那么将 <code>i</code> <span class="arithmatex">\(\sim\)</span> <code>n</code> 上的箱子都推到 <code>i</code> 位置需要消耗的次数为：<code>a[i] += a[i + 1] + b[i + 1]</code>，此时箱子数为 <code>b[i] = s[i] + b[i + 1]</code>；</p>
 <p>我只需要从头到尾，从尾到头各遍历一次就能累计求出结果；</p>
 <p>时间复杂度为 <span class="arithmatex">\(O(n)\)</span>。</p>
+<details class="success">
+<summary>代码示例</summary>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="k">public</span><span class="o">:</span><span class="w"></span>
 <a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">minOperations</span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">boxes</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -1057,6 +1062,7 @@
 <a href="#__codelineno-3-23" id="__codelineno-3-23" name="__codelineno-3-23"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
 <a href="#__codelineno-3-24" id="__codelineno-3-24" name="__codelineno-3-24"></a><span class="p">};</span><span class="w"></span>
 </code></pre></div>
+</details>
 </article>
 </div>
 </div>
