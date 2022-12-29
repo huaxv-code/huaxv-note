@@ -1021,7 +1021,7 @@
 <blockquote>
 <p><code>ans = sum - k = sum - sum / k = sum * (1 - 1/res)</code></p>
 </blockquote>
-<p>所以，要使得 <code>ans</code> 最小，那么 <code>res</code> 就要进可能的小。</p>
+<p>所以，要使得 <code>ans</code> 最小，那么 <code>res</code> 就要尽可能的小。</p>
 <p><strong>求出所有的因子</strong></p>
 <p>时间复杂度为 <strong><span class="arithmatex">\(\sqrt{n}\)</span></strong></p>
 <details class="note">
@@ -1044,7 +1044,7 @@
 <p>因子个数均摊为 <span class="arithmatex">\(log(n)\)</span>，其中：</p>
 <blockquote>
 <p><strong>int</strong> 范围内最大的因子个数是 <strong>1600</strong>；</p>
-<p><strong><span class="arithmatex">\(10 ^ 6\)</span></strong> 范围内的最大因子个数是 <strong>240</strong>，该数为 <strong>720720</strong>`</p>
+<p><strong><span class="arithmatex">\(10 ^ 6\)</span></strong> 范围内的最大因子个数是 <strong>240</strong>，该数为 <strong>720720</strong></p>
 </blockquote>
 <hr/>
 <p>因此，我们完全可以求出 <code>sum</code> 的所有因子，从最小的一一开始枚举，并从石子堆集合的开头处开始合并模拟看看该因子是否符合条件；</p>
