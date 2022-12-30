@@ -241,6 +241,7 @@ nav:
     - 统计次数: label/刷题册/统计次数.md
     - 子数组偶数个因子: label/刷题册/子数组偶数个因子.md
     - 合并成均匀的石子: label/刷题册/合并成均匀的石子.md
+    - 两数之和: label/刷题册/两数之和.md
   - HTML:
     - CSS:
       - 选择器: label/HTML/CSS/选择器.md
